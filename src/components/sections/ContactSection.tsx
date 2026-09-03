@@ -1,40 +1,55 @@
 import { ArrowUpRight, FacebookLogo } from "@phosphor-icons/react/dist/ssr";
-import { Button } from "@/components/ui/Button";
 import { Placeholder } from "@/components/ui/Placeholder";
+import { PhoneCTA, PhoneNumber } from "@/components/ui/PhoneCTA";
 import { Reveal } from "@/components/ui/Reveal";
-import { contact, cta, social } from "@/data/site";
+import { contact, social } from "@/data/site";
 
 /**
- * Contact details beside the map. Used on the homepage; the contact page
- * adds the form above it.
+ * Where we are and how to reach us: the number and the address set large,
+ * the map beside them. Used on the homepage and the contact page.
  */
-export function ContactSection({ withButton = true }: { withButton?: boolean }) {
+export function ContactSection({ heading = "Sunați-ne. Sau veniți la noi." }: { heading?: string }) {
   return (
-    <section className="bg-paper">
+    <section className="bg-asphalt">
       <div className="container-site py-24 lg:py-32">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
           <Reveal className="lg:col-span-5">
-            <h2 className="font-display text-4xl font-extrabold leading-[1.02] tracking-[-0.03em] sm:text-5xl">
-              Vorbim despre proiectul dumneavoastră.
-            </h2>
-            <p className="mt-5 max-w-md text-lg leading-relaxed text-concrete">
-              Sunați-ne sau scrieți-ne detaliile lucrării. Răspundem cu o ofertă concretă.
-            </p>
+            <h2 className="display text-4xl sm:text-5xl">{heading}</h2>
 
-            <dl className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
+            <div className="mt-10 border-t border-chalk/15 pt-8">
+              <p className="text-sm font-semibold text-concrete">Telefon</p>
+              <PhoneNumber className="mt-2 text-[2rem] sm:text-[2.6rem]" />
+              <div className="mt-5">
+                <PhoneCTA size="lg" />
+              </div>
+            </div>
+
+            <div className="mt-8 border-t border-chalk/15 pt-8">
+              <p className="text-sm font-semibold text-concrete">Adresă</p>
+              <p className="mt-2 text-xl font-semibold leading-snug tracking-tight text-chalk">
+                {contact.address ?? <Placeholder>Adresa sediului</Placeholder>}
+              </p>
+              <a
+                href={contact.location.directionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-line mt-3 inline-flex items-center gap-1 font-semibold text-chalk"
+              >
+                Navighează cu Google Maps
+                <ArrowUpRight weight="bold" className="size-3.5" aria-hidden />
+              </a>
+            </div>
+
+            <dl className="mt-8 grid gap-6 border-t border-chalk/15 pt-8 sm:grid-cols-2">
               <div>
-                <dt className="font-display text-sm font-semibold text-concrete">Telefon</dt>
-                <dd className="mt-1 font-display text-xl font-semibold tracking-tight">
-                  {contact.phone ? (
-                    <a href={`tel:${contact.phone}`} className="link-line">{contact.phone}</a>
-                  ) : (
-                    <Placeholder>Număr de telefon</Placeholder>
-                  )}
+                <dt className="text-sm font-semibold text-concrete">Program</dt>
+                <dd className="mt-1 text-[15px] text-chalk/85">
+                  {contact.schedule ?? <Placeholder>Program de lucru</Placeholder>}
                 </dd>
               </div>
               <div>
-                <dt className="font-display text-sm font-semibold text-concrete">E-mail</dt>
-                <dd className="mt-1 font-display text-xl font-semibold tracking-tight">
+                <dt className="text-sm font-semibold text-concrete">E-mail</dt>
+                <dd className="mt-1 text-[15px] text-chalk/85">
                   {contact.email ? (
                     <a href={`mailto:${contact.email}`} className="link-line">{contact.email}</a>
                   ) : (
@@ -42,56 +57,31 @@ export function ContactSection({ withButton = true }: { withButton?: boolean }) 
                   )}
                 </dd>
               </div>
-              <div>
-                <dt className="font-display text-sm font-semibold text-concrete">Adresă</dt>
-                <dd className="mt-1 text-[15px] leading-relaxed">
-                  {contact.address ?? <Placeholder>Adresa sediului</Placeholder>}
-                  <a
-                    href={contact.location.mapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-line mt-2 inline-flex items-center gap-1 font-display font-semibold"
-                  >
-                    Deschide în Google Maps
-                    <ArrowUpRight weight="bold" className="size-3.5" aria-hidden />
-                  </a>
-                </dd>
-              </div>
-              <div>
-                <dt className="font-display text-sm font-semibold text-concrete">Social</dt>
-                <dd className="mt-1">
-                  <a
-                    href={social.facebook}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-line inline-flex items-center gap-2 font-display font-semibold"
-                  >
-                    <FacebookLogo weight="fill" className="size-4 text-brand" aria-hidden />
-                    Facebook
-                  </a>
-                </dd>
+              <div className="sm:col-span-2">
+                <a
+                  href={social.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-line inline-flex items-center gap-2 font-semibold text-chalk"
+                >
+                  <FacebookLogo weight="fill" className="size-4 text-brand" aria-hidden />
+                  Urmăriți-ne pe Facebook
+                </a>
               </div>
             </dl>
-
-            {withButton && (
-              <div className="mt-10">
-                <Button href={cta.primary.href} variant="brand" size="lg" arrow>
-                  {cta.primary.label}
-                </Button>
-              </div>
-            )}
           </Reveal>
 
           <Reveal delay={120} className="lg:col-span-7">
-            <div className="relative aspect-[4/3] overflow-hidden bg-chalk lg:aspect-auto lg:h-full lg:min-h-[520px]">
+            <div className="relative aspect-[4/3] overflow-hidden bg-graphite lg:aspect-auto lg:h-full lg:min-h-[560px]">
               <iframe
                 title="Locația Tomi Alex SRL pe hartă"
                 src={contact.location.embedUrl}
-                className="absolute inset-0 h-full w-full grayscale-[0.4] contrast-[1.05]"
+                className="map-dark absolute inset-0 h-full w-full"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
               />
+              <span className="rule-double pointer-events-none absolute left-0 top-0 w-28 text-brand" aria-hidden />
             </div>
           </Reveal>
         </div>

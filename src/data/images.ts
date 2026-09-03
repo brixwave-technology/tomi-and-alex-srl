@@ -15,13 +15,32 @@ export type SiteImage = {
   position?: string;
 };
 
+/** Static export on GitHub Pages lives under a base path; next/image does not add it for us. */
+export const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+export const withBase = (path: string) => `${basePath}${path}`;
+
 const img = (
   file: string,
   alt: string,
   width = 1800,
   height = 1199,
   position?: string,
-): SiteImage => ({ src: `/images/${file}`, alt, width, height, position });
+): SiteImage => ({ src: withBase(`/images/${file}`), alt, width, height, position });
+
+export const logo = {
+  full: {
+    dark: withBase("/images/logo-tomi-alex.png"),
+    light: withBase("/images/logo-tomi-alex-light.png"),
+    width: 700,
+    height: 385,
+  },
+  wordmark: {
+    dark: withBase("/images/logo-wordmark.png"),
+    light: withBase("/images/logo-wordmark-light.png"),
+    width: 613,
+    height: 182,
+  },
+} as const;
 
 export const images = {
   hero: img(

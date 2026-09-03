@@ -1,11 +1,11 @@
 import { Hero } from "@/components/sections/Hero";
 import { Intro } from "@/components/sections/Intro";
 import { Capabilities } from "@/components/sections/Capabilities";
-import { AggregatesStrip } from "@/components/sections/AggregatesStrip";
+import { MaterialsRail } from "@/components/sections/MaterialsRail";
 import { ConcreteBlock } from "@/components/sections/ConcreteBlock";
 import { PrefabStrip } from "@/components/sections/PrefabStrip";
 import { InfrastructureBlock } from "@/components/sections/InfrastructureBlock";
-import { CTASection } from "@/components/sections/CTASection";
+import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function HomePage() {
@@ -14,12 +14,12 @@ export default function HomePage() {
       <Hero />
       <Intro />
       <Capabilities />
-      <AggregatesStrip />
+      <MaterialsRail />
       <ConcreteBlock />
       <PrefabStrip />
       <InfrastructureBlock />
-      <CTASection />
-      <ContactSection withButton={false} />
+      <ProcessSection />
+      <ContactSection />
     </>
   );
 }

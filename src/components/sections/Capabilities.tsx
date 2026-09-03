@@ -11,19 +11,17 @@ import { cn } from "@/lib/cn";
 /**
  * Index of the four business directions. On desktop the list sits beside a
  * sticky photo panel that crossfades to the hovered or focused row; on mobile
- * each row carries its own photo. Numbers are part of the client brief.
+ * each row carries its own photo.
  */
 export function Capabilities() {
   const [active, setActive] = useState(0);
 
   return (
-    <section id="capabilitati" className="scroll-mt-20 border-t border-ink/10 bg-paper">
+    <section id="capabilitati" className="scroll-mt-20 bg-graphite">
       <div className="container-site py-24 lg:py-32">
         <Reveal className="max-w-3xl">
-          <h2 className="font-display text-4xl font-extrabold leading-[1.02] tracking-[-0.03em] sm:text-5xl lg:text-[3.5rem]">
-            Materiale și execuție, din aceeași sursă.
-          </h2>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-concrete">
+          <h2 className="display text-4xl sm:text-5xl lg:text-[3.6rem]">Materiale și execuție, din aceeași sursă.</h2>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ash">
             Agregate, beton și prefabricate produse de noi, puse în operă de echipele noastre de
             infrastructură.
           </p>
@@ -31,27 +29,18 @@ export function Capabilities() {
 
         <div className="mt-16 grid gap-10 lg:grid-cols-12 lg:gap-12">
           <ul className="flex flex-col lg:col-span-7" onMouseLeave={() => setActive(0)}>
-            {capabilities.map((item, i) => {
-              const isActive = i === active;
+            {capabilities.map((item, n) => {
+              const isActive = n === active;
               return (
-                <Reveal as="li" key={item.slug} delay={i * 70} className="border-t border-ink/15 last:border-b">
+                <Reveal as="li" key={item.slug} delay={n * 70} className="border-t border-chalk/15 last:border-b">
                   <Link
                     href={item.href}
-                    onMouseEnter={() => setActive(i)}
-                    onFocus={() => setActive(i)}
-                    className="group grid gap-5 py-7 transition-colors duration-300 sm:grid-cols-[3rem_1fr_auto] sm:items-start sm:gap-8 lg:py-9"
+                    onMouseEnter={() => setActive(n)}
+                    onFocus={() => setActive(n)}
+                    className="group grid gap-5 py-7 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-8 lg:py-9"
                   >
-                    <span
-                      className={cn(
-                        "font-display text-sm font-bold tabular-nums transition-colors duration-300",
-                        isActive ? "text-brand" : "text-steel",
-                      )}
-                    >
-                      {item.index}
-                    </span>
-
                     <span className="min-w-0">
-                      <span className="relative mb-5 block aspect-[16/10] overflow-hidden bg-chalk lg:hidden">
+                      <span className="relative mb-5 block aspect-[16/10] overflow-hidden bg-slate lg:hidden">
                         <Image
                           src={item.image.src}
                           alt={item.image.alt}
@@ -61,20 +50,23 @@ export function Capabilities() {
                         />
                       </span>
                       <span className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                        <span className="font-display text-3xl font-extrabold tracking-[-0.02em] transition-transform duration-500 ease-out-strong sm:text-4xl lg:group-hover:translate-x-1">
+                        <span
+                          className={cn(
+                            "display text-3xl transition-[transform,color] duration-500 ease-out-strong sm:text-4xl lg:group-hover:translate-x-1",
+                            isActive ? "text-chalk" : "text-chalk/85",
+                          )}
+                        >
                           {item.title}
                         </span>
-                        <span className="font-display text-sm font-semibold text-concrete">{item.kicker}</span>
+                        <span className="text-sm font-semibold text-concrete">{item.kicker}</span>
                       </span>
-                      <span className="mt-3 block max-w-md text-[15px] leading-relaxed text-concrete">
-                        {item.description}
-                      </span>
+                      <span className="mt-3 block max-w-md text-[15px] leading-relaxed text-ash">{item.description}</span>
                     </span>
 
                     <span
                       className={cn(
                         "hidden size-11 items-center justify-center rounded-sm border transition-[border-color,background-color,color] duration-300 sm:inline-flex",
-                        isActive ? "border-ink bg-ink text-white" : "border-ink/20 text-ink",
+                        isActive ? "border-brand bg-brand text-white" : "border-chalk/25 text-chalk",
                       )}
                       aria-hidden
                     >
@@ -87,8 +79,8 @@ export function Capabilities() {
           </ul>
 
           <div className="hidden lg:col-span-5 lg:block">
-            <Reveal variant="clip" className="sticky top-28 aspect-[4/5] overflow-hidden bg-chalk">
-              {capabilities.map((item, i) => (
+            <Reveal variant="clip" className="sticky top-28 aspect-[4/5] overflow-hidden bg-slate">
+              {capabilities.map((item, n) => (
                 <Image
                   key={item.slug}
                   src={item.image.src}
@@ -97,11 +89,11 @@ export function Capabilities() {
                   sizes="40vw"
                   className={cn(
                     "object-cover transition-[opacity,transform] duration-700 ease-out-strong motion-reduce:transition-none",
-                    i === active ? "scale-100 opacity-100" : "scale-[1.04] opacity-0",
+                    n === active ? "scale-100 opacity-100" : "scale-[1.04] opacity-0",
                   )}
                 />
               ))}
-              <span className="absolute bottom-0 left-0 h-[3px] w-24 bg-brand" aria-hidden />
+              <span className="rule-double absolute bottom-0 left-0 w-28 text-brand" aria-hidden />
             </Reveal>
           </div>
         </div>

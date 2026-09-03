@@ -1,74 +1,89 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
+import { MapPin } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "@/components/ui/Button";
-import { company, cta } from "@/data/site";
+import { PhoneCTA, PhoneNumber } from "@/components/ui/PhoneCTA";
+import { Placeholder } from "@/components/ui/Placeholder";
+import { company, contact, cta } from "@/data/site";
 import { images } from "@/data/images";
 
-const stagger = (i: number) => ({ "--i": i }) as CSSProperties;
+const i = (n: number) => ({ "--i": n }) as CSSProperties;
 
+/**
+ * Opening viewport. Photo, three-line tagline wiped in line by line, and the
+ * call card: the number, the address and one button. The page's one
+ * orchestrated motion moment lives here.
+ */
 export function Hero() {
   return (
-    <section className="relative isolate flex min-h-[100dvh] items-end overflow-hidden bg-ink text-white">
+    <section className="relative isolate flex min-h-[100dvh] flex-col justify-end overflow-hidden bg-asphalt text-chalk">
       <div className="absolute inset-0" aria-hidden>
         <Image
           src={images.hero.src}
           alt=""
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className="hero-image object-cover object-[62%_center]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/70 via-ink/20 to-transparent" />
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ink/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/60 to-asphalt/25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-asphalt/75 via-asphalt/25 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-asphalt/80 to-transparent" />
       </div>
 
-      <div className="container-site relative pb-16 pt-36 sm:pb-20 lg:pb-24">
-        <div className="max-w-4xl">
-          <p
-            className="hero-enter font-display text-sm font-semibold uppercase tracking-[0.3em] text-white/70"
-            style={stagger(0)}
-          >
-            {company.name}
-          </p>
+      <div className="container-site relative pb-28 pt-40 lg:pb-20">
+        <div className="hero-rule rule-double w-24 text-brand" aria-hidden />
 
-          <h1 className="mt-6 font-display font-extrabold leading-[0.92] tracking-[-0.035em]">
-            {company.taglineLines.map((line, i) => (
-              <span
-                key={line}
-                className="hero-enter block text-[3.25rem] sm:text-7xl lg:text-[6.5rem]"
-                style={stagger(1 + i)}
-              >
-                {line}
-              </span>
-            ))}
-          </h1>
-
-          <p
-            className="hero-enter mt-8 max-w-xl text-lg leading-relaxed text-white/80 sm:text-xl"
-            style={stagger(4)}
-          >
-            {company.heroSubtitle}
-          </p>
-
-          <div className="hero-enter mt-10 flex flex-col gap-3 sm:flex-row sm:items-center" style={stagger(5)}>
-            <Button href={cta.primary.href} variant="brand" size="lg" arrow>
-              {cta.primary.label}
-            </Button>
-            <Button href={cta.secondary.href} variant="outline-light" size="lg">
-              {cta.secondary.label}
-            </Button>
+        <div className="mt-8 grid gap-12 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-8">
+            <h1 className="display text-[3.4rem] sm:text-[5.2rem] lg:text-[6.8rem] xl:text-[7.6rem]">
+              {company.taglineLines.map((line, n) => (
+                <span key={line} className="hero-wipe block" style={i(n)}>
+                  {line}
+                </span>
+              ))}
+            </h1>
+            <p className="hero-enter mt-8 max-w-xl text-lg leading-relaxed text-chalk/80 sm:text-xl" style={i(4)}>
+              {company.heroSubtitle}
+            </p>
+            <div className="hero-enter mt-9 flex flex-col gap-3 sm:flex-row sm:items-center" style={i(5)}>
+              <Button href={cta.secondary.href} variant="outline" size="lg" arrow>
+                {cta.secondary.label}
+              </Button>
+              <Button href={cta.primary.href} variant="ghost" size="lg">
+                {cta.primary.label}
+              </Button>
+            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Scroll indicator: a single line that draws down and retreats. */}
-      <div
-        className="hero-enter absolute bottom-0 right-6 hidden h-24 w-px overflow-hidden lg:right-12 lg:block"
-        style={stagger(6)}
-        aria-hidden
-      >
-        <span className="scroll-line block h-full w-full bg-white/70" />
+          {/* Call card */}
+          <aside
+            className="hero-enter border border-chalk/15 bg-asphalt/70 p-6 backdrop-blur-md lg:col-span-4 lg:p-8"
+            style={i(3)}
+            aria-label="Contact rapid"
+          >
+            <p className="text-sm font-medium text-chalk/60">Sunați-ne pentru o ofertă</p>
+            <PhoneNumber className="mt-3 text-[2rem] sm:text-[2.4rem]" />
+            <div className="mt-6 flex items-start gap-3 text-[15px] leading-snug text-chalk/80">
+              <MapPin weight="fill" className="mt-0.5 size-5 shrink-0 text-brand" aria-hidden />
+              <span>
+                {contact.address ?? <Placeholder>Adresa sediului</Placeholder>}
+                <a
+                  href={contact.location.directionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-line mt-1 block w-fit font-semibold text-chalk"
+                >
+                  Navighează la noi
+                </a>
+              </span>
+            </div>
+            <div className="mt-6">
+              <PhoneCTA size="lg" className="w-full" />
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
   );

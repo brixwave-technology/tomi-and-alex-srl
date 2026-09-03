@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { PhoneCTA } from "@/components/ui/PhoneCTA";
 import { Reveal } from "@/components/ui/Reveal";
 import { cta } from "@/data/site";
 
@@ -8,28 +9,24 @@ type CTASectionProps = {
   label?: string;
 };
 
-/**
- * Typographic close: one statement, one action. Kept deliberately bare so it
- * reads as a decision point rather than another content block.
- */
+/** Typographic close: one statement, the phone first, the form second. */
 export function CTASection({
   title = "Aveți un proiect de infrastructură sau construcții?",
-  text = "Trimiteți-ne detaliile și revenim cu o ofertă adaptată lucrării, materialelor și termenelor dumneavoastră.",
+  text = "Sunați-ne și discutăm direct lucrarea, materialele și termenele. Revenim cu o ofertă concretă.",
   label = cta.primary.label,
 }: CTASectionProps) {
   return (
-    <section className="border-t border-ink/10 bg-chalk">
+    <section className="border-t border-chalk/10 bg-graphite">
       <div className="container-site py-24 lg:py-32">
         <Reveal className="grid gap-10 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
-            <span className="mb-8 block h-[3px] w-16 bg-brand" aria-hidden />
-            <h2 className="max-w-3xl font-display text-4xl font-extrabold leading-[1] tracking-[-0.03em] sm:text-5xl lg:text-6xl">
-              {title}
-            </h2>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-concrete">{text}</p>
+            <Reveal variant="line" className="rule-double w-20 text-brand" />
+            <h2 className="display mt-8 max-w-3xl text-4xl sm:text-5xl lg:text-6xl">{title}</h2>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-ash">{text}</p>
           </div>
-          <div className="lg:col-span-4 lg:flex lg:justify-end">
-            <Button href={cta.primary.href} variant="ink" size="lg" arrow>
+          <div className="flex flex-col gap-3 sm:flex-row lg:col-span-4 lg:flex-col lg:items-end">
+            <PhoneCTA size="lg" showNumber />
+            <Button href={cta.primary.href} variant="outline" size="lg" arrow>
               {label}
             </Button>
           </div>

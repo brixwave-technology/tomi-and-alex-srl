@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  /* Palette derived from the Tomi Alex logo: black rules, concrete-grey mark, red wordmark. */
-  --color-ink: #0e0e10;
-  --color-charcoal: #1b1b1e;
-  --color-graphite: #2a2a2f;
-  --color-concrete: #6b6b70;
-  --color-steel: #9a9aa0;
-  --color-ash: #c7c7cb;
-  --color-chalk: #e3e2df;
-  --color-paper: #f4f3f0;
+  /* Palette from the logo: red wordmark, concrete-grey mark, black rules. Page is dark asphalt. */
+  --color-asphalt: #121214;
+  --color-graphite: #1b1b1f;
+  --color-slate: #26262b;
+  --color-steel: #3a3a41;
+  --color-concrete: #8e8e94;
+  --color-ash: #b9b9bf;
+  --color-chalk: #ecebe6;
   --color-white: #ffffff;
-  --color-brand: #d42a2a;
-  --color-brand-deep: #b01f22;
+  --color-brand: #d23b3c;
+  --color-brand-deep: #ad2c2e;
+  --color-brand-soft: #f0a3a3;
 
-  --font-display: var(--font-manrope), "Manrope", system-ui, sans-serif;
-  --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-sans: var(--font-archivo), "Archivo", system-ui, sans-serif;
+  --font-display: var(--font-archivo), "Archivo", system-ui, sans-serif;
 
   --radius-*: initial;
   --radius-none: 0px;
@@ -25,22 +25,21 @@
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
 
-  --shadow-lift: 0 18px 40px -20px rgb(14 14 16 / 0.45);
-
-  --container-site: 1400px;
+  --container-site: 1440px;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    color-scheme: dark;
   }
 
   body {
-    background: var(--color-paper);
-    color: var(--color-ink);
+    background: var(--color-asphalt);
+    color: var(--color-chalk);
     font-family: var(--font-sans);
-    font-feature-settings: "cv11", "ss01";
+    font-variation-settings: "wdth" 100;
     overflow-x: clip;
   }
 
@@ -61,8 +60,7 @@
 
   h1,
   h2,
-  h3,
-  h4 {
+  h3 {
     font-family: var(--font-display);
     text-wrap: balance;
   }
@@ -82,6 +80,22 @@
   }
 }
 
+/* Display type: Archivo at extended width, the logo's own proportions. */
+@utility display {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 118;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.96;
+}
+
+@utility display-wide {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 125;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
 @utility container-site {
   width: 100%;
   max-width: var(--container-site);
@@ -91,7 +105,28 @@
     padding-inline: 2rem;
   }
   @media (width >= 64rem) {
-    padding-inline: 3rem;
+    padding-inline: 3.5rem;
+  }
+}
+
+/* The logo's double rule, used as the site's structural signature. */
+@utility rule-double {
+  position: relative;
+  height: 9px;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: currentColor;
+  }
+  &::before {
+    top: 0;
+  }
+  &::after {
+    bottom: 0;
   }
 }
 
@@ -113,9 +148,9 @@
   }
 }
 
-/* Photo reveal: the image is unmasked from the bottom edge upward.
-   The clip lives on the children, not the observed element itself, because
-   Chrome excludes fully clipped boxes from IntersectionObserver. */
+/* Photo reveal: children are unmasked from the bottom edge upward.
+   The clip lives on the children because Chrome excludes fully clipped
+   boxes from IntersectionObserver. */
 @utility reveal-clip {
   & > * {
     clip-path: inset(0 0 100% 0);
@@ -133,15 +168,47 @@
   }
 }
 
+/* Line reveal: a rule that draws from left to right. */
+@utility reveal-line {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 900ms var(--ease-in-out-strong);
+  transition-delay: var(--reveal-delay, 0ms);
+  &[data-inview="true"] {
+    transform: scaleX(1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Hero entrance: one-time on load, staggered via --i. */
 @utility hero-enter {
   opacity: 0;
-  transform: translateY(22px);
-  animation: hero-enter 900ms var(--ease-out-strong) forwards;
-  animation-delay: calc(120ms + var(--i, 0) * 110ms);
+  transform: translateY(24px);
+  animation: hero-enter 1000ms var(--ease-out-strong) forwards;
+  animation-delay: calc(200ms + var(--i, 0) * 110ms);
   @media (prefers-reduced-motion: reduce) {
     transform: none;
     animation: hero-fade 400ms ease forwards;
+  }
+}
+
+/* Hero word wipe: each line is unmasked left to right. */
+@utility hero-wipe {
+  clip-path: inset(0 100% 0 0);
+  animation: hero-wipe 900ms var(--ease-in-out-strong) forwards;
+  animation-delay: calc(350ms + var(--i, 0) * 160ms);
+  @media (prefers-reduced-motion: reduce) {
+    clip-path: none;
+    animation: hero-fade 400ms ease forwards;
+  }
+}
+
+@keyframes hero-wipe {
+  to {
+    clip-path: inset(0 0 0 0);
   }
 }
 
@@ -160,7 +227,7 @@
 
 @keyframes hero-image {
   from {
-    transform: scale(1.06);
+    transform: scale(1.08);
   }
   to {
     transform: scale(1);
@@ -168,36 +235,29 @@
 }
 
 @utility hero-image {
-  animation: hero-image 2400ms var(--ease-out-strong) forwards;
+  animation: hero-image 2600ms var(--ease-out-strong) forwards;
   @media (prefers-reduced-motion: reduce) {
     animation: none;
   }
 }
 
-@keyframes scroll-line {
-  0% {
-    transform: scaleY(0);
-    transform-origin: top;
+@keyframes rule-draw {
+  from {
+    transform: scaleX(0);
   }
-  45% {
-    transform: scaleY(1);
-    transform-origin: top;
-  }
-  55% {
-    transform: scaleY(1);
-    transform-origin: bottom;
-  }
-  100% {
-    transform: scaleY(0);
-    transform-origin: bottom;
+  to {
+    transform: scaleX(1);
   }
 }
 
-@utility scroll-line {
-  animation: scroll-line 2200ms var(--ease-in-out-strong) infinite;
+@utility hero-rule {
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: rule-draw 1100ms var(--ease-in-out-strong) forwards;
+  animation-delay: 150ms;
   @media (prefers-reduced-motion: reduce) {
-    animation: none;
     transform: none;
+    animation: none;
   }
 }
 
@@ -209,7 +269,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -2px;
+    bottom: -3px;
     height: 1px;
     background: currentColor;
     transform: scaleX(0);
@@ -247,4 +307,34 @@
       transform: scale(1.04);
     }
   }
+}
+
+/* Horizontal rail: snap scrolling, no visible scrollbar. */
+@utility rail {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  & > * {
+    scroll-snap-align: start;
+    flex: none;
+  }
+}
+
+/* Hatched surface for content the client still has to supply. */
+@utility hatched {
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0 14px,
+    rgb(255 255 255 / 0.05) 14px 15px
+  );
+}
+
+/* Dark map: keep the roads readable while pulling the tiles into the palette. */
+@utility map-dark {
+  filter: invert(0.92) hue-rotate(180deg) saturate(0.35) brightness(0.9) contrast(1.05);
 }

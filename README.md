@@ -1,6 +1,6 @@
 # Tomi Alex SRL — website de prezentare
 
-Website premium de prezentare pentru **Tomi Alex SRL** (lucrări de infrastructură și construcții, agregate, beton, prefabricate). Proiect realizat de Brixwave.
+Website premium de prezentare (v2, temă închisă, conversie prin telefon) pentru **Tomi Alex SRL** (lucrări de infrastructură și construcții, agregate, beton, prefabricate). Proiect realizat de Brixwave.
 
 - Live (GitHub Pages): https://brixwave-technology.github.io/tomi-and-alex-srl/
 - Referința de produs: [PRODUCT.md](./PRODUCT.md)
@@ -35,10 +35,10 @@ public/images/         fotografii (temporar stock, de înlocuit cu imagini reale
 
 ## Cum se actualizează conținutul
 
-- **Date de contact, navigare, texte de brand:** `src/data/site.ts`
+- **Telefon (E.164 + afișat), adresă, program, navigare, texte de brand:** `src/data/site.ts` (toate butoanele „Sună acum” devin active când `contact.phone` este completat)
 - **Servicii de infrastructură, direcții de activitate:** `src/data/services.ts`
 - **Agregate, clase de beton, prefabricate:** `src/data/products.ts` (câmpurile opționale se afișează automat când sunt completate)
-- **Imagini:** înlocuiți fișierele din `public/images/` și actualizați textul alternativ în `src/data/images.ts`
+- **Imagini:** înlocuiți fișierele din `public/images/` și actualizați textul alternativ în `src/data/images.ts`; logo-ul are variante `logo-tomi-alex(-light).png` (complet) și `logo-wordmark(-light).png` (header)
 - **Formular de contact:** setați `contact.formEndpoint` în `src/data/site.ts` cu un serviciu (Formspree, Resend etc.); până atunci rulează în mod demo
 
 ## Deploy

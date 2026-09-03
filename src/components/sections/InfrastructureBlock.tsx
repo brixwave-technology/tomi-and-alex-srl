@@ -4,23 +4,20 @@ import { Reveal } from "@/components/ui/Reveal";
 import { infrastructureGroups } from "@/data/services";
 import { images } from "@/data/images";
 
-/**
- * Dark editorial block: sticky headline and photo on the left, services
- * grouped by phase on the right so seven items read as three decisions.
- */
+/** Sticky headline and photo on the left, services grouped by phase on the right. */
 export function InfrastructureBlock() {
   return (
-    <section className="bg-charcoal text-white">
+    <section className="bg-asphalt">
       <div className="container-site py-24 lg:py-32">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-6">
             <div className="lg:sticky lg:top-28">
-              <Reveal>
-                <span className="mb-8 block h-[3px] w-16 bg-brand" aria-hidden />
-                <h2 className="font-display text-4xl font-extrabold leading-[1.02] tracking-[-0.03em] sm:text-5xl lg:text-[3.5rem]">
+              <Reveal variant="line" className="rule-double w-20 text-brand" />
+              <Reveal delay={80}>
+                <h2 className="display mt-8 text-4xl sm:text-5xl lg:text-[3.6rem]">
                   De la teren pregătit la infrastructură finalizată.
                 </h2>
-                <p className="mt-6 max-w-lg text-lg leading-relaxed text-white/70">
+                <p className="mt-6 max-w-lg text-lg leading-relaxed text-ash">
                   Rețele de apă și canalizare, terasamente, drumuri și poduri, executate cu utilaje și
                   echipe proprii.
                 </p>
@@ -39,20 +36,20 @@ export function InfrastructureBlock() {
 
           <div className="lg:col-span-5 lg:col-start-8">
             {infrastructureGroups.map((group, gi) => (
-              <Reveal key={group.title} delay={gi * 90} className="border-t border-white/15 py-8 first:pt-0 first:border-t-0 lg:py-10">
-                <p className="font-display text-sm font-semibold text-brand">{group.title}</p>
+              <Reveal key={group.title} delay={gi * 90} className="border-t border-chalk/15 py-8 first:border-t-0 first:pt-0 lg:py-10">
+                <p className="text-sm font-semibold text-brand">{group.title}</p>
                 <ul className="mt-5 flex flex-col gap-6">
                   {group.items.map((item) => (
                     <li key={item.title}>
-                      <p className="font-display text-2xl font-extrabold tracking-[-0.02em]">{item.title}</p>
-                      <p className="mt-1.5 max-w-md text-[15px] leading-relaxed text-white/65">{item.description}</p>
+                      <p className="display text-2xl text-chalk">{item.title}</p>
+                      <p className="mt-1.5 max-w-md text-[15px] leading-relaxed text-ash">{item.description}</p>
                     </li>
                   ))}
                 </ul>
               </Reveal>
             ))}
             <Reveal className="pt-4">
-              <Button href="/infrastructura/" variant="paper" arrow>
+              <Button href="/infrastructura/" variant="chalk" arrow>
                 Lucrări de infrastructură
               </Button>
             </Reveal>

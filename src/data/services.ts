@@ -112,3 +112,25 @@ export const infrastructureGroups: InfrastructureGroup[] = [
     ],
   },
 ];
+
+export type ProcessStep = { title: string; description: string };
+
+/** How a collaboration starts. A real sequence, from the call to delivery. */
+export const process: ProcessStep[] = [
+  {
+    title: "Ne sunați",
+    description: "Ne spuneți ce lucrare sau ce materiale aveți nevoie, unde și până când.",
+  },
+  {
+    title: "Venim în teren",
+    description: "Vedem amplasamentul, accesul și cantitățile reale înainte de a promite ceva.",
+  },
+  {
+    title: "Primiți oferta",
+    description: "O ofertă clară, cu prețuri, termene și ce anume este inclus.",
+  },
+  {
+    title: "Executăm și livrăm",
+    description: "Echipele, utilajele și materialele noastre, coordonate de la început la sfârșit.",
+  },
+];

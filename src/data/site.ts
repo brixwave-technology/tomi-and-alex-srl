@@ -19,17 +19,26 @@ export const company = {
     "Lucrări de infrastructură, construcții și soluții complete pentru proiectele dumneavoastră.",
 } as const;
 
+/**
+ * The phone number and the address are the site's conversion channel.
+ * Fill `phone` (E.164, e.g. "+40740000000") and `phoneDisplay` (as printed)
+ * and every call button on the site becomes live.
+ */
 export const contact = {
   phone: null as string | null,
+  phoneDisplay: null as string | null,
   email: null as string | null,
   address: null as string | null,
+  locality: null as string | null,
   schedule: null as string | null,
   location: {
     lat: 47.909954,
     lng: 23.08848,
     mapsUrl: "https://maps.google.com/?q=47.909954,23.088480",
+    directionsUrl:
+      "https://www.google.com/maps/dir/?api=1&destination=47.909954,23.088480",
     embedUrl:
-      "https://maps.google.com/maps?q=47.909954,23.088480&z=14&hl=ro&output=embed",
+      "https://maps.google.com/maps?q=47.909954,23.088480&z=13&hl=ro&output=embed",
   },
   /** Endpoint for the contact form. Empty means the form runs in demo mode. */
   formEndpoint: "",
@@ -46,21 +55,23 @@ export const primaryNav: NavItem[] = [
   { label: "Agregate", href: "/agregate/" },
   { label: "Stație betoane", href: "/beton/" },
   { label: "Prefabricate", href: "/prefabricate/" },
-  { label: "Contact", href: "/contact/" },
-];
-
-export const footerNav: NavItem[] = [
-  { label: "Agregate", href: "/agregate/" },
-  { label: "Stație betoane", href: "/beton/" },
-  { label: "Prefabricate", href: "/prefabricate/" },
   { label: "Infrastructură", href: "/infrastructura/" },
   { label: "Contact", href: "/contact/" },
 ];
 
+export const footerNav: NavItem[] = primaryNav.filter((i) => i.href !== "/");
+
 export const cta = {
   primary: { label: "Cere o ofertă", href: "/contact/" },
   secondary: { label: "Descoperă serviciile", href: "/#capabilitati" },
+  call: { label: "Sună acum" },
 } as const;
 
-/** Public site URL, used for metadata and sitemap. */
+/** Public site URL, used for metadata, sitemap and structured data. */
 export const siteUrl = "https://brixwave-technology.github.io/tomi-and-alex-srl";
+
+/** Service area used in structured data; the coordinates are confirmed, the county name is derived from them. */
+export const serviceArea = {
+  region: "Satu Mare",
+  country: "RO",
+} as const;

@@ -68,7 +68,7 @@ Explicitly undecided / not supplied (must not be invented):
 ## Evidence on Hand
 
 - Client-supplied copy: company description, secondary description, claim, hero subtitle, section headlines (recorded in `src/data/site.ts` and page files).
-- Logo image (supplied as a screenshot; original artwork file still needed for `public/`).
+- Logo supplied as `public/images/logo-tomi-alex.jpg` (white background); transparent full and wordmark variants for dark and light surfaces were derived from it.
 - No photography of the company's own sites, plant or fleet. All images in `public/images` are temporary Unsplash stock photos for the mockup and are referenced from `src/data/images.ts` so they can be swapped file-for-file.
 - No testimonials, case studies or references. None are shown.
 
@@ -84,14 +84,17 @@ Explicitly undecided / not supplied (must not be invented):
 
 WCAG AA contrast on all text, keyboard-navigable header and drawer, visible focus rings, labelled form fields with inline errors, `prefers-reduced-motion` honoured (movement removed, opacity kept), semantic landmarks and one H1 per page.
 
-## Design Direction (recorded for this build)
+## Design Direction (recorded for this build, v2)
 
-- Dials (Taste Skill): DESIGN_VARIANCE 7, MOTION_INTENSITY 4, VISUAL_DENSITY 4.
-- Type: Manrope (display, 600–800) and Inter (body). Display headlines are large, tight and short; body is 15–18px with generous leading.
-- Colour: `ink #0E0E10`, `charcoal #1B1B1E`, `concrete #6B6B70`, `steel #9A9AA0`, `ash #C7C7CB`, `chalk #E3E2DF`, `paper #F4F3F0`, accent `brand #D42A2A` / `brand-deep #B01F22`. Red is reserved for CTAs, markers, active states and small rules.
-- Shape: near-sharp (2px radius). No rounded cards, no gradients as decoration, no glass.
-- Motion: one entrance on the hero (staggered rise, slow image settle), scroll reveals on sections, clip-reveal on key photographs, 160ms press feedback, 240ms link underlines, 900ms photo scale on hover. Custom ease-out `cubic-bezier(0.23,1,0.32,1)`. Nothing loops except the scroll indicator line.
-- Layout families used on the homepage: full-bleed hero, editorial split, index list with sticky image, hairline tile grid, photographic colour block, asymmetric 2+3 grid, sticky headline with grouped list, typographic CTA, split with map.
+- Dials (Taste Skill): DESIGN_VARIANCE 7, MOTION_INTENSITY 5, VISUAL_DENSITY 4.
+- Type: Archivo variable, one family. Display at width 118 and weight 800 (the logo's wide capitals), body at width 100.
+- Colour: dark asphalt page. `asphalt #121214`, `graphite #1B1B1F`, `slate #26262B`, `concrete #8E8E94`, `ash #B9B9BF`, `chalk #ECEBE6`, accent `brand #D23B3C` (sampled from the logo). Red only for calls to action, active states and the double rule.
+- Signature: the logo's double rule structures the page (hero, section openers, header when scrolled, footer, map corner).
+- Conversion: the phone number and the address are the product. They appear in the header, in the hero call card, on every inner-page hero, in the process section, in the map section, in the footer, and in a sticky bottom bar on mobile. Until the real number exists every call button renders as a marked placeholder that keeps the layout honest.
+- Shape: near-sharp (2px radius). No cards with shadows, no gradients as decoration, no glass beyond the hero card's backdrop blur.
+- Motion: one orchestrated hero moment (rule draws, three lines wipe in, image settles), scroll reveals on sections and photos, hover crossfade in the capabilities index, a snap-scrolling materials rail, 160ms press feedback. Reduced motion keeps opacity only.
+- Layout families on the homepage: full-bleed hero with call card, editorial split, index list with sticky image, horizontal rail, photographic colour block, asymmetric 2+3 grid, sticky headline with grouped list, four-step process, split with map.
+- SEO: per-page titles and descriptions, canonical URLs, Open Graph and Twitter cards with a generated `og.jpg`, Organization/GeneralContractor + WebSite + BreadcrumbList JSON-LD (phone, address and hours join automatically once supplied), sitemap with priorities, robots, one H1 per page, alt text on every image, `lang="ro"`.
 
 ## Acceptance Criteria
 

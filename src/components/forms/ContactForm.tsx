@@ -3,6 +3,7 @@
 import { useId, useState, type FormEvent } from "react";
 import { Check } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "@/components/ui/Button";
+import { PhoneCTA } from "@/components/ui/PhoneCTA";
 import { contact } from "@/data/site";
 import { cn } from "@/lib/cn";
 
@@ -16,13 +17,13 @@ function validate(v: Values): Errors {
   const errors: Errors = {};
   if (v.name.trim().length < 2) errors.name = "Introduceți numele dumneavoastră.";
   if (!/^[+\d][\d\s().-]{6,}$/.test(v.phone.trim())) errors.phone = "Introduceți un număr de telefon valid.";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email.trim())) errors.email = "Introduceți o adresă de e-mail validă.";
+  if (v.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email.trim())) errors.email = "Introduceți o adresă de e-mail validă.";
   if (v.message.trim().length < 10) errors.message = "Descrieți pe scurt lucrarea sau materialele necesare.";
   return errors;
 }
 
 const fieldClass =
-  "w-full rounded-sm border border-ink/25 bg-white px-4 py-3 text-[15px] text-ink placeholder:text-concrete/80 transition-[border-color,box-shadow] duration-200 hover:border-ink/45 focus:border-ink focus:outline-none focus:ring-2 focus:ring-brand/40";
+  "w-full rounded-sm border border-chalk/25 bg-asphalt px-4 py-3 text-[15px] text-chalk placeholder:text-concrete transition-[border-color,box-shadow] duration-200 hover:border-chalk/45 focus:border-chalk focus:outline-none focus:ring-2 focus:ring-brand/50";
 
 export function ContactForm() {
   const uid = useId();
@@ -74,15 +75,13 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="flex min-h-[420px] flex-col justify-center border border-ink/15 bg-white p-8 sm:p-12" role="status" aria-live="polite">
+      <div className="flex min-h-[420px] flex-col justify-center border border-chalk/15 bg-graphite p-8 sm:p-12" role="status" aria-live="polite">
         <span className="inline-flex size-12 items-center justify-center bg-brand text-white">
           <Check weight="bold" className="size-6" aria-hidden />
         </span>
-        <h2 className="mt-8 font-display text-3xl font-extrabold tracking-[-0.02em] sm:text-4xl">
-          Mesajul a fost trimis.
-        </h2>
-        <p className="mt-4 max-w-md text-lg leading-relaxed text-concrete">
-          Mulțumim, {values.name.trim().split(" ")[0]}. Revenim cu o ofertă în cel mai scurt timp.
+        <h2 className="display mt-8 text-3xl sm:text-4xl">Cererea a fost trimisă.</h2>
+        <p className="mt-4 max-w-md text-lg leading-relaxed text-ash">
+          Mulțumim, {values.name.trim().split(" ")[0]}. Vă sunăm noi înapoi cu o ofertă.
         </p>
         {!contact.formEndpoint && (
           <p className="mt-6 text-[13px] text-concrete">
@@ -92,7 +91,7 @@ export function ContactForm() {
         <div className="mt-10">
           <Button
             type="button"
-            variant="outline-dark"
+            variant="outline"
             onClick={() => {
               setValues(empty);
               setTouched({});
@@ -100,7 +99,7 @@ export function ContactForm() {
               setStatus("idle");
             }}
           >
-            Trimite alt mesaj
+            Trimite altă cerere
           </Button>
         </div>
       </div>
@@ -124,21 +123,17 @@ export function ContactForm() {
       "aria-describedby": error ? `${id}-error` : undefined,
       autoComplete: opts.autoComplete,
       placeholder: opts.placeholder,
-      className: cn(fieldClass, error && "border-brand focus:ring-brand/40"),
+      className: cn(fieldClass, error && "border-brand"),
     };
     return (
       <div className={cn("flex flex-col gap-2", opts.textarea && "sm:col-span-2")}>
-        <label htmlFor={id} className="flex items-baseline justify-between font-display text-sm font-semibold">
+        <label htmlFor={id} className="flex items-baseline justify-between text-sm font-semibold text-chalk">
           {label}
           {opts.optional && <span className="text-[12px] font-medium text-concrete">opțional</span>}
         </label>
-        {opts.textarea ? (
-          <textarea rows={6} {...shared} />
-        ) : (
-          <input type={opts.type ?? "text"} {...shared} />
-        )}
+        {opts.textarea ? <textarea rows={6} {...shared} /> : <input type={opts.type ?? "text"} {...shared} />}
         {error && (
-          <p id={`${id}-error`} className="text-[13px] text-brand-deep">
+          <p id={`${id}-error`} className="text-[13px] text-brand-soft">
             {error}
           </p>
         )}
@@ -147,21 +142,25 @@ export function ContactForm() {
   };
 
   return (
-    <form onSubmit={onSubmit} noValidate className="border border-ink/15 bg-white p-6 sm:p-10">
+    <form onSubmit={onSubmit} noValidate className="border border-chalk/15 bg-graphite p-6 sm:p-10">
+      <div className="mb-8 flex flex-col gap-4 border-b border-chalk/10 pb-8 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-[15px] leading-relaxed text-ash">Cel mai rapid: sunați-ne direct.</p>
+        <PhoneCTA size="md" showNumber />
+      </div>
       <div className="grid gap-6 sm:grid-cols-2">
         {field("name", "Nume", { autoComplete: "name", placeholder: "Numele și prenumele" })}
-        {field("company", "Companie", { optional: true, autoComplete: "organization", placeholder: "Denumirea firmei" })}
         {field("phone", "Telefon", { type: "tel", autoComplete: "tel", placeholder: "07xx xxx xxx" })}
-        {field("email", "E-mail", { type: "email", autoComplete: "email", placeholder: "nume@companie.ro" })}
-        {field("message", "Mesaj", {
+        {field("company", "Companie", { optional: true, autoComplete: "organization", placeholder: "Denumirea firmei" })}
+        {field("email", "E-mail", { type: "email", optional: true, autoComplete: "email", placeholder: "nume@companie.ro" })}
+        {field("message", "Ce aveți nevoie", {
           textarea: true,
           placeholder: "Tipul lucrării, locația, materialele și cantitățile estimate, termenul dorit.",
         })}
       </div>
 
       {status === "error" && (
-        <p role="alert" className="mt-6 border border-brand/40 bg-brand/5 px-4 py-3 text-[14px] text-brand-deep">
-          Mesajul nu a putut fi trimis. Încercați din nou sau contactați-ne telefonic.
+        <p role="alert" className="mt-6 border border-brand/50 bg-brand/10 px-4 py-3 text-[14px] text-brand-soft">
+          Cererea nu a putut fi trimisă. Încercați din nou sau sunați-ne.
         </p>
       )}
 
@@ -169,9 +168,7 @@ export function ContactForm() {
         <Button type="submit" variant="brand" size="lg" arrow disabled={status === "submitting"} aria-busy={status === "submitting"}>
           {status === "submitting" ? "Se trimite..." : "Trimite cererea"}
         </Button>
-        <p className="text-[13px] leading-relaxed text-concrete">
-          Datele sunt folosite exclusiv pentru a răspunde solicitării dumneavoastră.
-        </p>
+        <p className="text-[13px] leading-relaxed text-concrete">Datele sunt folosite exclusiv pentru a vă răspunde.</p>
       </div>
     </form>
   );

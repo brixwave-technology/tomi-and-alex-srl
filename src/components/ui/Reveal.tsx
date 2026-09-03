@@ -4,29 +4,23 @@ import { useEffect, useRef, type CSSProperties, type ElementType, type ReactNode
 import { cn } from "@/lib/cn";
 
 type RevealProps = {
-  children: ReactNode;
+  children?: ReactNode;
   as?: ElementType;
   className?: string;
   /** Stagger delay in ms. */
   delay?: number;
-  /** "fade" moves the block up into place; "clip" unmasks a photo from the bottom. */
-  variant?: "fade" | "clip";
+  /** "fade" rises into place, "clip" unmasks a photo, "line" draws a rule. */
+  variant?: "fade" | "clip" | "line";
   id?: string;
 };
 
+const variantClass = { fade: "reveal", clip: "reveal-clip", line: "reveal-line" };
+
 /**
- * Marks its element as in view once, when 20% of it enters the viewport.
- * The transition itself lives in CSS (see globals.css) so it runs off the
- * main thread and respects prefers-reduced-motion.
+ * Marks its element as in view once. The transition itself lives in CSS so
+ * it runs off the main thread and respects prefers-reduced-motion.
  */
-export function Reveal({
-  children,
-  as: Tag = "div",
-  className,
-  delay = 0,
-  variant = "fade",
-  id,
-}: RevealProps) {
+export function Reveal({ children, as: Tag = "div", className, delay = 0, variant = "fade", id }: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -45,24 +39,16 @@ export function Reveal({
           }
         }
       },
-      { threshold: 0.2, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0.15, rootMargin: "0px 0px -6% 0px" },
     );
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
-  const style = delay
-    ? ({ "--reveal-delay": `${delay}ms` } as CSSProperties)
-    : undefined;
+  const style = delay ? ({ "--reveal-delay": `${delay}ms` } as CSSProperties) : undefined;
 
   return (
-    <Tag
-      ref={ref}
-      id={id}
-      className={cn(variant === "clip" ? "reveal-clip" : "reveal", className)}
-      style={style}
-      data-inview="false"
-    >
+    <Tag ref={ref} id={id} className={cn(variantClass[variant], className)} style={style} data-inview="false">
       {children}
     </Tag>
   );
