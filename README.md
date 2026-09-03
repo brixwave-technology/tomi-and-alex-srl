@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tomi Alex SRL — website de prezentare
 
-## Getting Started
+Website premium de prezentare pentru **Tomi Alex SRL** (lucrări de infrastructură și construcții, agregate, beton, prefabricate). Proiect realizat de Brixwave.
 
-First, run the development server:
+- Live (GitHub Pages): https://floredenis2001.github.io/tomi-and-alex-srl/
+- Referința de produs: [PRODUCT.md](./PRODUCT.md)
+
+## Stack
+
+Next.js 16 (App Router, export static) · TypeScript · Tailwind CSS v4 · `@phosphor-icons/react`
+
+## Comenzi
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # export static în ./out
+npm run lint
+npx tsc --noEmit
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structură
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  app/                 rute: /, /agregate, /beton, /prefabricate, /infrastructura, /contact
+  components/
+    layout/            Header (sticky, meniu mobil), Footer
+    sections/          secțiunile paginii principale + CTA + Contact
+    forms/             ContactForm (validare, stare de succes, mod demo)
+    ui/                Button, Logo, Reveal, PageHero, Breadcrumbs, Placeholder
+  data/                site.ts, services.ts, products.ts, images.ts  ← conținutul, separat de UI
+public/images/         fotografii (temporar stock, de înlocuit cu imagini reale)
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Cum se actualizează conținutul
 
-## Learn More
+- **Date de contact, navigare, texte de brand:** `src/data/site.ts`
+- **Servicii de infrastructură, direcții de activitate:** `src/data/services.ts`
+- **Agregate, clase de beton, prefabricate:** `src/data/products.ts` (câmpurile opționale se afișează automat când sunt completate)
+- **Imagini:** înlocuiți fișierele din `public/images/` și actualizați textul alternativ în `src/data/images.ts`
+- **Formular de contact:** setați `contact.formEndpoint` în `src/data/site.ts` cu un serviciu (Formspree, Resend etc.); până atunci rulează în mod demo
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Push pe `main` declanșează workflow-ul `.github/workflows/deploy.yml`, care construiește exportul static cu `NEXT_PUBLIC_BASE_PATH=/tomi-and-alex-srl` și îl publică pe GitHub Pages.

@@ -1,26 +1,250 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Palette derived from the Tomi Alex logo: black rules, concrete-grey mark, red wordmark. */
+  --color-ink: #0e0e10;
+  --color-charcoal: #1b1b1e;
+  --color-graphite: #2a2a2f;
+  --color-concrete: #6b6b70;
+  --color-steel: #9a9aa0;
+  --color-ash: #c7c7cb;
+  --color-chalk: #e3e2df;
+  --color-paper: #f4f3f0;
+  --color-white: #ffffff;
+  --color-brand: #d42a2a;
+  --color-brand-deep: #b01f22;
+
+  --font-display: var(--font-manrope), "Manrope", system-ui, sans-serif;
+  --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
+
+  --radius-*: initial;
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+
+  --shadow-lift: 0 18px 40px -20px rgb(14 14 16 / 0.45);
+
+  --container-site: 1400px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-brand);
+    color: var(--color-white);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-steel) transparent;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img {
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility container-site {
+  width: 100%;
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 3rem;
+  }
+}
+
+/* Scroll reveal: opacity and translate, driven by IntersectionObserver in <Reveal />. */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 700ms var(--ease-out-strong),
+    transform 700ms var(--ease-out-strong);
+  transition-delay: var(--reveal-delay, 0ms);
+  &[data-inview="true"] {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    transform: none;
+    transition: opacity 300ms ease;
+  }
+}
+
+/* Photo reveal: the image is unmasked from the bottom edge upward.
+   The clip lives on the children, not the observed element itself, because
+   Chrome excludes fully clipped boxes from IntersectionObserver. */
+@utility reveal-clip {
+  & > * {
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 1100ms var(--ease-in-out-strong);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  &[data-inview="true"] > * {
+    clip-path: inset(0 0 0 0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    & > * {
+      clip-path: none;
+      transition: none;
+    }
+  }
+}
+
+/* Hero entrance: one-time on load, staggered via --i. */
+@utility hero-enter {
+  opacity: 0;
+  transform: translateY(22px);
+  animation: hero-enter 900ms var(--ease-out-strong) forwards;
+  animation-delay: calc(120ms + var(--i, 0) * 110ms);
+  @media (prefers-reduced-motion: reduce) {
+    transform: none;
+    animation: hero-fade 400ms ease forwards;
+  }
+}
+
+@keyframes hero-enter {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-fade {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-image {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@utility hero-image {
+  animation: hero-image 2400ms var(--ease-out-strong) forwards;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes scroll-line {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+@utility scroll-line {
+  animation: scroll-line 2200ms var(--ease-in-out-strong) infinite;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Link underline that grows from the left. */
+@utility link-line {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 240ms var(--ease-out-strong);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+  &[aria-current="page"]::after {
+    transform: scaleX(1);
+    background: var(--color-brand);
+  }
+}
+
+/* Pressable elements: instant feedback on press. */
+@utility pressable {
+  transition:
+    transform 160ms var(--ease-out-strong),
+    background-color 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease;
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+/* Photo hover: slight scale, only on precise pointers. */
+@utility photo-hover {
+  transition: transform 900ms var(--ease-out-strong);
+  @media (hover: hover) and (pointer: fine) {
+    .group:hover & {
+      transform: scale(1.04);
+    }
+  }
 }
