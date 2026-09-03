@@ -63,4 +63,4 @@ export const cta = {
 } as const;
 
 /** Public site URL, used for metadata and sitemap. */
-export const siteUrl = "https://floredenis2001.github.io/tomi-and-alex-srl";
+export const siteUrl = "https://brixwave-technology.github.io/tomi-and-alex-srl";

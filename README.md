@@ -2,7 +2,7 @@
 
 Website premium de prezentare pentru **Tomi Alex SRL** (lucrări de infrastructură și construcții, agregate, beton, prefabricate). Proiect realizat de Brixwave.
 
-- Live (GitHub Pages): https://floredenis2001.github.io/tomi-and-alex-srl/
+- Live (GitHub Pages): https://brixwave-technology.github.io/tomi-and-alex-srl/
 - Referința de produs: [PRODUCT.md](./PRODUCT.md)
 
 ## Stack
