@@ -1,340 +1,320 @@
 @import "tailwindcss";
 
 @theme {
-  /* Palette from the logo: red wordmark, concrete-grey mark, black rules. Page is dark asphalt. */
-  --color-asphalt: #121214;
-  --color-graphite: #1b1b1f;
-  --color-slate: #26262b;
-  --color-steel: #3a3a41;
-  --color-concrete: #8e8e94;
-  --color-ash: #b9b9bf;
-  --color-chalk: #ecebe6;
-  --color-white: #ffffff;
+  /* Portal / BRIXWAVE */
+  --color-portal-950: #07090f;
+  --color-portal-900: #0b0e17;
+  --color-portal-800: #131829;
+  --color-portal-700: #1c2340;
+  --color-portal-300: #9aa4c7;
+  --color-portal-100: #e8ebf7;
+  --color-bw-cyan: #22d3ee;
+  --color-bw-indigo: #6366f1;
+  --color-bw-magenta: #c026d3;
+
+  /* V1 Corporate */
+  --color-navy-950: #07101f;
+  --color-navy-900: #0b1b33;
+  --color-navy-800: #122645;
+  --color-navy-700: #1b3559;
+  --color-navy-600: #264a7a;
+  --color-steel-400: #7c93b3;
+  --color-steel-200: #c3cfe0;
+  --color-frost: #eef2f8;
   --color-brand: #d23b3c;
-  --color-brand-deep: #ad2c2e;
-  --color-brand-soft: #f0a3a3;
+  --color-brand-soft: #f26b6b;
 
-  --font-sans: var(--font-archivo), "Archivo", system-ui, sans-serif;
-  --font-display: var(--font-archivo), "Archivo", system-ui, sans-serif;
+  /* V2 Creative */
+  --color-ink: #0e0e10;
+  --color-paper: #fff6e9;
+  --color-coral: #ff4d3d;
+  --color-lime: #cbff3a;
+  --color-violet: #5b2eff;
+  --color-cyan: #18e0ff;
+  --color-sun: #ffc83d;
+  --color-pink: #ff5fb8;
 
-  --radius-*: initial;
-  --radius-none: 0px;
-  --radius-sm: 2px;
-  --radius-md: 4px;
+  /* V3 Minimal premium */
+  --color-ivory: #f8f6f1;
+  --color-sand: #efeae0;
+  --color-hair: #e4e0d8;
+  --color-stone: #6e6a63;
+  --color-inkk: #141414;
+  --color-bronze: #9c7c4e;
+  --color-bronze-soft: #c9ae84;
 
-  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  --container-site: 1440px;
-}
+  --animate-marquee: marquee 28s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 34s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-spin-slow: spin 18s linear infinite;
+  --animate-pulse-ring: pulse-ring 2.4s ease-out infinite;
+  --animate-drift: drift 22s ease-in-out infinite alternate;
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
-    color-scheme: dark;
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
-
-  body {
-    background: var(--color-asphalt);
-    color: var(--color-chalk);
-    font-family: var(--font-sans);
-    font-variation-settings: "wdth" 100;
-    overflow-x: clip;
+  @keyframes marquee-reverse {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
   }
-
-  ::selection {
-    background: var(--color-brand);
-    color: var(--color-white);
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(var(--float-rotate, 0deg)); }
+    50% { transform: translateY(-14px) rotate(var(--float-rotate, 0deg)); }
   }
-
-  :focus-visible {
-    outline: 2px solid var(--color-brand);
-    outline-offset: 3px;
+  @keyframes pulse-ring {
+    0% { transform: scale(0.85); opacity: 0.9; }
+    100% { transform: scale(1.9); opacity: 0; }
   }
-
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-steel) transparent;
-  }
-
-  h1,
-  h2,
-  h3 {
-    font-family: var(--font-display);
-    text-wrap: balance;
-  }
-
-  p {
-    text-wrap: pretty;
-  }
-
-  img {
-    display: block;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
+  @keyframes drift {
+    from { transform: translate3d(-4%, -2%, 0) scale(1); }
+    to { transform: translate3d(4%, 3%, 0) scale(1.08); }
   }
 }
 
-/* Display type: Archivo at extended width, the logo's own proportions. */
-@utility display {
-  font-family: var(--font-display);
-  font-variation-settings: "wdth" 118;
+@theme inline {
+  --font-portal: var(--font-manrope), "Manrope", "Inter", system-ui, sans-serif;
+  --font-v1: var(--font-archivo), "Archivo", "Inter", system-ui, sans-serif;
+  --font-v2-display: var(--font-syne), "Syne", "Arial Black", system-ui, sans-serif;
+  --font-v2-body: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
+  --font-v3-display: var(--font-fraunces), "Fraunces", "Georgia", serif;
+  --font-v3-body: var(--font-inter), "Inter", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-portal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #6366f1;
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* ---------- Reveal (animații la scroll) ---------- */
+.reveal,
+.reveal-clip,
+.reveal-line,
+.reveal-blur,
+.reveal-scale,
+.reveal-slide {
+  --reveal-delay: 0ms;
+  transition-delay: var(--reveal-delay);
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s var(--ease-out-quint), transform 0.9s var(--ease-out-quint);
+}
+.reveal[data-inview="true"] { opacity: 1; transform: none; }
+
+.reveal-clip {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.1s var(--ease-out-expo);
+}
+.reveal-clip[data-inview="true"] { clip-path: inset(0 0 0 0); }
+
+.reveal-line {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1s var(--ease-out-expo);
+}
+.reveal-line[data-inview="true"] { transform: scaleX(1); }
+
+.reveal-blur {
+  opacity: 0;
+  filter: blur(14px);
+  transform: translateY(18px);
+  transition: opacity 1s var(--ease-out-quint), filter 1s var(--ease-out-quint), transform 1s var(--ease-out-quint);
+}
+.reveal-blur[data-inview="true"] { opacity: 1; filter: blur(0); transform: none; }
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92) rotate(var(--reveal-rotate, 0deg));
+  transition: opacity 0.7s var(--ease-spring), transform 0.7s var(--ease-spring);
+}
+.reveal-scale[data-inview="true"] { opacity: 1; transform: scale(1) rotate(var(--reveal-rotate, 0deg)); }
+
+.reveal-slide {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.9s var(--ease-out-quint), transform 0.9s var(--ease-out-quint);
+}
+.reveal-slide[data-inview="true"] { opacity: 1; transform: none; }
+
+/* Animații de intrare (fără observer) */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes rise-blur {
+  from { opacity: 0; transform: translateY(30px); filter: blur(10px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+@keyframes draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes settle {
+  from { opacity: 0; transform: scale(1.06); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes pop {
+  from { opacity: 0; transform: scale(0.6) rotate(-12deg); }
+  to { opacity: 1; transform: scale(1) rotate(var(--pop-rotate, 0deg)); }
+}
+@keyframes letter-up {
+  from { transform: translateY(110%); }
+  to { transform: none; }
+}
+.anim-rise { animation: rise 0.9s var(--ease-out-quint) both; }
+.anim-rise-blur { animation: rise-blur 1.1s var(--ease-out-quint) both; }
+.anim-draw { animation: draw 1s var(--ease-out-expo) both; transform-origin: left; }
+.anim-settle { animation: settle 1.4s var(--ease-out-quint) both; }
+.anim-pop { animation: pop 0.7s var(--ease-spring) both; }
+.anim-letter-up { animation: letter-up 1.1s var(--ease-out-expo) both; }
+
+/* ---------- Utilitare ---------- */
+.mask-fade-x {
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.grid-lines {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.grid-lines-dark {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.text-stroke {
+  -webkit-text-stroke: 2px currentColor;
+  color: transparent;
+}
+.hard-shadow { box-shadow: 8px 8px 0 0 var(--shadow-color, #0e0e10); }
+.hard-shadow-sm { box-shadow: 4px 4px 0 0 var(--shadow-color, #0e0e10); }
+.scrollbar-none { scrollbar-width: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.balance { text-wrap: balance; }
+.pretty { text-wrap: pretty; }
+
+/* Parallax lent pe imagini (doar în browsere cu animații legate de scroll) */
+@supports (animation-timeline: view()) {
+  .scroll-zoom {
+    animation: scroll-zoom linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+  @keyframes scroll-zoom {
+    from { transform: scale(1.18) translateY(-4%); }
+    to { transform: scale(1) translateY(4%); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal, .reveal-blur, .reveal-scale, .reveal-slide { opacity: 1; transform: none; filter: none; }
+  .reveal-clip { clip-path: none; }
+  .reveal-line { transform: none; }
+  .scroll-zoom { animation: none; }
+}
+
+/* ---------- V1: tipografie lată, corporate ---------- */
+.v1-display {
+  font-stretch: 118%;
   font-weight: 800;
   letter-spacing: -0.02em;
-  line-height: 0.96;
+  line-height: 1.02;
+}
+.v1-rule {
+  border-top: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  height: 8px;
 }
 
-@utility display-wide {
-  font-family: var(--font-display);
-  font-variation-settings: "wdth" 125;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+/* ---------- V2: stickere și rotații ---------- */
+.v2-sticker {
+  border: 3px solid #0e0e10;
+  box-shadow: 6px 6px 0 0 #0e0e10;
+  transition: transform 0.35s var(--ease-spring), box-shadow 0.35s var(--ease-spring);
+}
+.v2-sticker:hover {
+  transform: translate(-3px, -3px) rotate(var(--sticker-rotate, 0deg));
+  box-shadow: 10px 10px 0 0 #0e0e10;
+}
+.v2-outline {
+  -webkit-text-stroke: 2px #0e0e10;
+  color: transparent;
+}
+@media (min-width: 640px) {
+  .v2-outline { -webkit-text-stroke-width: 3px; }
+}
+.v2-highlight {
+  background-image: linear-gradient(120deg, #cbff3a 0%, #cbff3a 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 42%;
+  background-position: 0 88%;
 }
 
-@utility container-site {
+/* ---------- V3: serife, linii fine, tranziții lente ---------- */
+.v3-display {
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+.v3-italic {
+  font-style: italic;
+  font-weight: 300;
+}
+.v3-link {
+  position: relative;
+}
+.v3-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
   width: 100%;
-  max-width: var(--container-site);
-  margin-inline: auto;
-  padding-inline: 1.25rem;
-  @media (width >= 40rem) {
-    padding-inline: 2rem;
-  }
-  @media (width >= 64rem) {
-    padding-inline: 3.5rem;
-  }
-}
-
-/* The logo's double rule, used as the site's structural signature. */
-@utility rule-double {
-  position: relative;
-  height: 9px;
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: currentColor;
-  }
-  &::before {
-    top: 0;
-  }
-  &::after {
-    bottom: 0;
-  }
-}
-
-/* Scroll reveal: opacity and translate, driven by IntersectionObserver in <Reveal />. */
-@utility reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 700ms var(--ease-out-strong),
-    transform 700ms var(--ease-out-strong);
-  transition-delay: var(--reveal-delay, 0ms);
-  &[data-inview="true"] {
-    opacity: 1;
-    transform: none;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    transform: none;
-    transition: opacity 300ms ease;
-  }
-}
-
-/* Photo reveal: children are unmasked from the bottom edge upward.
-   The clip lives on the children because Chrome excludes fully clipped
-   boxes from IntersectionObserver. */
-@utility reveal-clip {
-  & > * {
-    clip-path: inset(0 0 100% 0);
-    transition: clip-path 1100ms var(--ease-in-out-strong);
-    transition-delay: var(--reveal-delay, 0ms);
-  }
-  &[data-inview="true"] > * {
-    clip-path: inset(0 0 0 0);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    & > * {
-      clip-path: none;
-      transition: none;
-    }
-  }
-}
-
-/* Line reveal: a rule that draws from left to right. */
-@utility reveal-line {
+  background: currentColor;
   transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+.v3-link:hover::after {
+  transform: scaleX(1);
   transform-origin: left;
-  transition: transform 900ms var(--ease-in-out-strong);
-  transition-delay: var(--reveal-delay, 0ms);
-  &[data-inview="true"] {
-    transform: scaleX(1);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    transform: none;
-    transition: none;
-  }
-}
-
-/* Hero entrance: one-time on load, staggered via --i. */
-@utility hero-enter {
-  opacity: 0;
-  transform: translateY(24px);
-  animation: hero-enter 1000ms var(--ease-out-strong) forwards;
-  animation-delay: calc(200ms + var(--i, 0) * 110ms);
-  @media (prefers-reduced-motion: reduce) {
-    transform: none;
-    animation: hero-fade 400ms ease forwards;
-  }
-}
-
-/* Hero word wipe: each line is unmasked left to right. */
-@utility hero-wipe {
-  clip-path: inset(0 100% 0 0);
-  animation: hero-wipe 900ms var(--ease-in-out-strong) forwards;
-  animation-delay: calc(350ms + var(--i, 0) * 160ms);
-  @media (prefers-reduced-motion: reduce) {
-    clip-path: none;
-    animation: hero-fade 400ms ease forwards;
-  }
-}
-
-@keyframes hero-wipe {
-  to {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-@keyframes hero-enter {
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes hero-fade {
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes hero-image {
-  from {
-    transform: scale(1.08);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-
-@utility hero-image {
-  animation: hero-image 2600ms var(--ease-out-strong) forwards;
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
-}
-
-@keyframes rule-draw {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-@utility hero-rule {
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: rule-draw 1100ms var(--ease-in-out-strong) forwards;
-  animation-delay: 150ms;
-  @media (prefers-reduced-motion: reduce) {
-    transform: none;
-    animation: none;
-  }
-}
-
-/* Link underline that grows from the left. */
-@utility link-line {
-  position: relative;
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -3px;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 240ms var(--ease-out-strong);
-  }
-  @media (hover: hover) and (pointer: fine) {
-    &:hover::after {
-      transform: scaleX(1);
-    }
-  }
-  &[aria-current="page"]::after {
-    transform: scaleX(1);
-    background: var(--color-brand);
-  }
-}
-
-/* Pressable elements: instant feedback on press. */
-@utility pressable {
-  transition:
-    transform 160ms var(--ease-out-strong),
-    background-color 200ms ease,
-    color 200ms ease,
-    border-color 200ms ease;
-  &:active {
-    transform: scale(0.97);
-  }
-}
-
-/* Photo hover: slight scale, only on precise pointers. */
-@utility photo-hover {
-  transition: transform 900ms var(--ease-out-strong);
-  @media (hover: hover) and (pointer: fine) {
-    .group:hover & {
-      transform: scale(1.04);
-    }
-  }
-}
-
-/* Horizontal rail: snap scrolling, no visible scrollbar. */
-@utility rail {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  & > * {
-    scroll-snap-align: start;
-    flex: none;
-  }
-}
-
-/* Hatched surface for content the client still has to supply. */
-@utility hatched {
-  background-image: repeating-linear-gradient(
-    135deg,
-    transparent 0 14px,
-    rgb(255 255 255 / 0.05) 14px 15px
-  );
-}
-
-/* Dark map: keep the roads readable while pulling the tiles into the palette. */
-@utility map-dark {
-  filter: invert(0.92) hue-rotate(180deg) saturate(0.35) brightness(0.9) contrast(1.05);
 }

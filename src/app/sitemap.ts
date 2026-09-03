@@ -1,23 +1,18 @@
 import type { MetadataRoute } from "next";
-import { siteUrl } from "@/data/site";
+import { seo } from "@/data/company";
+import { designs } from "@/data/designs";
 
 export const dynamic = "force-static";
 
-const routes: { path: string; priority: number }[] = [
-  { path: "/", priority: 1 },
-  { path: "/agregate/", priority: 0.9 },
-  { path: "/beton/", priority: 0.9 },
-  { path: "/prefabricate/", priority: 0.8 },
-  { path: "/infrastructura/", priority: 0.9 },
-  { path: "/contact/", priority: 0.9 },
-];
-
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
-  return routes.map(({ path, priority }) => ({
-    url: `${siteUrl}${path}`,
-    lastModified,
-    changeFrequency: "monthly",
-    priority,
-  }));
+  const now = new Date();
+  return [
+    { url: `${seo.siteUrl}/`, lastModified: now, changeFrequency: "weekly", priority: 1 },
+    ...designs.map((d) => ({
+      url: `${seo.siteUrl}${d.href}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    })),
+  ];
 }
