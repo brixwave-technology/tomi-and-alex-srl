@@ -1,13 +1,27 @@
-# Tomi Alex SRL — website de prezentare
+# Tomi Alex SRL — portal de selecție design
 
-Website premium de prezentare (v2, temă închisă, conversie prin telefon) pentru **Tomi Alex SRL** (lucrări de infrastructură și construcții, agregate, beton, prefabricate). Proiect realizat de Brixwave.
+Portal web de prezentare pentru **Tomi Alex SRL** (lucrări de infrastructură și construcții, agregate, beton, prefabricate), cu trei concepte de website complet diferite din care clientul își alege varianta preferată. Concepte de design dezvoltate exclusiv de **BRIXWAVE**.
 
 - Live (GitHub Pages): https://brixwave-technology.github.io/tomi-and-alex-srl/
 - Referința de produs: [PRODUCT.md](./PRODUCT.md)
 
+## Ce conține
+
+| Rută   | Conținut |
+| ------ | -------- |
+| `/`    | **Index (hub)**: semnătura BRIXWAVE (logo SVG + „Concepte de design dezvoltate exclusiv de BRIXWAVE”), trei carduri mari „Design V1 / V2 / V3” cu miniaturi, starea alegerii clientului |
+| `/v1/` | **Design V1 — Corporate / Autoritate**: layout pe grilă, paletă navy + roșu din logo, tabele de produse, certificări, FAQ, formular de ofertă |
+| `/v2/` | **Design V2 — Creativ / Inovator**: arhitectură asimetrică, paletă coral / lime / violet, stickere, marquee, meniu full-screen, rail orizontal de produse |
+| `/v3/` | **Design V3 — Minimalist / Premium**: spațiu alb generos, tipografie serif supradimensionată (Fraunces), linii fine, animații lente |
+
+Fiecare variantă are aceeași structură și același conținut (Despre noi, servicii și direcții de activitate, agregate, clase de beton, prefabricate, proces, referințe, FAQ, contact complet cu formular și hartă, footer cu date juridice) și conține:
+
+- butonul **„Aleg acest design”** (în bara plutitoare și într-o secțiune dedicată), care deschide un dialog de confirmare; alegerea se salvează în browser, apare pe Index și poate fi trimisă către BRIXWAVE prin e-mail sau copiată ca rezumat;
+- butonul **„Înapoi la Index”** pentru a compara celelalte opțiuni.
+
 ## Stack
 
-Next.js 16 (App Router, export static) · TypeScript · Tailwind CSS v4 · `@phosphor-icons/react`
+Next.js 16 (App Router, export static, Turbopack) · React 19 · TypeScript · Tailwind CSS v4 · `@phosphor-icons/react` · fonturi Google self-hosted prin `next/font` (Manrope, Archivo, Syne, Space Grotesk, Fraunces, Inter)
 
 ## Comenzi
 
@@ -23,23 +37,32 @@ npx tsc --noEmit
 
 ```
 src/
-  app/                 rute: /, /agregate, /beton, /prefabricate, /infrastructura, /contact
+  app/
+    page.tsx               Index (hub)
+    v1/ v2/ v3/            cele trei concepte (fiecare își încarcă fonturile proprii)
+    layout.tsx             layout rădăcină, metadata
+    globals.css            tokeni Tailwind (paletele celor trei concepte), animații, utilitare
   components/
-    layout/            Header (sticky, meniu mobil), Footer
-    sections/          secțiunile paginii principale + CTA + Contact
-    forms/             ContactForm (validare, stare de succes, mod demo)
-    ui/                Button, Logo, Reveal, PageHero, Breadcrumbs, Placeholder
-  data/                site.ts, services.ts, products.ts, images.ts  ← conținutul, separat de UI
-public/images/         fotografii (temporar stock, de înlocuit cu imagini reale)
+    portal/                BrixwaveLogo, Hub, DesignPreview, DesignShell (bara plutitoare + dialogul de alegere)
+    shared/                Reveal (animații la scroll)
+    v1/ v2/ v3/            Header, Site, ContactForm și ancorele de navigare ale fiecărui concept
+  data/
+    company.ts             tot conținutul companiei (texte, servicii, produse, contact, program, date juridice)
+    designs.ts             metadatele celor trei concepte
+    brixwave.ts            semnătura BRIXWAVE și adresa la care se trimite confirmarea
+    images.ts              manifestul fotografiilor
+  lib/
+    selection.ts           alegerea clientului (localStorage, sincronizată între componente și file)
+    useContactForm.ts      logica formularului de contact, independentă de aspect
+public/images/             fotografii (temporar stock) și logo-ul Tomi Alex
 ```
 
 ## Cum se actualizează conținutul
 
-- **Telefon (E.164 + afișat), adresă, program, navigare, texte de brand:** `src/data/site.ts` (toate butoanele „Sună acum” devin active când `contact.phone` este completat)
-- **Servicii de infrastructură, direcții de activitate:** `src/data/services.ts`
-- **Agregate, clase de beton, prefabricate:** `src/data/products.ts` (câmpurile opționale se afișează automat când sunt completate)
-- **Imagini:** înlocuiți fișierele din `public/images/` și actualizați textul alternativ în `src/data/images.ts`; logo-ul are variante `logo-tomi-alex(-light).png` (complet) și `logo-wordmark(-light).png` (header)
-- **Formular de contact:** setați `contact.formEndpoint` în `src/data/site.ts` cu un serviciu (Formspree, Resend etc.); până atunci rulează în mod demo
+- **Texte, servicii, produse, telefon, e-mail, adresă, program, date juridice, cifre:** `src/data/company.ts`. Datele de contact, juridice și cifrele de activitate sunt completate demonstrativ pentru ca portalul să arate ca un produs finalizat și se înlocuiesc cu datele reale ale clientului din acest singur fișier.
+- **Adresa de e-mail la care ajunge confirmarea alegerii:** `src/data/brixwave.ts`.
+- **Formularul de contact:** setați `contact.formEndpoint` în `src/data/company.ts` cu un serviciu (Formspree, Resend etc.); până atunci rulează în mod demonstrativ, cu validare și stare de succes.
+- **Imagini:** înlocuiți fișierele din `public/images/` și actualizați textul alternativ în `src/data/images.ts`.
 
 ## Deploy
 
