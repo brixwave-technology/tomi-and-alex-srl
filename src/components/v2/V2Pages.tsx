@@ -2,8 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Certificate, Clock, Envelope, MapPin, Phone, ShieldCheck, Truck } from "@phosphor-icons/react/dist/ssr";
 import { Reveal } from "@/components/shared/Reveal";
-import { V2ContactForm } from "./V2ContactForm";
-import { V2QuickOrder } from "./V2QuickOrder";
+import { MapEmbed, contactGroups } from "@/components/shared/ContactBlocks";
 import { CapacityTile, VolumeBars } from "./V2Charts";
 import {
   aggregates,
@@ -14,7 +13,6 @@ import {
   concreteClasses,
   contact,
   directions,
-  faq,
   infrastructureServices,
   prefabProducts,
   process,
@@ -76,18 +74,59 @@ function PageHero({ kicker, title, lead, image, order }: { kicker: string; title
           <div className="anim-rise mt-8 flex flex-col gap-3 sm:flex-row [animation-delay:450ms]">
             <CallBtn />
             <OutlineLink href={pageHref("v2", "contact")} light>
-              Cere ofertă
+              Date de contact
             </OutlineLink>
           </div>
         </div>
         {order && (
           <div className="anim-rise self-end lg:col-span-5 [animation-delay:400ms]">
-            <V2QuickOrder />
+            <ContactCard />
           </div>
         )}
       </Wrap>
       <Hazard />
     </section>
+  );
+}
+
+/** Cardul de contact rapid din hero: telefon, e-mail, program. Fără formular. */
+function ContactCard({ className }: { className?: string }) {
+  return (
+    <div className={cn("v2-plate border-t-8 border-brand bg-asphalt-900 p-6 text-white", className)}>
+      <div className="flex items-center gap-3">
+        <Truck weight="fill" className="size-6 text-brand" aria-hidden />
+        <h3 className="v2-display font-v2-display text-2xl">Comenzi și livrări</h3>
+      </div>
+      <p className="mt-2 text-[13.5px] text-concrete-300">Confirmare telefonică pe loc. Livrare de luni până sâmbătă, de la 06:30.</p>
+      <a href={`tel:${contact.phone}`} className="mt-5 flex h-16 items-center justify-center gap-3 bg-brand font-v2-display text-3xl font-bold text-white transition hover:bg-brand-soft">
+        <Phone weight="fill" className="size-6" aria-hidden />
+        {contact.phoneDisplay}
+      </a>
+      <dl className="mt-5 grid gap-3 text-[14.5px]">
+        <div className="flex justify-between gap-4 border-b border-concrete-700 pb-3">
+          <dt className="font-v2-display text-[13px] font-semibold uppercase tracking-wider text-concrete-300">Telefon secundar</dt>
+          <dd>
+            <a href={`tel:${contact.phoneSecondary}`} className="font-semibold hover:text-brand-soft">
+              {contact.phoneSecondaryDisplay}
+            </a>
+          </dd>
+        </div>
+        <div className="flex justify-between gap-4 border-b border-concrete-700 pb-3">
+          <dt className="font-v2-display text-[13px] font-semibold uppercase tracking-wider text-concrete-300">E-mail</dt>
+          <dd>
+            <a href={`mailto:${contact.email}`} className="font-semibold hover:text-brand-soft">
+              {contact.email}
+            </a>
+          </dd>
+        </div>
+        {contact.hours.map((h) => (
+          <div key={h.days} className="flex justify-between gap-4">
+            <dt className="font-v2-display text-[13px] font-semibold uppercase tracking-wider text-concrete-300">{h.days}</dt>
+            <dd className="font-semibold">{h.hours}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
   );
 }
 
@@ -103,7 +142,7 @@ function Cta({ title, text }: { title: string; text: string }) {
           <div className="flex flex-col gap-3 sm:flex-row">
             <CallBtn />
             <OutlineLink href={pageHref("v2", "contact")} light>
-              Cere ofertă
+              Date de contact
             </OutlineLink>
           </div>
         </Reveal>
@@ -158,7 +197,7 @@ export function V2Home() {
             </div>
           </div>
           <div className="anim-rise self-end lg:col-span-5 [animation-delay:500ms]">
-            <V2QuickOrder />
+            <ContactCard />
           </div>
         </Wrap>
         <Hazard />
@@ -182,7 +221,7 @@ export function V2Home() {
               <Kicker>Ce producem</Kicker>
               <h2 className="v2-display mt-4 font-v2-display text-5xl sm:text-6xl lg:text-7xl">Agregate, beton, prefabricate.</h2>
             </div>
-            <p className="max-w-md text-[16px] leading-relaxed text-concrete-500">Produse în unitățile proprii, verificate în laborator, livrate cu flota noastră. Fiecare pagină de produs are prețuri ferme la telefon.</p>
+            <p className="max-w-md text-[16px] leading-relaxed text-concrete-500">Produse în unitățile proprii, verificate în laborator, livrate cu flota noastră. Prețuri ferme, la telefon.</p>
           </Reveal>
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {directions.slice(0, 3).map((d, i) => (
@@ -315,7 +354,7 @@ export function V2Home() {
           </div>
         </Wrap>
       </section>
-      <Cta title="Sunați. Comandați. Livrăm." text="Materiale în aceeași zi lucrătoare, oferte pentru lucrări în maximum 5 zile de la vizita în teren." />
+      <Cta title="Sunați. Comandați. Livrăm." text="Materiale în aceeași zi lucrătoare. Pentru lucrări, discutăm după vizita în teren." />
     </>
   );
 }
@@ -523,12 +562,6 @@ export function V2Prefabricate() {
 /* ---------- CONTACT ---------- */
 
 export function V2Contact() {
-  const rows = [
-    { icon: Phone, label: "Telefon secundar", lines: [contact.phoneSecondaryDisplay], href: `tel:${contact.phoneSecondary}` },
-    { icon: Envelope, label: "E-mail", lines: [contact.email, contact.emailOffers], href: `mailto:${contact.email}` },
-    { icon: MapPin, label: "Sediu, balastieră, stație de betoane", lines: [contact.addressLine], href: contact.location.mapsUrl },
-    { icon: Clock, label: "Program", lines: [...contact.hours.map((h) => `${h.days}: ${h.hours}`), contact.dispatchNote] },
-  ];
   return (
     <>
       <section className="bg-asphalt-950 text-white">
@@ -538,62 +571,47 @@ export function V2Contact() {
           <a href={`tel:${contact.phone}`} className="v2-display anim-rise mt-6 block font-v2-display text-5xl text-brand-soft sm:text-7xl [animation-delay:300ms]">
             {contact.phoneDisplay}
           </a>
-          <p className="anim-rise mt-2 text-[15px] text-concrete-300 [animation-delay:400ms]">{contact.hoursSummary}</p>
+          <a href={`mailto:${contact.email}`} className="anim-rise mt-3 inline-block text-xl font-semibold text-concrete-200 hover:text-white [animation-delay:400ms]">
+            {contact.email}
+          </a>
         </Wrap>
         <Hazard />
       </section>
       <section className="py-16 lg:py-24">
-        <Wrap className="grid gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <Reveal className="grid gap-px bg-asphalt-950">
-              {rows.map((item) => (
-                <div key={item.label} className="flex gap-4 bg-white p-5">
-                  <item.icon weight="fill" className="mt-0.5 size-5 shrink-0 text-brand" aria-hidden />
-                  <div>
-                    <p className="font-v2-display text-[13.5px] font-bold uppercase tracking-wider text-concrete-500">{item.label}</p>
-                    {item.lines.map((l) => (
-                      <p key={l} className="mt-1 text-[15px] font-medium">
-                        {item.href ? (
-                          <a href={item.href} className="hover:text-brand" target={item.href.startsWith("http") ? "_blank" : undefined} rel={item.href.startsWith("http") ? "noreferrer" : undefined}>
-                            {l}
-                          </a>
-                        ) : (
-                          l
-                        )}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              ))}
+        <Wrap className="grid gap-px bg-asphalt-950 md:grid-cols-2 xl:grid-cols-4">
+          {contactGroups.map((g) => (
+            <Reveal key={g.key} className="bg-white p-6">
+              <p className="flex items-center gap-2 font-v2-display text-[14px] font-bold uppercase tracking-wider text-concrete-500">
+                {g.key === "telefon" && <Phone weight="fill" className="size-4 text-brand" aria-hidden />}
+                {g.key === "email" && <Envelope weight="fill" className="size-4 text-brand" aria-hidden />}
+                {g.key === "firma" && <MapPin weight="fill" className="size-4 text-brand" aria-hidden />}
+                {g.key === "program" && <Clock weight="fill" className="size-4 text-brand" aria-hidden />}
+                {g.label}
+              </p>
+              <ul className="mt-4 grid gap-1.5">
+                {g.lines.map((l) => (
+                  <li key={l.text} className={cn("text-[15px] leading-relaxed", "strong" in l && l.strong ? "font-v2-display text-xl font-bold" : "text-concrete-500")}>
+                    {"href" in l && l.href ? (
+                      <a href={l.href} className="hover:text-brand">
+                        {l.text}
+                      </a>
+                    ) : (
+                      l.text
+                    )}
+                  </li>
+                ))}
+              </ul>
             </Reveal>
-            <Reveal delay={150} className="mt-6 aspect-[16/10] overflow-hidden border-2 border-asphalt-950">
-              <iframe title="Harta cu locația Tomi Alex SRL" src={contact.location.embedUrl} className="size-full grayscale" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-            </Reveal>
-          </div>
-          <div className="grid gap-8 lg:col-span-7">
-            <Reveal>
-              <V2QuickOrder className="border-2 border-asphalt-950" />
-            </Reveal>
-            <Reveal delay={100}>
-              <V2ContactForm />
-            </Reveal>
-          </div>
+          ))}
         </Wrap>
-        <Wrap className="mt-16">
-          <Reveal>
-            <Kicker>Întrebări frecvente</Kicker>
+        <Wrap className="mt-12">
+          <Reveal className="border-b-4 border-asphalt-950 pb-6">
+            <Kicker>Unde ne găsiți</Kicker>
+            <h2 className="v2-display mt-3 font-v2-display text-3xl sm:text-4xl">{contact.addressLine}</h2>
           </Reveal>
-          <div className="mt-6 divide-y-2 divide-concrete-100 border-y-2 border-concrete-100">
-            {faq.map((f) => (
-              <Reveal as="details" key={f.question} className="group py-4">
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-v2-display text-xl font-bold [&::-webkit-details-marker]:hidden">
-                  {f.question}
-                  <span className="mt-0.5 inline-flex size-7 shrink-0 items-center justify-center bg-asphalt-950 text-white transition group-open:rotate-45 group-open:bg-brand">+</span>
-                </summary>
-                <p className="mt-3 max-w-3xl text-[14.5px] leading-relaxed text-concrete-500">{f.answer}</p>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={120} className="mt-8">
+            <MapEmbed frameClassName="aspect-[16/9] overflow-hidden border-2 border-asphalt-950 sm:aspect-[21/9]" buttonClassName="mt-4 inline-flex h-14 items-center gap-2 bg-brand px-7 font-v2-display text-xl font-bold uppercase tracking-wide text-white transition hover:bg-brand-soft" />
+          </Reveal>
         </Wrap>
       </section>
     </>

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Handshake, Leaf, Scales, ShieldCheck } from "@phosphor-icons/react/dist/ssr";
 import { Reveal } from "@/components/shared/Reveal";
-import { V3ContactForm } from "./V3ContactForm";
+import { MapEmbed, contactGroups } from "@/components/shared/ContactBlocks";
 import {
   aggregates,
   capacities,
@@ -12,7 +12,6 @@ import {
   concreteClasses,
   contact,
   directions,
-  faq,
   infrastructureServices,
   prefabProducts,
   process,
@@ -42,7 +41,7 @@ function Eyebrow({ children, index }: { children: string; index?: string }) {
 
 function Primary({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <Link href={href} className="group inline-flex h-14 items-center gap-4 border border-brand bg-brand px-8 text-[11.5px] font-medium uppercase tracking-[0.22em] text-white transition-all duration-500 hover:bg-brand-soft">
+    <Link href={href} className="group inline-flex h-14 items-center gap-4 border border-limestone/40 px-8 text-[11.5px] font-medium uppercase tracking-[0.22em] text-limestone transition-all duration-500 hover:border-limestone">
       {children}
       <ArrowRight weight="regular" className="size-4 transition-transform duration-500 group-hover:translate-x-1" aria-hidden />
     </Link>
@@ -51,7 +50,7 @@ function Primary({ href, children }: { href: string; children: React.ReactNode }
 
 function CallLink() {
   return (
-    <a href={`tel:${contact.phone}`} className="inline-flex h-14 items-center gap-3 border border-limestone/40 px-8 text-[11.5px] font-medium uppercase tracking-[0.22em] text-limestone transition-all duration-500 hover:border-limestone">
+    <a href={`tel:${contact.phone}`} className="inline-flex h-14 items-center gap-3 border border-brand bg-brand px-8 text-[11.5px] font-medium uppercase tracking-[0.22em] text-white transition-all duration-500 hover:bg-brand-soft">
       Sună: {contact.phoneDisplay}
     </a>
   );
@@ -71,8 +70,8 @@ function PageHero({ kicker, title, accent, lead, image }: { kicker: string; titl
         </h1>
         <p className="anim-rise mt-8 max-w-2xl text-[16.5px] leading-relaxed text-granite-300 [animation-delay:300ms]">{lead}</p>
         <div className="anim-rise mt-10 flex flex-wrap items-center gap-4 [animation-delay:450ms]">
-          <Primary href={pageHref("v3", "contact")}>Solicitați o ofertă</Primary>
           <CallLink />
+          <Primary href={pageHref("v3", "contact")}>Date de contact</Primary>
         </div>
       </Container>
     </section>
@@ -91,8 +90,8 @@ function Cta({ title, accent, text }: { title: string; accent: string; text: str
             <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-granite-300">{text}</p>
           </div>
           <div className="flex flex-wrap gap-4">
-            <Primary href={pageHref("v3", "contact")}>Solicitați o ofertă</Primary>
             <CallLink />
+            <Primary href={pageHref("v3", "contact")}>Date de contact</Primary>
           </div>
         </Reveal>
       </Container>
@@ -131,8 +130,8 @@ export function V3Home() {
                 {company.claim} {company.heroSubtitle}
               </p>
               <div className="anim-rise flex flex-wrap items-center gap-4 [animation-delay:950ms] lg:col-span-5 lg:col-start-8">
-                <Primary href={pageHref("v3", "contact")}>Solicitați o ofertă</Primary>
                 <CallLink />
+                <Primary href={pageHref("v3", "contact")}>Date de contact</Primary>
               </div>
             </div>
           </div>
@@ -316,7 +315,7 @@ export function V3Home() {
           </ol>
         </Container>
       </section>
-      <Cta title="Să discutăm" accent="proiectul." text="Răspundem în aceeași zi lucrătoare pentru materiale și în maximum 5 zile lucrătoare pentru lucrări, după vizita în teren." />
+      <Cta title="Să discutăm" accent="proiectul." text="Sunați-ne sau scrieți-ne pe e-mail. Răspundem în aceeași zi lucrătoare pentru materiale; pentru lucrări, după vizita în teren." />
     </>
   );
 }
@@ -481,77 +480,45 @@ export function V3Contact() {
           <h1 className="v3-display anim-rise mt-8 font-v3-display text-5xl text-limestone sm:text-6xl lg:text-7xl [animation-delay:150ms]">
             Să discutăm <span className="text-brand-soft">proiectul</span>.
           </h1>
-          <a href={`tel:${contact.phone}`} className="anim-rise mt-8 inline-block font-v3-display text-3xl font-semibold text-limestone sm:text-4xl [animation-delay:300ms]">
-            {contact.phoneDisplay}
-          </a>
-          <p className="anim-rise mt-2 text-[14.5px] text-granite-300 [animation-delay:400ms]">{contact.hoursSummary}</p>
+          <div className="anim-rise mt-10 flex flex-wrap items-center gap-4 [animation-delay:300ms]">
+            <a href={`tel:${contact.phone}`} className="inline-flex h-16 items-center gap-3 border border-brand bg-brand px-8 font-v3-display text-2xl font-semibold text-white transition-all duration-500 hover:bg-brand-soft">
+              {contact.phoneDisplay}
+            </a>
+            <a href={`mailto:${contact.email}`} className="v3-link text-[12px] font-medium uppercase tracking-[0.22em] text-limestone">
+              {contact.email}
+            </a>
+          </div>
         </Container>
       </section>
       <section className="py-24 lg:py-32">
-        <Container className="grid gap-16 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <Reveal className="grid gap-10 sm:grid-cols-2">
-              <div>
-                <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-granite-300">Telefon</p>
-                <a href={`tel:${contact.phone}`} className="mt-3 block font-v3-display text-2xl font-semibold text-limestone">
-                  {contact.phoneDisplay}
-                </a>
-                <a href={`tel:${contact.phoneSecondary}`} className="mt-1 block text-[14.5px] text-granite-300">
-                  {contact.phoneSecondaryDisplay}
-                </a>
-              </div>
-              <div>
-                <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-granite-300">E-mail</p>
-                <a href={`mailto:${contact.email}`} className="v3-link mt-3 block text-[15.5px] text-limestone">
-                  {contact.email}
-                </a>
-                <a href={`mailto:${contact.emailOffers}`} className="v3-link mt-1 block text-[14.5px] text-granite-300">
-                  {contact.emailOffers}
-                </a>
-              </div>
-              <div>
-                <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-granite-300">Adresă</p>
-                <p className="mt-3 text-[15px] leading-relaxed text-limestone">{contact.addressLine}</p>
-                <a href={contact.location.mapsUrl} target="_blank" rel="noreferrer" className="v3-link mt-2 inline-flex items-center gap-1 text-[11.5px] uppercase tracking-[0.18em] text-brand-soft">
-                  Google Maps
-                  <ArrowUpRight weight="regular" className="size-3.5" aria-hidden />
-                </a>
-              </div>
-              <div>
-                <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-granite-300">Program</p>
-                {contact.hours.map((h) => (
-                  <p key={h.days} className="mt-3 flex justify-between gap-4 border-b border-brand/20 pb-2 text-[14px] text-limestone">
-                    <span>{h.days}</span>
-                    <span className="text-granite-300">{h.hours}</span>
-                  </p>
+        <Container>
+          <dl className={cn("md:grid-cols-2 xl:grid-cols-4", grid)}>
+            {contactGroups.map((g) => (
+              <Reveal key={g.key} className="bg-anthracite-950 p-7">
+                <dt className="text-[11px] font-medium uppercase tracking-[0.22em] text-granite-300">{g.label}</dt>
+                {g.lines.map((l) => (
+                  <dd key={l.text} className={cn("mt-2 text-[14.5px] leading-relaxed", "strong" in l && l.strong ? "font-v3-display text-xl font-semibold text-limestone" : "text-granite-300")}>
+                    {"href" in l && l.href ? (
+                      <a href={l.href} className="v3-link">
+                        {l.text}
+                      </a>
+                    ) : (
+                      l.text
+                    )}
+                  </dd>
                 ))}
-                <p className="mt-3 text-[12.5px] leading-relaxed text-granite-500">{contact.dispatchNote}</p>
-              </div>
-            </Reveal>
-            <Reveal delay={150} className="v3-frame mt-10 aspect-[16/10] overflow-hidden">
-              <iframe title="Harta cu locația Tomi Alex SRL" src={contact.location.embedUrl} className="size-full grayscale invert-[0.92] contrast-[0.85]" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-            </Reveal>
-          </div>
-          <Reveal delay={150} className="lg:col-span-6 lg:col-start-7">
-            <V3ContactForm />
-          </Reveal>
-        </Container>
-        <Container className="mt-24">
-          <Reveal>
-            <Eyebrow index="02">Întrebări frecvente</Eyebrow>
-          </Reveal>
-          <div className="mt-8">
-            {faq.map((f, i) => (
-              <Reveal as="details" key={f.question} delay={i * 60} className="group border-t border-brand/20 py-6 last:border-b">
-                <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 font-v3-display text-lg font-semibold text-limestone transition-colors group-open:text-brand-soft [&::-webkit-details-marker]:hidden">
-                  {f.question}
-                  <span className="shrink-0 text-[11px] uppercase tracking-[0.22em] text-granite-300 group-open:hidden">Deschide</span>
-                  <span className="hidden shrink-0 text-[11px] uppercase tracking-[0.22em] text-granite-300 group-open:inline">Închide</span>
-                </summary>
-                <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-granite-300">{f.answer}</p>
               </Reveal>
             ))}
-          </div>
+          </dl>
+        </Container>
+        <Container className="mt-20">
+          <Reveal>
+            <Eyebrow index="02">Unde ne găsiți</Eyebrow>
+            <h2 className="v3-display mt-6 font-v3-display text-3xl text-limestone sm:text-4xl">{contact.addressLine}</h2>
+          </Reveal>
+          <Reveal delay={120} className="mt-8">
+            <MapEmbed frameClassName="v3-frame aspect-[16/9] overflow-hidden sm:aspect-[21/9] [&_iframe]:grayscale [&_iframe]:invert-[0.92] [&_iframe]:contrast-[0.85]" buttonClassName="mt-5 inline-flex h-14 items-center gap-3 border border-brand bg-brand px-8 text-[11.5px] font-medium uppercase tracking-[0.22em] text-white transition-all duration-500 hover:bg-brand-soft" />
+          </Reveal>
         </Container>
       </section>
     </>

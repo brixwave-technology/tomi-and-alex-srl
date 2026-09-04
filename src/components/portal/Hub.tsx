@@ -29,7 +29,9 @@ export function Hub() {
         <BrixwaveLogo size={40} priority className="anim-rise" />
         <div className="anim-rise flex items-center gap-4 [animation-delay:120ms]">
           <p className="hidden text-[12px] font-semibold uppercase tracking-[0.22em] text-portal-300 sm:block">Client</p>
-          <TomiAlexLogo height={34} priority />
+          <span className="inline-flex items-center rounded-md bg-white px-3 py-1.5">
+            <TomiAlexLogo height={34} priority />
+          </span>
         </div>
       </header>
 

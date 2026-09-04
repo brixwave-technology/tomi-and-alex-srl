@@ -68,7 +68,7 @@ export function V2Header() {
             </a>
           </div>
         </div>
-        <div className="border-b-4 border-brand bg-asphalt-950">
+        <div className="border-b-4 border-brand bg-white">
           <div className="mx-auto flex h-[84px] w-full max-w-[1400px] items-center justify-between gap-6 px-4 sm:px-8">
             <Link href="/v2/" className="flex shrink-0 items-center" aria-label={`${company.name}, pagina principală`}>
               <TomiAlexLogo height={50} priority />
@@ -77,34 +77,34 @@ export function V2Header() {
               {nav.map((item) => {
                 const active = isActivePath(pathname, item.href);
                 return (
-                  <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} className={cn("border-b-4 px-3.5 py-2 font-v2-display text-[17px] font-bold uppercase tracking-wide transition", active ? "border-brand text-white" : "border-transparent text-concrete-200 hover:text-white")}>
+                  <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} className={cn("border-b-4 px-3.5 py-2 font-v2-display text-[17px] font-bold uppercase tracking-wide transition", active ? "border-brand text-asphalt-950" : "border-transparent text-concrete-500 hover:text-asphalt-950")}>
                     {item.label}
                   </Link>
                 );
               })}
             </nav>
             <div className="hidden items-center gap-3 lg:flex">
-              <a href={`tel:${contact.phone}`} className="inline-flex h-12 items-center gap-2 border-2 border-concrete-500 px-5 font-v2-display text-[17px] font-bold uppercase tracking-wide text-white transition hover:border-white">
+              <a href={`tel:${contact.phone}`} className="inline-flex h-12 items-center gap-2 border-2 border-asphalt-950 px-5 font-v2-display text-[17px] font-bold uppercase tracking-wide text-asphalt-950 transition hover:bg-asphalt-950 hover:text-white">
                 <Phone weight="fill" className="size-4 text-brand" aria-hidden />
                 {contact.phoneDisplay}
               </a>
-              <Link href="/v2/contact/" className="inline-flex h-12 items-center bg-brand px-6 font-v2-display text-[17px] font-bold uppercase tracking-wide text-white transition hover:bg-brand-soft">
-                Cere ofertă
-              </Link>
+              <a href={`mailto:${contact.email}`} className="inline-flex h-12 items-center bg-brand px-6 font-v2-display text-[17px] font-bold uppercase tracking-wide text-white transition hover:bg-brand-soft">
+                Scrieți-ne
+              </a>
             </div>
-            <button type="button" onClick={() => setOpen((o) => !o)} className="inline-flex size-12 items-center justify-center border-2 border-concrete-500 text-white xl:hidden" aria-expanded={open} aria-controls="v2-menu" aria-label={open ? "Închide meniul" : "Deschide meniul"}>
+            <button type="button" onClick={() => setOpen((o) => !o)} className="inline-flex size-12 items-center justify-center border-2 border-asphalt-950 text-asphalt-950 xl:hidden" aria-expanded={open} aria-controls="v2-menu" aria-label={open ? "Închide meniul" : "Deschide meniul"}>
               {open ? <X weight="bold" className="size-5" aria-hidden /> : <List weight="bold" className="size-5" aria-hidden />}
             </button>
           </div>
         </div>
-        <div id="v2-menu" className={cn("border-b-4 border-brand bg-asphalt-950 px-4 pb-8 pt-2 xl:hidden", open ? "block" : "hidden")}>
+        <div id="v2-menu" className={cn("border-b-4 border-brand bg-white px-4 pb-8 pt-2 xl:hidden", open ? "block" : "hidden")}>
           <nav className="grid" aria-label="Navigare mobilă">
             {nav.map((item) => {
               const active = isActivePath(pathname, item.href);
               return (
-                <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} className={cn("border-b border-concrete-700 py-4 font-v2-display text-2xl font-bold uppercase", active ? "text-brand-soft" : "text-white")}>
+                <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} className={cn("block border-b border-concrete-100 py-4 font-v2-display text-2xl font-bold uppercase", active ? "text-brand" : "text-asphalt-950")}>
                   {item.label}
-                  <span className="block font-v2 text-[13px] font-normal normal-case text-concrete-300">{item.description}</span>
+                  <span className="block font-v2 text-[13px] font-normal normal-case text-concrete-500">{item.description}</span>
                 </Link>
               );
             })}
@@ -114,7 +114,7 @@ export function V2Header() {
               <Phone weight="fill" className="size-5" aria-hidden />
               Sună acum: {contact.phoneDisplay}
             </a>
-            <BackToIndexLink className="text-center text-[13px] text-concrete-300 underline-offset-4 hover:underline" />
+            <BackToIndexLink className="text-center text-[13px] text-concrete-500 underline-offset-4 hover:underline" />
           </div>
         </div>
       </header>

@@ -28,11 +28,18 @@ export function V2Footer() {
           </div>
         </Reveal>
       </section>
-      <footer className="border-t-4 border-brand bg-asphalt-950 px-4 pb-40 pt-14 text-white sm:px-8 lg:pb-16">
-        <div className="mx-auto grid w-full max-w-[1400px] gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-4">
+      <footer className="border-t-4 border-brand bg-asphalt-950 pb-40 text-white lg:pb-16">
+        <div className="bg-white text-asphalt-950">
+          <div className="mx-auto flex w-full max-w-[1400px] flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row sm:px-8">
             <TomiAlexLogo height={64} />
-            <p className="mt-6 max-w-sm text-[14.5px] leading-relaxed text-concrete-300">{company.descriptionSecondary}</p>
+            <a href={`tel:${contact.phone}`} className="v2-display font-v2-display text-3xl sm:text-4xl">
+              {contact.phoneDisplay}
+            </a>
+          </div>
+        </div>
+        <div className="mx-auto grid w-full max-w-[1400px] gap-10 px-4 pt-14 sm:px-8 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <p className="max-w-sm text-[14.5px] leading-relaxed text-concrete-300">{company.descriptionSecondary}</p>
             <a href={social.facebook} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 font-v2-display text-[16px] font-bold uppercase tracking-wider text-white hover:text-brand-soft">
               Facebook
               <ArrowUpRight weight="bold" className="size-4" aria-hidden />
@@ -83,7 +90,7 @@ export function V2Footer() {
             </ul>
           </div>
         </div>
-        <div className="mx-auto mt-12 flex w-full max-w-[1400px] flex-col gap-2 border-t border-concrete-700 pt-6 text-[13px] text-concrete-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mx-auto mt-12 flex w-full max-w-[1400px] flex-col gap-2 border-t border-concrete-700 px-4 pt-6 text-[13px] text-concrete-500 sm:flex-row sm:items-center sm:justify-between sm:px-8">
           <p>
             © {new Date().getFullYear()} {company.name}. Toate drepturile rezervate.
           </p>

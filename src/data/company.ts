@@ -98,8 +98,6 @@ export const contact = {
     directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.909954,23.088480",
     embedUrl: "https://maps.google.com/maps?q=47.909954,23.088480&z=13&hl=ro&output=embed",
   },
-  /** Endpoint pentru formularul de contact. Gol înseamnă mod demonstrativ. */
-  formEndpoint: "",
 } as const;
 
 /** Date juridice (demo, de confirmat cu clientul). */
@@ -351,7 +349,7 @@ export const process: ProcessStep[] = [
   {
     index: "01",
     title: "Ne contactați",
-    description: "Ne spuneți ce lucrare sau ce materiale aveți nevoie, unde este amplasamentul și până când trebuie terminat.",
+    description: "Ne sunați sau ne scrieți pe e-mail: ce lucrare sau ce materiale aveți nevoie, unde este amplasamentul și până când.",
   },
   {
     index: "02",
@@ -428,7 +426,7 @@ export const faq: Faq[] = [
   {
     question: "Livrați și cantități mici?",
     answer:
-      "Da. Livrăm de la 1 mc de beton sau o autobasculantă de agregate până la volume de șantier, cu programare telefonică sau prin formularul de pe site.",
+      "Da. Livrăm de la 1 mc de beton sau o autobasculantă de agregate până la volume de șantier, cu programare telefonică sau prin e-mail.",
   },
   {
     question: "Lucrați cu administrații publice și proiecte finanțate din fonduri europene?",
@@ -469,7 +467,7 @@ export const sitePages: SitePage[] = [
   { label: "Agregate", short: "Agregate", slug: "agregate", description: "Balastieră proprie: nisip, balast, sort 4–8, sort 8–16" },
   { label: "Stație betoane", short: "Beton", slug: "beton", description: "Beton de orice clasă, produs în stație proprie" },
   { label: "Prefabricate", short: "Prefabricate", slug: "prefabricate", description: "Prefabricate din beton, gata de montaj" },
-  { label: "Contact", short: "Contact", slug: "contact", description: "Telefon, e-mail, adresă, program și formular" },
+  { label: "Contact", short: "Contact", slug: "contact", description: "Telefon, e-mail, datele firmei și locația pe hartă" },
 ];
 
 export const seo = {

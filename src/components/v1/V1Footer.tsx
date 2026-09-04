@@ -28,11 +28,18 @@ export function V1Footer() {
           </div>
         </Reveal>
       </section>
-      <footer className="border-t border-steel-400/20 bg-graphite-950 pb-40 pt-16 lg:pb-16">
-        <div className="mx-auto grid w-full max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-12">
-          <div className="lg:col-span-4">
+      <footer className="border-t border-steel-400/20 bg-graphite-950 pb-40 lg:pb-16">
+        <div className="bg-white">
+          <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-4 px-5 py-6 sm:flex-row sm:px-8">
             <TomiAlexLogo height={64} />
-            <p className="mt-6 max-w-sm text-[14.5px] leading-relaxed text-steel-400">{company.descriptionSecondary}</p>
+            <a href={`tel:${contact.phone}`} className="v1-display text-2xl text-graphite-950 sm:text-3xl">
+              {contact.phoneDisplay}
+            </a>
+          </div>
+        </div>
+        <div className="mx-auto grid w-full max-w-7xl gap-12 px-5 pt-14 sm:px-8 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <p className="max-w-sm text-[14.5px] leading-relaxed text-steel-400">{company.descriptionSecondary}</p>
             <a href={social.facebook} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 text-[14px] font-bold text-white hover:text-brand-soft">
               Facebook
               <ArrowUpRight weight="bold" className="size-4" aria-hidden />
