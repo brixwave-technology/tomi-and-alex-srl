@@ -60,6 +60,7 @@ public/images/             fotografii (temporar stock) și logo-ul Tomi Alex
 ## Cum se actualizează conținutul
 
 - **Texte, servicii, produse, telefon, e-mail, adresă, program, date juridice, cifre:** `src/data/company.ts`. Datele de contact, juridice și cifrele de activitate sunt completate demonstrativ pentru ca portalul să arate ca un produs finalizat și se înlocuiesc cu datele reale ale clientului din acest singur fișier.
+- **Logo-ul original Brixwave pe Index:** adăugați fișierele `public/images/brixwave-logo.png` (simbol + wordmark) și `public/images/brixwave-mark.png` (doar simbolul); sunt acceptate și `.svg` / `.webp`. La următorul build, Index-ul și bara plutitoare le folosesc automat în locul replicii SVG (`src/lib/brandAssets.ts`).
 - **Adresa de e-mail la care ajunge confirmarea alegerii:** `src/data/brixwave.ts`.
 - **Formularul de contact:** setați `contact.formEndpoint` în `src/data/company.ts` cu un serviciu (Formspree, Resend etc.); până atunci rulează în mod demonstrativ, cu validare și stare de succes.
 - **Imagini:** înlocuiți fișierele din `public/images/` și actualizați textul alternativ în `src/data/images.ts`.
