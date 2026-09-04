@@ -47,7 +47,7 @@ export function V3Header() {
   return (
     <>
       <div ref={sentinel} className="absolute top-0 h-px w-full" aria-hidden />
-      <header className={cn("sticky top-0 z-50 border-b transition-all duration-700 ease-out-expo", scrolled || open ? "border-brand/20 bg-anthracite-950/92 backdrop-blur-md" : "border-brand/10 bg-anthracite-950")}>
+      <header className={cn("sticky top-0 z-50 border-b border-anthracite-950/10 bg-white text-anthracite-950 transition-shadow duration-700 ease-out-expo", (scrolled || open) && "shadow-[0_10px_30px_-20px_rgba(0,0,0,0.4)]")}>
         <div className="mx-auto flex h-[88px] w-full max-w-[1440px] items-center justify-between gap-6 px-6 sm:px-10">
           <Link href="/v3/" className="flex shrink-0 items-center" aria-label={`${company.name}, pagina principală`}>
             <TomiAlexLogo height={50} priority />
@@ -56,26 +56,26 @@ export function V3Header() {
             {nav.map((item) => {
               const active = isActivePath(pathname, item.href);
               return (
-                <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} className={cn("v3-link text-[11.5px] font-medium uppercase tracking-[0.22em] transition", active ? "text-brand-soft after:scale-x-100" : "text-granite-300 hover:text-limestone")}>
+                <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} className={cn("v3-link text-[11.5px] font-medium uppercase tracking-[0.22em] transition", active ? "text-brand after:scale-x-100" : "text-granite-500 hover:text-anthracite-950")}>
                   {item.label}
                 </Link>
               );
             })}
           </nav>
           <div className="hidden items-center gap-6 xl:flex">
-            <a href={`tel:${contact.phone}`} className="text-[13px] font-medium tracking-wide text-limestone">
+            <a href={`tel:${contact.phone}`} className="text-[13px] font-medium tracking-wide text-anthracite-950">
               {contact.phoneDisplay}
             </a>
-            <Link href="/v3/contact/" className="inline-flex h-10 items-center border border-brand px-5 text-[11.5px] font-medium uppercase tracking-[0.2em] text-brand-soft transition hover:bg-brand hover:text-white">
-              Solicitați o ofertă
-            </Link>
+            <a href={`mailto:${contact.email}`} className="inline-flex h-10 items-center border border-brand px-5 text-[11.5px] font-medium uppercase tracking-[0.2em] text-brand transition hover:bg-brand hover:text-white">
+              Scrieți-ne
+            </a>
           </div>
-          <button type="button" onClick={() => setOpen((o) => !o)} className="text-[11.5px] font-medium uppercase tracking-[0.22em] text-limestone lg:hidden" aria-expanded={open} aria-controls="v3-menu">
+          <button type="button" onClick={() => setOpen((o) => !o)} className="text-[11.5px] font-medium uppercase tracking-[0.22em] text-anthracite-950 lg:hidden" aria-expanded={open} aria-controls="v3-menu">
             {open ? "Închide" : "Meniu"}
           </button>
         </div>
       </header>
-      <div id="v3-menu" className={cn("v3-granite fixed inset-0 z-40 flex flex-col justify-between px-6 pb-10 pt-28 transition-opacity duration-500 lg:hidden", open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0")} aria-hidden={!open}>
+      <div id="v3-menu" className={cn("v3-granite fixed inset-0 z-40 flex flex-col justify-between px-6 pb-44 pt-28 transition-opacity duration-500 lg:hidden", open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0")} aria-hidden={!open}>
         <nav className="grid" aria-label="Navigare mobilă">
           {nav.map((item, i) => {
             const active = isActivePath(pathname, item.href);

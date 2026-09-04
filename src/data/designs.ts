@@ -22,7 +22,7 @@ export const designs: Design[] = [
     name: "Corporate Clasic & Autoritate",
     concept: "Structură, încredere, conversie directă",
     summary:
-      "Layout structurat rigid, grafit închis cu roșul din logo, interfață curată cu butoane solide. Fiecare secțiune demonstrează capacitatea de execuție și se încheie cu o cerere de ofertă.",
+      "Layout structurat rigid, grafit închis cu roșul din logo, interfață curată cu butoane solide. Fiecare secțiune demonstrează capacitatea de execuție și se încheie cu un apel telefonic direct.",
     traits: ["Grafit și oțel", "Grilă strictă", "Tabele și certificări", "Telefon mereu la vedere"],
     swatches: ["#141518", "#282B31", "#D23B3C", "#F0F0F2"],
     typeface: "Archivo",

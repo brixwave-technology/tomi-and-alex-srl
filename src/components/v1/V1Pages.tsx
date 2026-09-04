@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Certificate, Clock, Envelope, MapPin, Phone, ShieldCheck, Truck } from "@phosphor-icons/react/dist/ssr";
+import { MapEmbed, contactGroups } from "@/components/shared/ContactBlocks";
 import { Reveal } from "@/components/shared/Reveal";
-import { V1ContactForm } from "./V1ContactForm";
 import {
   aggregates,
   capacities,
@@ -11,7 +11,6 @@ import {
   concreteClasses,
   contact,
   directions,
-  faq,
   infrastructureServices,
   prefabProducts,
   process,
@@ -54,7 +53,7 @@ function PageHero({ kicker, title, lead, image, children }: { kicker: string; ti
         </div>
         <aside className="anim-rise self-end lg:col-span-4 [animation-delay:450ms]">
           <div className="border border-steel-400/25 bg-graphite-900/85 p-6 backdrop-blur">
-            <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-steel-400">Comenzi și oferte</p>
+            <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-steel-400">Comenzi și informații</p>
             <a href={`tel:${contact.phone}`} className="v1-display mt-2 block text-3xl text-white">
               {contact.phoneDisplay}
             </a>
@@ -69,7 +68,7 @@ function PageHero({ kicker, title, lead, image, children }: { kicker: string; ti
 
 function PrimaryLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <Link href={href} className="inline-flex h-13 items-center justify-center gap-2 rounded-[2px] bg-brand px-7 text-[15px] font-bold text-white transition hover:bg-brand-soft">
+    <Link href={href} className="inline-flex h-13 items-center justify-center gap-2 rounded-[2px] border border-steel-400/50 px-7 text-[15px] font-bold text-white transition hover:bg-white/5">
       {children}
       <ArrowRight weight="bold" className="size-4" aria-hidden />
     </Link>
@@ -78,8 +77,8 @@ function PrimaryLink({ href, children }: { href: string; children: React.ReactNo
 
 function CallLink() {
   return (
-    <a href={`tel:${contact.phone}`} className="inline-flex h-13 items-center justify-center gap-2 rounded-[2px] border border-steel-400/50 px-7 text-[15px] font-bold text-white transition hover:bg-white/5">
-      <Phone weight="fill" className="size-4 text-brand" aria-hidden />
+    <a href={`tel:${contact.phone}`} className="inline-flex h-13 items-center justify-center gap-2 rounded-[2px] bg-brand px-7 text-[15px] font-bold text-white transition hover:bg-brand-soft">
+      <Phone weight="fill" className="size-4" aria-hidden />
       Sună: {contact.phoneDisplay}
     </a>
   );
@@ -95,7 +94,7 @@ function Cta({ title, text }: { title: string; text: string }) {
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
           <CallLink />
-          <PrimaryLink href={pageHref("v1", "contact")}>Cere o ofertă</PrimaryLink>
+          <PrimaryLink href={pageHref("v1", "contact")}>Date de contact</PrimaryLink>
         </div>
       </Reveal>
     </section>
@@ -134,7 +133,7 @@ export function V1Home() {
             </p>
             <div className="anim-rise mt-10 flex flex-col gap-3 sm:flex-row [animation-delay:850ms]">
               <CallLink />
-              <PrimaryLink href={pageHref("v1", "contact")}>Cere o ofertă</PrimaryLink>
+              <PrimaryLink href={pageHref("v1", "contact")}>Date de contact</PrimaryLink>
             </div>
           </div>
           <aside className="anim-rise self-end lg:col-span-5 [animation-delay:600ms]">
@@ -311,7 +310,7 @@ export function V1Home() {
           </div>
         </Wrap>
       </section>
-      <Cta title="Aveți un proiect sau o comandă?" text="Sunați-ne pentru materiale sau trimiteți o cerere de ofertă. Răspundem în aceeași zi lucrătoare." />
+      <Cta title="Aveți un proiect sau o comandă?" text="Sunați-ne sau scrieți-ne pe e-mail. Răspundem în aceeași zi lucrătoare." />
     </>
   );
 }
@@ -328,7 +327,7 @@ export function V1Agregate() {
         image={images.agregate.cover}
       >
         <CallLink />
-        <PrimaryLink href={pageHref("v1", "contact")}>Cere o ofertă</PrimaryLink>
+        <PrimaryLink href={pageHref("v1", "contact")}>Date de contact</PrimaryLink>
       </PageHero>
 
       <section className="py-20 lg:py-28">
@@ -427,7 +426,7 @@ export function V1Beton() {
         image={images.beton.pouring}
       >
         <CallLink />
-        <PrimaryLink href={pageHref("v1", "contact")}>Cere o ofertă</PrimaryLink>
+        <PrimaryLink href={pageHref("v1", "contact")}>Date de contact</PrimaryLink>
       </PageHero>
 
       <section className="py-20 lg:py-28">
@@ -516,7 +515,7 @@ export function V1Prefabricate() {
         image={images.prefabricate.forms}
       >
         <CallLink />
-        <PrimaryLink href={pageHref("v1", "contact")}>Cere o ofertă</PrimaryLink>
+        <PrimaryLink href={pageHref("v1", "contact")}>Date de contact</PrimaryLink>
       </PageHero>
 
       <section className="py-20 lg:py-28">
@@ -565,12 +564,6 @@ export function V1Prefabricate() {
 /* ---------- CONTACT ---------- */
 
 export function V1Contact() {
-  const rows = [
-    { icon: Phone, label: "Telefon", lines: [contact.phoneDisplay, contact.phoneSecondaryDisplay], href: `tel:${contact.phone}` },
-    { icon: Envelope, label: "E-mail", lines: [contact.email, contact.emailOffers], href: `mailto:${contact.email}` },
-    { icon: MapPin, label: "Sediu și unități de producție", lines: [contact.addressLine], href: contact.location.mapsUrl },
-    { icon: Clock, label: "Program", lines: [...contact.hours.map((h) => `${h.days}: ${h.hours}`), contact.dispatchNote] },
-  ];
   return (
     <>
       <section className="border-b border-steel-400/20 bg-graphite-900">
@@ -578,60 +571,55 @@ export function V1Contact() {
           <div className="anim-draw v1-rule w-20 text-brand" aria-hidden />
           <h1 className="v1-display anim-rise mt-5 text-4xl text-white sm:text-5xl lg:text-6xl [animation-delay:150ms]">Contact</h1>
           <p className="anim-rise mt-5 max-w-2xl text-lg leading-relaxed text-steel-200 [animation-delay:300ms]">
-            Cel mai rapid: sunați-ne. Pentru materiale răspundem în aceeași zi lucrătoare; pentru lucrări, oferta este gata în maximum 5 zile de la vizita în teren.
+            Cel mai rapid: sunați-ne. Pentru materiale răspundem în aceeași zi lucrătoare; pentru lucrări, după vizita în teren.
           </p>
-          <a href={`tel:${contact.phone}`} className="v1-display anim-rise mt-8 inline-block text-4xl text-brand-soft sm:text-5xl [animation-delay:400ms]">
-            {contact.phoneDisplay}
-          </a>
+          <div className="anim-rise mt-8 flex flex-col gap-3 sm:flex-row [animation-delay:400ms]">
+            <a href={`tel:${contact.phone}`} className="v1-display inline-flex items-center gap-3 rounded-[2px] bg-brand px-6 py-3 text-3xl text-white transition hover:bg-brand-soft sm:text-4xl">
+              <Phone weight="fill" className="size-7" aria-hidden />
+              {contact.phoneDisplay}
+            </a>
+            <a href={`mailto:${contact.email}`} className="inline-flex h-auto items-center gap-3 rounded-[2px] border border-steel-400/50 px-6 py-3 text-lg font-bold text-white transition hover:bg-white/5">
+              <Envelope weight="fill" className="size-5 text-brand" aria-hidden />
+              {contact.email}
+            </a>
+          </div>
         </Wrap>
       </section>
       <section className="py-16 lg:py-24">
-        <Wrap className="grid gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <Reveal className={cn("grid gap-px", cell)}>
-              {rows.map((item) => (
-                <div key={item.label} className="flex gap-4 bg-graphite-950 p-5">
-                  <item.icon weight="fill" className="mt-1 size-5 shrink-0 text-brand" aria-hidden />
-                  <div>
-                    <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-steel-400">{item.label}</p>
-                    {item.lines.map((l) => (
-                      <p key={l} className="mt-1 text-[15px] text-white">
-                        {item.href ? (
-                          <a href={item.href} className="hover:text-brand-soft" target={item.href.startsWith("http") ? "_blank" : undefined} rel={item.href.startsWith("http") ? "noreferrer" : undefined}>
-                            {l}
-                          </a>
-                        ) : (
-                          l
-                        )}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              ))}
+        <Wrap className={cn("grid gap-px md:grid-cols-2 xl:grid-cols-4", cell)}>
+          {contactGroups.map((g) => (
+            <Reveal key={g.key} className="bg-graphite-950 p-6">
+              <p className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.14em] text-steel-400">
+                {g.key === "telefon" && <Phone weight="fill" className="size-4 text-brand" aria-hidden />}
+                {g.key === "email" && <Envelope weight="fill" className="size-4 text-brand" aria-hidden />}
+                {g.key === "firma" && <MapPin weight="fill" className="size-4 text-brand" aria-hidden />}
+                {g.key === "program" && <Clock weight="fill" className="size-4 text-brand" aria-hidden />}
+                {g.label}
+              </p>
+              <ul className="mt-4 grid gap-1.5">
+                {g.lines.map((l) => (
+                  <li key={l.text} className={cn("text-[15px] leading-relaxed", "strong" in l && l.strong ? "text-lg font-bold text-white" : "text-steel-200")}>
+                    {"href" in l && l.href ? (
+                      <a href={l.href} className="hover:text-brand-soft">
+                        {l.text}
+                      </a>
+                    ) : (
+                      l.text
+                    )}
+                  </li>
+                ))}
+              </ul>
             </Reveal>
-            <Reveal delay={150} className="mt-6 aspect-[16/10] overflow-hidden border border-steel-400/20">
-              <iframe title="Harta cu locația Tomi Alex SRL" src={contact.location.embedUrl} className="size-full grayscale invert-[0.9] contrast-[0.9]" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-            </Reveal>
-          </div>
-          <Reveal delay={100} className="lg:col-span-7">
-            <V1ContactForm />
-          </Reveal>
+          ))}
         </Wrap>
-        <Wrap className="mt-16">
-          <Reveal className="max-w-2xl">
-            <Label index="02">Întrebări frecvente</Label>
+        <Wrap className="mt-12">
+          <Reveal>
+            <Label index="02">Unde ne găsiți</Label>
+            <h2 className="v1-display mt-4 text-3xl text-white sm:text-4xl">{contact.addressLine}</h2>
           </Reveal>
-          <div className="mt-6 divide-y divide-steel-400/20 border-y border-steel-400/20">
-            {faq.map((f) => (
-              <Reveal as="details" key={f.question} className="group py-5">
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-[16px] font-bold text-white [&::-webkit-details-marker]:hidden">
-                  {f.question}
-                  <span className="mt-1 inline-flex size-6 shrink-0 items-center justify-center border border-steel-400/40 text-steel-200 transition group-open:rotate-45">+</span>
-                </summary>
-                <p className="mt-3 max-w-3xl pr-10 text-[14.5px] leading-relaxed text-steel-400">{f.answer}</p>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={120} className="mt-8">
+            <MapEmbed frameClassName="aspect-[16/9] overflow-hidden border border-steel-400/20 sm:aspect-[21/9]" buttonClassName="mt-4 inline-flex h-13 items-center gap-2 rounded-[2px] bg-brand px-7 text-[15px] font-bold text-white transition hover:bg-brand-soft" />
+          </Reveal>
         </Wrap>
       </section>
     </>

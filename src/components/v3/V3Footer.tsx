@@ -28,11 +28,18 @@ export function V3Footer() {
           </div>
         </Reveal>
       </section>
-      <footer className="px-6 pb-40 pt-4 sm:px-10 lg:pb-16">
-        <div className="mx-auto grid w-full max-w-[1440px] gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
+      <footer className="pb-40 lg:pb-16">
+        <div className="bg-white text-anthracite-950">
+          <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center justify-between gap-4 px-6 py-6 sm:flex-row sm:px-10">
             <TomiAlexLogo height={64} />
-            <p className="mt-6 max-w-sm text-[14.5px] leading-relaxed text-granite-300">{company.descriptionSecondary}</p>
+            <a href={`tel:${contact.phone}`} className="font-v3-display text-2xl font-semibold tracking-tight sm:text-3xl">
+              {contact.phoneDisplay}
+            </a>
+          </div>
+        </div>
+        <div className="mx-auto grid w-full max-w-[1440px] gap-12 px-6 pt-14 sm:px-10 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <p className="max-w-sm text-[14.5px] leading-relaxed text-granite-300">{company.descriptionSecondary}</p>
             <a href={social.facebook} target="_blank" rel="noreferrer" className="v3-link mt-6 inline-flex items-center gap-1 text-[11px] font-medium uppercase tracking-[0.22em] text-limestone">
               Facebook
               <ArrowUpRight weight="regular" className="size-3.5" aria-hidden />
@@ -77,7 +84,7 @@ export function V3Footer() {
             </ul>
           </div>
         </div>
-        <div className="mx-auto mt-16 flex w-full max-w-[1440px] flex-col gap-2 border-t border-brand/20 pt-6 text-[11px] uppercase tracking-[0.18em] text-granite-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mx-auto mt-16 flex w-full max-w-[1440px] flex-col gap-2 border-t border-brand/20 px-6 pt-6 text-[11px] uppercase tracking-[0.18em] text-granite-500 sm:flex-row sm:items-center sm:justify-between sm:px-10">
           <p>
             © {new Date().getFullYear()} {company.name}
           </p>

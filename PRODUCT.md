@@ -6,7 +6,7 @@ web
 
 ## Stack
 
-Next.js 16 (App Router, static export), TypeScript, Tailwind CSS v4, `@phosphor-icons/react`. Deploy target is GitHub Pages (static files under the `/tomi-and-alex-srl` base path), which rules out server features; the contact forms run in demo mode until an e-mail endpoint is connected, and the client's design choice is stored in the browser.
+Next.js 16 (App Router, static export), TypeScript, Tailwind CSS v4, `@phosphor-icons/react`. Deploy target is GitHub Pages (static files under the `/tomi-and-alex-srl` base path), which rules out server features; there are no forms (the client wants contact by phone and e-mail only), and the client's design choice is stored in the browser.
 
 ## Purpose
 
@@ -25,11 +25,11 @@ A selection portal built by BRIXWAVE for Tomi Alex SRL. It opens on an index (hu
 
 ## Structure (all three)
 
-Five pages in the navigation bar, as requested by the client: Acasă (company presentation), Agregate (nisip, balast, sort 4–8, sort 8–16), Stație betoane (any concrete class), Prefabricate (five products), Contact. Fully responsive; on mobile and tablet a floating "Sună acum" button (a `tel:` link) is always visible and starts the call instantly. The original Tomi Alex logo, including the wheel-loader illustration, is shown unchanged on a white plate in every header and footer.
+Five pages in the navigation bar, as requested by the client: Acasă (company presentation), Agregate (nisip, balast, sort 4–8, sort 8–16), Stație betoane (any concrete class), Prefabricate (five products), Contact. Fully responsive; on mobile and tablet a floating "Sună acum" button (a `tel:` link) is always visible and starts the call instantly. The original Tomi Alex logo, including the wheel-loader illustration, is shown unchanged on white: every header is white and every footer opens with a white brand strip (logo and phone). The Contact page has no form: phone, e-mail, company data, opening hours and a Google Maps embed with a directions button.
 
 ## Shared content (all three)
 
-Hero with the brand claim, "Despre noi" (story, mission, values, key figures), four business directions, six infrastructure services in detail, aggregates, concrete classes, precast products, four-step process, certifications, references, FAQ, contact section with phone, e-mails, address, opening hours, map and a validated contact form, footer with legal details. No placeholder text anywhere.
+Hero with the brand claim, "Despre noi" (story, mission, values, key figures), four business directions, six infrastructure services in detail, aggregates, concrete classes, precast products, four-step process, certifications, references, FAQ, contact page with phone, e-mails, company data, opening hours and map, footer with legal details. No placeholder text anywhere.
 
 ## Content notes
 
