@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, CheckCircle, Sparkle } from "@phosphor-icons/react/dist/ssr";
 import { BrixwaveLink, BrixwaveLogo } from "./BrixwaveLogo";
 import { DesignPreview } from "./DesignPreview";
+import { TomiAlexLogo } from "@/components/shared/TomiAlexLogo";
 import { designs, designById } from "@/data/designs";
 import { brixwave } from "@/data/brixwave";
 import { company } from "@/data/company";
@@ -26,9 +27,10 @@ export function Hub() {
 
       <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-6 sm:px-8">
         <BrixwaveLogo size={40} priority className="anim-rise" />
-        <p className="anim-rise hidden text-[12px] font-semibold uppercase tracking-[0.22em] text-portal-300 sm:block [animation-delay:120ms]">
-          Client: {company.name}
-        </p>
+        <div className="anim-rise flex items-center gap-4 [animation-delay:120ms]">
+          <p className="hidden text-[12px] font-semibold uppercase tracking-[0.22em] text-portal-300 sm:block">Client</p>
+          <TomiAlexLogo height={34} priority />
+        </div>
       </header>
 
       <main className="mx-auto w-full max-w-7xl px-5 pb-24 pt-10 sm:px-8 sm:pt-16">
@@ -61,9 +63,9 @@ export function Hub() {
             <BrixwaveLink className="text-white">{brixwave.urlLabel}</BrixwaveLink>
           </p>
           <p className="anim-rise mt-8 inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[13px] font-medium text-portal-300 [animation-delay:600ms]">
-            <span className="rounded-full bg-white/5 px-3 py-1">Același conținut</span>
-            <span className="rounded-full bg-white/5 px-3 py-1">Aceeași structură</span>
-            <span className="rounded-full bg-white/5 px-3 py-1">Trei percepții vizuale</span>
+            <span className="rounded-full bg-white/5 px-3 py-1">5 pagini: Acasă · Agregate · Stație betoane · Prefabricate · Contact</span>
+            <span className="rounded-full bg-white/5 px-3 py-1">Full responsive</span>
+            <span className="rounded-full bg-white/5 px-3 py-1">Buton „Sună” pe mobil</span>
           </p>
         </section>
 

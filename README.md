@@ -14,7 +14,7 @@ Portal web de prezentare pentru **Tomi Alex SRL** (lucrări de infrastructură �
 | `/v2/` | **Design V2 — Industrial Authority & Trust**: heavy-duty, asfalt negru / beton gri / roșu, bară utilitară roșie, butoane masive, comandă rapidă de materiale în hero, fișe tehnice, benzi de semnalizare, capacități cu grafic SVG |
 | `/v3/` | **Design V3 — Infrastructure Elite & Premium Partner**: antracit mat cu textură fină de granit, accente rafinate în roșul logo-ului, tipografie geometrică masivă (Sora), capacitate de producție, angajamente de conformitate și mediu |
 
-Toate variantele folosesc exclusiv paleta logo-ului Tomi Alex: roșu, gri, negru, alb. Fiecare variantă are aceeași structură și același conținut (Despre noi, servicii și direcții de activitate, agregate, clase de beton, prefabricate, proces, referințe, FAQ, contact complet cu formular și hartă, footer cu date juridice) și conține:
+Toate variantele folosesc exclusiv paleta logo-ului Tomi Alex: roșu, gri, negru, alb. Fiecare variantă este un site cu **5 pagini** în bara de navigare: `Acasă`, `Agregate` (nisip, balast, sort 4–8, sort 8–16), `Stație betoane` (orice clasă), `Prefabricate` (5 produse), `Contact`; rutele sunt `/vN/`, `/vN/agregate/`, `/vN/beton/`, `/vN/prefabricate/`, `/vN/contact/`. Pe mobil și tabletă există un buton plutitor „Sună acum” (link `tel:`) care apelează instant. Fiecare variantă are același conținut (Despre noi, servicii și direcții de activitate, agregate, clase de beton, prefabricate, proces, referințe, FAQ, contact complet cu formular și hartă, footer cu date juridice) și conține:
 
 - butonul **„Aleg acest design”** (în bara plutitoare și într-o secțiune dedicată), care deschide un dialog de confirmare; alegerea se salvează în browser, apare pe Index și poate fi trimisă către BRIXWAVE prin e-mail sau copiată ca rezumat;
 - butonul **„Înapoi la Index”** pentru a compara celelalte opțiuni.
@@ -39,13 +39,13 @@ npx tsc --noEmit
 src/
   app/
     page.tsx               Index (hub)
-    v1/ v2/ v3/            cele trei concepte (fiecare își încarcă fonturile proprii)
+    v1/ v2/ v3/            cele trei concepte: layout (fonturi, header, footer, buton Sună) + 5 rute fiecare
     layout.tsx             layout rădăcină, metadata
     globals.css            tokeni Tailwind (paletele celor trei concepte), animații, utilitare
   components/
     portal/                BrixwaveLogo, Hub, DesignPreview, DesignShell (bara plutitoare + dialogul de alegere)
-    shared/                Reveal (animații la scroll)
-    v1/ v2/ v3/            Header, Site, ContactForm și ancorele de navigare ale fiecărui concept
+    v1/ v2/ v3/            Header, Footer, Pages (Acasă, Agregate, Beton, Prefabricate, Contact), ContactForm
+    shared/                Reveal, CallFab (buton plutitor Sună), TomiAlexLogo (logo-ul original pe plăcuță albă)
   data/
     company.ts             tot conținutul companiei (texte, servicii, produse, capacități, volume, repere, angajamente, contact, date juridice)
     designs.ts             metadatele celor trei concepte
@@ -63,6 +63,7 @@ public/images/             fotografii (temporar stock) și logo-ul Tomi Alex
 - **Logo-ul Brixwave:** simbolul original este `public/images/brixwave-mark.png` (PNG transparent derivat din `logo.jfif`); wordmark-ul „Brixwave” este randat ca text lângă simbol (`src/components/portal/BrixwaveLogo.tsx`). Orice logo sau mențiune Brixwave duce la adresa din `brixwave.url`.
 - **Adresa de e-mail la care ajunge confirmarea alegerii:** `src/data/brixwave.ts`.
 - **Formularul de contact:** setați `contact.formEndpoint` în `src/data/company.ts` cu un serviciu (Formspree, Resend etc.); până atunci rulează în mod demonstrativ, cu validare și stare de succes.
+- **Logo-ul Tomi Alex:** `public/images/logo-tomi-alex.png` (original, fundal transparent, derivat din `logo-tomi-alex.jpg`), afișat neschimbat pe o plăcuță albă în header-e și footer-e.
 - **Imagini:** înlocuiți fișierele din `public/images/` și actualizați textul alternativ în `src/data/images.ts`.
 
 ## Deploy

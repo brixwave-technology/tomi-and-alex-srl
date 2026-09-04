@@ -1,15 +1,19 @@
 "use client";
 
-import Image from "next/image";
+import Link from "next/link";
+import { TomiAlexLogo } from "@/components/shared/TomiAlexLogo";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { List, Phone, X } from "@phosphor-icons/react/dist/ssr";
 import { BackToIndexLink } from "@/components/portal/DesignShell";
 import { contact, company } from "@/data/company";
-import { logo } from "@/data/images";
 import { cn } from "@/lib/cn";
-import { v1Nav } from "./nav";
+import { isActivePath, navFor } from "@/lib/routes";
+
+const nav = navFor("v1");
 
 export function V1Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const sentinel = useRef<HTMLDivElement>(null);
@@ -21,6 +25,13 @@ export function V1Header() {
     io.observe(el);
     return () => io.disconnect();
   }, []);
+
+  // Închide meniul la schimbarea paginii (ajustare de stare în timpul randării, fără efect).
+  const [lastPath, setLastPath] = useState(pathname);
+  if (lastPath !== pathname) {
+    setLastPath(pathname);
+    setOpen(false);
+  }
 
   useEffect(() => {
     if (!open) return;
@@ -37,36 +48,39 @@ export function V1Header() {
   return (
     <>
       <div ref={sentinel} className="absolute top-0 h-px w-full" aria-hidden />
-      <header
-        className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
-          scrolled || open ? "border-steel-400/20 bg-graphite-950/95 backdrop-blur" : "border-transparent bg-transparent",
-        )}
-      >
-        <div className="mx-auto flex h-[72px] w-full max-w-7xl items-center justify-between px-5 sm:px-8">
-          <a href="#top" className="flex items-center gap-3" aria-label={`${company.name}, începutul paginii`}>
-            <Image src={logo.wordmark.light} alt={company.name} width={logo.wordmark.width} height={logo.wordmark.height} className="h-8 w-auto" priority />
-          </a>
-          <nav className="hidden items-center gap-7 lg:flex" aria-label="Navigare principală">
-            {v1Nav.map((item) => (
-              <a key={item.href} href={item.href} className="text-[13.5px] font-semibold text-steel-200 transition hover:text-white">
-                {item.label}
-              </a>
-            ))}
+      <header className={cn("sticky top-0 z-50 border-b transition-colors duration-300", scrolled || open ? "border-steel-400/20 bg-graphite-950/95 backdrop-blur" : "border-steel-400/15 bg-graphite-950")}>
+        <div className="mx-auto flex h-[84px] w-full max-w-7xl items-center justify-between gap-6 px-5 sm:px-8">
+          <Link href="/v1/" className="flex shrink-0 items-center" aria-label={`${company.name}, pagina principală`}>
+            <TomiAlexLogo height={50} priority />
+          </Link>
+          <nav className="hidden items-center gap-1 lg:flex" aria-label="Navigare principală">
+            {nav.map((item) => {
+              const active = isActivePath(pathname, item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={active ? "page" : undefined}
+                  className={cn("rounded-[2px] px-3.5 py-2 text-[14px] font-semibold transition", active ? "bg-white/10 text-white" : "text-steel-200 hover:bg-white/5 hover:text-white")}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
           <div className="hidden items-center gap-3 lg:flex">
-            <a href={`tel:${contact.phone}`} className="inline-flex items-center gap-2 text-[14px] font-bold text-white">
+            <a href={`tel:${contact.phone}`} className="inline-flex h-11 items-center gap-2 rounded-[2px] border border-steel-400/40 px-4 text-[14px] font-bold text-white transition hover:border-white">
               <Phone weight="fill" className="size-4 text-brand" aria-hidden />
               {contact.phoneDisplay}
             </a>
-            <a href="#contact" className="inline-flex h-10 items-center rounded-[2px] bg-brand px-4 text-[13.5px] font-bold text-white transition hover:bg-brand-soft">
+            <Link href="/v1/contact/" className="inline-flex h-11 items-center rounded-[2px] bg-brand px-5 text-[14px] font-bold text-white transition hover:bg-brand-soft">
               Cere o ofertă
-            </a>
+            </Link>
           </div>
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="inline-flex size-11 items-center justify-center rounded-[2px] border border-steel-400/30 text-white lg:hidden"
+            className="inline-flex size-12 items-center justify-center rounded-[2px] border border-steel-400/30 text-white lg:hidden"
             aria-expanded={open}
             aria-controls="v1-menu"
             aria-label={open ? "Închide meniul" : "Deschide meniul"}
@@ -74,27 +88,26 @@ export function V1Header() {
             {open ? <X weight="bold" className="size-5" aria-hidden /> : <List weight="bold" className="size-5" aria-hidden />}
           </button>
         </div>
-        {open && (
-          <div id="v1-menu" className="border-t border-steel-400/20 bg-graphite-950 px-5 pb-8 pt-4 lg:hidden">
-            <nav className="grid" aria-label="Navigare mobilă">
-              {v1Nav.map((item) => (
-                <a key={item.href} href={item.href} onClick={() => setOpen(false)} className="border-b border-steel-400/15 py-4 text-lg font-semibold text-white">
+        <div id="v1-menu" className={cn("border-t border-steel-400/20 bg-graphite-950 px-5 pb-8 pt-2 lg:hidden", open ? "block" : "hidden")}>
+          <nav className="grid" aria-label="Navigare mobilă">
+            {nav.map((item) => {
+              const active = isActivePath(pathname, item.href);
+              return (
+                <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} className={cn("border-b border-steel-400/15 py-4 text-lg font-semibold", active ? "text-brand-soft" : "text-white")}>
                   {item.label}
-                </a>
-              ))}
-            </nav>
-            <div className="mt-6 grid gap-3">
-              <a href={`tel:${contact.phone}`} className="inline-flex h-12 items-center justify-center gap-2 rounded-[2px] border border-steel-400/40 text-[15px] font-bold text-white">
-                <Phone weight="fill" className="size-4 text-brand" aria-hidden />
-                {contact.phoneDisplay}
-              </a>
-              <a href="#contact" onClick={() => setOpen(false)} className="inline-flex h-12 items-center justify-center rounded-[2px] bg-brand text-[15px] font-bold text-white">
-                Cere o ofertă
-              </a>
-              <BackToIndexLink className="mt-2 text-center text-[13px] font-semibold text-steel-400 underline-offset-4 hover:underline" />
-            </div>
+                  <span className="block text-[13px] font-medium text-steel-400">{item.description}</span>
+                </Link>
+              );
+            })}
+          </nav>
+          <div className="mt-6 grid gap-3">
+            <a href={`tel:${contact.phone}`} className="inline-flex h-13 items-center justify-center gap-2 rounded-[2px] bg-brand text-[16px] font-bold text-white">
+              <Phone weight="fill" className="size-5" aria-hidden />
+              Sună acum: {contact.phoneDisplay}
+            </a>
+            <BackToIndexLink className="mt-2 text-center text-[13px] font-semibold text-steel-400 underline-offset-4 hover:underline" />
           </div>
-        )}
+        </div>
       </header>
     </>
   );

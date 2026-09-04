@@ -1,37 +1,11 @@
 import type { Metadata } from "next";
-import { Barlow, Barlow_Condensed } from "next/font/google";
-import { DesignShell } from "@/components/portal/DesignShell";
-import { V2Site } from "@/components/v2/V2Site";
-import { designById } from "@/data/designs";
+import { V2Home } from "@/components/v2/V2Pages";
+import { sitePages } from "@/data/company";
 
-const barlow = Barlow({
-  variable: "--font-barlow",
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
+const page = sitePages.find((p) => p.slug === "")!;
 
-const barlowCondensed = Barlow_Condensed({
-  variable: "--font-barlow-condensed",
-  subsets: ["latin", "latin-ext"],
-  weight: ["600", "700", "800"],
-  display: "swap",
-});
+export const metadata: Metadata = { title: page.label, description: page.description, alternates: { canonical: "/v2/" } };
 
-const design = designById.v2;
-
-export const metadata: Metadata = {
-  title: `${design.label} · ${design.name}`,
-  description: design.summary,
-  alternates: { canonical: design.href },
-};
-
-export default function DesignV2Page() {
-  return (
-    <DesignShell designId="v2">
-      <div className={`${barlow.variable} ${barlowCondensed.variable} font-v2`}>
-        <V2Site />
-      </div>
-    </DesignShell>
-  );
+export default function Page() {
+  return <V2Home />;
 }

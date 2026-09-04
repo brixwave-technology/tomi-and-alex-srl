@@ -135,7 +135,7 @@ export const directions: Direction[] = [
     summary: "Nisip, balast și sorturi pentru betoane, drumuri și umpluturi, livrate direct din balastiera proprie.",
     description:
       "Exploatăm o balastieră proprie cu stație de sortare și spălare. Agregatele sunt verificate granulometric în laborator și livrate cu flota proprie de autobasculante, la ritmul șantierului.",
-    bullets: ["Nisip 0–4", "Balast natural", "Sort 4–8", "Sort 8–16", "Sort 16–31,5", "Livrare cu flotă proprie"],
+    bullets: ["Nisip 0–4", "Balast natural", "Sort 4–8", "Sort 8–16", "Livrare cu flotă proprie", "Certificat la fiecare transport"],
     image: images.agregate.cover,
   },
   {
@@ -270,13 +270,6 @@ export const aggregates: AggregateProduct[] = [
     usage: ["Betoane structurale", "Prefabricate", "Straturi de fundație"],
     image: images.agregate.cover,
   },
-  {
-    name: "Sort 16–31,5",
-    granulometry: "16 – 31,5 mm",
-    summary: "Pietriș grosier pentru betoane masive, fundații de drumuri și lucrări hidrotehnice.",
-    usage: ["Betoane masive", "Fundații rutiere", "Anrocamente ușoare"],
-    image: images.trucks.quarry,
-  },
 ];
 
 export type ConcreteClass = {
@@ -293,6 +286,17 @@ export const concreteClasses: ConcreteClass[] = [
   { name: "C25/30", usage: "Structuri din beton armat, platforme industriale, cămine", exposure: "XC3 / XC4 / XF1" },
   { name: "C30/37", usage: "Poduri, podețe, elemente expuse la îngheț și săruri", exposure: "XC4 / XD1 / XF2" },
   { name: "C35/45", usage: "Prefabricate structurale, grinzi de pod, elemente speciale", exposure: "XC4 / XD2 / XF4" },
+];
+
+export type ConcreteApplication = { title: string; description: string };
+
+export const concreteApplications: ConcreteApplication[] = [
+  { title: "Fundații", description: "Fundații continue, izolate și radiere pentru construcții civile și industriale." },
+  { title: "Platforme", description: "Platforme industriale, logistice și de depozitare, cu beton armat sau cu fibre." },
+  { title: "Drumuri", description: "Îmbrăcăminți rigide, borduri turnate, rigole și lucrări conexe." },
+  { title: "Infrastructură", description: "Lucrări de artă, rețele, cămine, elemente de scurgere și structuri." },
+  { title: "Construcții", description: "Stâlpi, grinzi, planșee și pereți pentru structuri civile și industriale." },
+  { title: "Comenzi mici", description: "De la 1 mc, pentru fundații de garduri, trotuare, alei și anexe gospodărești." },
 ];
 
 export type PrefabProduct = {
@@ -455,6 +459,17 @@ export const testimonials: Testimonial[] = [
     author: "Antreprenor general",
     role: "Partener, lucrări de artă",
   },
+];
+
+export type SitePage = { label: string; short: string; slug: string; description: string };
+
+/** Paginile fiecărui concept, în ordinea din bara de navigare. */
+export const sitePages: SitePage[] = [
+  { label: "Acasă", short: "Acasă", slug: "", description: "Prezentarea companiei Tomi Alex SRL" },
+  { label: "Agregate", short: "Agregate", slug: "agregate", description: "Balastieră proprie: nisip, balast, sort 4–8, sort 8–16" },
+  { label: "Stație betoane", short: "Beton", slug: "beton", description: "Beton de orice clasă, produs în stație proprie" },
+  { label: "Prefabricate", short: "Prefabricate", slug: "prefabricate", description: "Prefabricate din beton, gata de montaj" },
+  { label: "Contact", short: "Contact", slug: "contact", description: "Telefon, e-mail, adresă, program și formular" },
 ];
 
 export const seo = {
