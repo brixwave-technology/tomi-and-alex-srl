@@ -31,7 +31,7 @@ const commitmentIcons = [Leaf, Scales, ShieldCheck, Handshake];
 function Eyebrow({ children, index, className }: { children: string; index?: string; className?: string }) {
   return (
     <p className={cn("flex items-center gap-4 text-[11px] font-medium uppercase tracking-[0.26em] text-granite-300", className)}>
-      {index && <span className="font-v3-display text-[12px] font-semibold text-bronze-light">{index}</span>}
+      {index && <span className="font-v3-display text-[12px] font-semibold text-brand-soft">{index}</span>}
       <span className="v3-rule w-10" aria-hidden />
       {children}
     </p>
@@ -62,7 +62,7 @@ export function V3Site() {
             <h1 className="v3-display mt-10 font-v3-display text-[3.4rem] text-limestone sm:text-[5.5rem] lg:text-[7.5rem]">
               {company.taglineLines.map((line, i) => (
                 <span key={line} className="block overflow-hidden pb-[0.06em]">
-                  <span className={cn("anim-letter-up block", i === 1 && "text-bronze-light")} style={{ animationDelay: `${200 + i * 140}ms` }}>
+                  <span className={cn("anim-letter-up block", i === 1 && "text-brand-soft")} style={{ animationDelay: `${200 + i * 140}ms` }}>
                     {line}
                   </span>
                 </span>
@@ -73,7 +73,7 @@ export function V3Site() {
                 {company.claim} {company.heroSubtitle}
               </p>
               <div className="anim-rise flex flex-wrap items-center gap-6 [animation-delay:950ms] lg:col-span-5 lg:col-start-8">
-                <a href="#contact" className="group inline-flex h-14 items-center gap-4 border border-bronze bg-bronze px-8 text-[11.5px] font-medium uppercase tracking-[0.22em] text-anthracite-950 transition-all duration-500 hover:bg-bronze-light">
+                <a href="#contact" className="group inline-flex h-14 items-center gap-4 border border-brand bg-brand px-8 text-[11.5px] font-medium uppercase tracking-[0.22em] text-anthracite-950 transition-all duration-500 hover:bg-brand-soft">
                   Solicitați o ofertă
                   <ArrowRight weight="regular" className="size-4 transition-transform duration-500 group-hover:translate-x-1" aria-hidden />
                 </a>
@@ -83,7 +83,7 @@ export function V3Site() {
               </div>
             </div>
           </div>
-          <dl className="anim-rise mt-20 grid grid-cols-2 gap-px border border-bronze/25 bg-bronze/25 lg:grid-cols-4 [animation-delay:1100ms]">
+          <dl className="anim-rise mt-20 grid grid-cols-2 gap-px border border-brand/25 bg-brand/25 lg:grid-cols-4 [animation-delay:1100ms]">
             {company.stats.map((s) => (
               <div key={s.label} className="bg-anthracite-900/90 p-6 backdrop-blur">
                 <dd className="v3-display font-v3-display text-4xl text-limestone sm:text-5xl">{s.value}</dd>
@@ -103,7 +103,7 @@ export function V3Site() {
           <div className="mt-12 grid gap-16 lg:grid-cols-12">
             <Reveal className="lg:col-span-7">
               <h2 className="v3-display balance font-v3-display text-4xl text-limestone sm:text-5xl lg:text-6xl">
-                Materiale și execuție <span className="text-bronze-light">din aceeași sursă</span>, sub o singură responsabilitate contractuală.
+                Materiale și execuție <span className="text-brand-soft">din aceeași sursă</span>, sub o singură responsabilitate contractuală.
               </h2>
             </Reveal>
             <div className="lg:col-span-4 lg:col-start-9 lg:pt-3">
@@ -124,15 +124,15 @@ export function V3Site() {
                   <p>{p}</p>
                 </Reveal>
               ))}
-              <Reveal delay={400} className="mt-14 border-l border-bronze pl-8">
+              <Reveal delay={400} className="mt-14 border-l border-brand pl-8">
                 <p className="v3-display font-v3-display text-2xl text-limestone sm:text-3xl">{company.mission}</p>
               </Reveal>
               <Reveal delay={450} className="mt-14">
                 <Eyebrow>Repere</Eyebrow>
-                <ol className="mt-6 grid gap-0 divide-y divide-bronze/20 border-y border-bronze/20 sm:grid-cols-2 sm:divide-y-0 sm:gap-x-10">
+                <ol className="mt-6 grid gap-0 divide-y divide-brand/20 border-y border-brand/20 sm:grid-cols-2 sm:divide-y-0 sm:gap-x-10">
                   {milestones.map((m) => (
-                    <li key={m.year} className="grid grid-cols-[56px_1fr] gap-4 py-4 sm:border-b sm:border-bronze/20">
-                      <span className="font-v3-display text-[13px] font-semibold text-bronze-light">{m.year}</span>
+                    <li key={m.year} className="grid grid-cols-[56px_1fr] gap-4 py-4 sm:border-b sm:border-brand/20">
+                      <span className="font-v3-display text-[13px] font-semibold text-brand-soft">{m.year}</span>
                       <div>
                         <p className="text-[14.5px] font-medium text-limestone">{m.title}</p>
                         <p className="mt-0.5 text-[13px] leading-relaxed text-granite-500">{m.description}</p>
@@ -149,11 +149,11 @@ export function V3Site() {
               <Eyebrow>Principii</Eyebrow>
               <h3 className="v3-display mt-8 font-v3-display text-4xl text-limestone sm:text-5xl">Ce nu negociem.</h3>
             </Reveal>
-            <dl className="grid gap-px border border-bronze/25 bg-bronze/25 sm:grid-cols-2 lg:col-span-8">
+            <dl className="grid gap-px border border-brand/25 bg-brand/25 sm:grid-cols-2 lg:col-span-8">
               {company.values.map((v, i) => (
                 <Reveal key={v.title} delay={i * 90} className="bg-anthracite-950 p-7">
                   <dt className="flex items-baseline gap-4 font-v3-display text-xl font-semibold text-limestone">
-                    <span className="text-[12px] text-bronze-light">0{i + 1}</span>
+                    <span className="text-[12px] text-brand-soft">0{i + 1}</span>
                     {v.title}
                   </dt>
                   <dd className="mt-3 text-[14.5px] leading-relaxed text-granite-300">{v.description}</dd>
@@ -165,17 +165,17 @@ export function V3Site() {
       </section>
 
       {/* ---------------- CAPACITATE ---------------- */}
-      <section id="capacitate" className="v3-granite scroll-mt-24 border-y border-bronze/20 py-28 lg:py-40">
+      <section id="capacitate" className="v3-granite scroll-mt-24 border-y border-brand/20 py-28 lg:py-40">
         <Container>
           <Reveal>
             <Eyebrow index="02">Capacitate de producție</Eyebrow>
           </Reveal>
           <Reveal className="mt-12 max-w-4xl">
             <h2 className="v3-display balance font-v3-display text-4xl text-limestone sm:text-5xl lg:text-6xl">
-              Dimensionați pentru <span className="text-bronze-light">proiecte mari</span> de infrastructură.
+              Dimensionați pentru <span className="text-brand-soft">proiecte mari</span> de infrastructură.
             </h2>
           </Reveal>
-          <div className="mt-16 grid gap-px border border-bronze/25 bg-bronze/25 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-16 grid gap-px border border-brand/25 bg-brand/25 sm:grid-cols-2 lg:grid-cols-4">
             {capacities.map((c, i) => (
               <Reveal key={c.label} delay={i * 90} className="bg-anthracite-900 p-8">
                 <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-granite-300">{c.label}</p>
@@ -193,7 +193,7 @@ export function V3Site() {
                 <Image src={d.image.src} alt={d.image.alt} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover opacity-50 transition duration-[1.4s] ease-out-expo group-hover:scale-105 group-hover:opacity-65" />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,12,13,0.1),rgba(12,12,13,0.92))]" />
                 <div className="relative p-8">
-                  <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-bronze-light">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-brand-soft">
                     {d.index} · {d.kicker}
                   </p>
                   <h3 className="v3-display mt-3 font-v3-display text-3xl text-limestone sm:text-4xl">{d.title}</h3>
@@ -228,16 +228,16 @@ export function V3Site() {
             </div>
             <ol className="lg:col-span-7 lg:col-start-6">
               {infrastructureServices.map((s, i) => (
-                <Reveal as="li" key={s.title} delay={i * 60} className="border-t border-bronze/20 py-10 first:border-t-0 first:pt-0">
+                <Reveal as="li" key={s.title} delay={i * 60} className="border-t border-brand/20 py-10 first:border-t-0 first:pt-0">
                   <div className="flex items-baseline gap-5">
-                    <span className="font-v3-display text-[12px] font-semibold text-bronze-light">{s.index}</span>
+                    <span className="font-v3-display text-[12px] font-semibold text-brand-soft">{s.index}</span>
                     <h3 className="v3-display font-v3-display text-2xl text-limestone sm:text-3xl">{s.title}</h3>
                   </div>
                   <p className="mt-4 pl-9 text-[15px] leading-relaxed text-granite-300">{s.description}</p>
                   <ul className="mt-4 grid gap-1.5 pl-9 text-[13.5px] text-limestone/80 sm:grid-cols-2">
                     {s.includes.map((inc) => (
                       <li key={inc} className="flex items-baseline gap-2">
-                        <span className="size-1 shrink-0 bg-bronze" aria-hidden />
+                        <span className="size-1 shrink-0 bg-brand" aria-hidden />
                         {inc}
                       </li>
                     ))}
@@ -251,10 +251,10 @@ export function V3Site() {
             <Reveal>
               <Eyebrow>Mod de lucru</Eyebrow>
             </Reveal>
-            <ol className="mt-10 grid gap-px border border-bronze/25 bg-bronze/25 md:grid-cols-2 lg:grid-cols-4">
+            <ol className="mt-10 grid gap-px border border-brand/25 bg-brand/25 md:grid-cols-2 lg:grid-cols-4">
               {process.map((s, i) => (
                 <Reveal as="li" key={s.title} delay={i * 100} className="bg-anthracite-950 p-8">
-                  <span className="v3-display font-v3-display text-5xl text-bronze">{s.index}</span>
+                  <span className="v3-display font-v3-display text-5xl text-brand">{s.index}</span>
                   <h3 className="mt-8 font-v3-display text-xl font-semibold text-limestone">{s.title}</h3>
                   <p className="mt-3 text-[14.5px] leading-relaxed text-granite-300">{s.description}</p>
                 </Reveal>
@@ -265,14 +265,14 @@ export function V3Site() {
       </section>
 
       {/* ---------------- MATERIALE ---------------- */}
-      <section id="materiale" className="scroll-mt-24 border-y border-bronze/20 bg-anthracite-900 py-28 lg:py-40">
+      <section id="materiale" className="scroll-mt-24 border-y border-brand/20 bg-anthracite-900 py-28 lg:py-40">
         <Container>
           <Reveal>
             <Eyebrow index="04">Materiale</Eyebrow>
           </Reveal>
           <Reveal className="mt-12 max-w-4xl">
             <h2 className="v3-display balance font-v3-display text-4xl text-limestone sm:text-5xl lg:text-6xl">
-              Agregate, beton și prefabricate <span className="text-bronze-light">din unitățile proprii</span>.
+              Agregate, beton și prefabricate <span className="text-brand-soft">din unitățile proprii</span>.
             </h2>
           </Reveal>
 
@@ -283,14 +283,14 @@ export function V3Site() {
             </Reveal>
             <div className="lg:col-span-9">
               {aggregates.map((a, i) => (
-                <Reveal key={a.name} delay={i * 60} className="grid items-baseline gap-2 border-t border-bronze/20 py-6 sm:grid-cols-12 sm:gap-6">
+                <Reveal key={a.name} delay={i * 60} className="grid items-baseline gap-2 border-t border-brand/20 py-6 sm:grid-cols-12 sm:gap-6">
                   <span className="font-v3-display text-xl font-semibold text-limestone sm:col-span-3">{a.name}</span>
-                  <span className="text-[12px] uppercase tracking-[0.18em] text-bronze-light sm:col-span-2">{a.granulometry}</span>
+                  <span className="text-[12px] uppercase tracking-[0.18em] text-brand-soft sm:col-span-2">{a.granulometry}</span>
                   <span className="text-[14.5px] leading-relaxed text-granite-300 sm:col-span-4">{a.summary}</span>
                   <span className="text-[12.5px] text-limestone/70 sm:col-span-3">{a.usage.join(" · ")}</span>
                 </Reveal>
               ))}
-              <Reveal variant="line" className="h-px w-full bg-bronze/20" />
+              <Reveal variant="line" className="h-px w-full bg-brand/20" />
             </div>
           </div>
 
@@ -304,13 +304,13 @@ export function V3Site() {
             </Reveal>
             <div className="lg:col-span-8 lg:col-start-5">
               {concreteClasses.map((c, i) => (
-                <Reveal key={c.name} delay={i * 50} className="grid items-baseline gap-2 border-t border-bronze/20 py-6 sm:grid-cols-12 sm:gap-6">
+                <Reveal key={c.name} delay={i * 50} className="grid items-baseline gap-2 border-t border-brand/20 py-6 sm:grid-cols-12 sm:gap-6">
                   <span className="font-v3-display text-xl font-semibold text-limestone sm:col-span-3">{c.name}</span>
                   <span className="text-[14.5px] leading-relaxed text-granite-300 sm:col-span-6">{c.usage}</span>
-                  <span className="text-[12px] uppercase tracking-[0.18em] text-bronze-light sm:col-span-3 sm:text-right">{c.exposure}</span>
+                  <span className="text-[12px] uppercase tracking-[0.18em] text-brand-soft sm:col-span-3 sm:text-right">{c.exposure}</span>
                 </Reveal>
               ))}
-              <Reveal variant="line" className="h-px w-full bg-bronze/20" />
+              <Reveal variant="line" className="h-px w-full bg-brand/20" />
             </div>
           </div>
 
@@ -327,7 +327,7 @@ export function V3Site() {
                   </div>
                   <h4 className="mt-5 font-v3-display text-lg font-semibold text-limestone">{p.name}</h4>
                   <p className="mt-2 text-[13.5px] leading-relaxed text-granite-300">{p.summary}</p>
-                  <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-bronze-light">{p.dimensions}</p>
+                  <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-brand-soft">{p.dimensions}</p>
                   <p className="mt-1 text-[12.5px] text-granite-500">{p.usage}</p>
                 </Reveal>
               ))}
@@ -345,24 +345,24 @@ export function V3Site() {
           <div className="mt-12 grid gap-16 lg:grid-cols-12">
             <Reveal className="lg:col-span-5">
               <h2 className="v3-display balance font-v3-display text-4xl text-limestone sm:text-5xl">
-                Excelență în afaceri și <span className="text-bronze-light">conformitate ecologică</span>.
+                Excelență în afaceri și <span className="text-brand-soft">conformitate ecologică</span>.
               </h2>
               <p className="mt-6 text-[15px] leading-relaxed text-granite-300">Contractorii mari lucrează cu parteneri verificabili. Prezentăm mai jos angajamentele pe care le susținem cu documente la fiecare licitație și recepție.</p>
               <ul className="mt-10 grid gap-3">
                 {company.certifications.map((c) => (
-                  <li key={c} className="flex items-start gap-3 border-b border-bronze/20 pb-3 text-[14.5px] text-limestone/85">
-                    <ShieldCheck weight="regular" className="mt-0.5 size-4 shrink-0 text-bronze-light" aria-hidden />
+                  <li key={c} className="flex items-start gap-3 border-b border-brand/20 pb-3 text-[14.5px] text-limestone/85">
+                    <ShieldCheck weight="regular" className="mt-0.5 size-4 shrink-0 text-brand-soft" aria-hidden />
                     {c}
                   </li>
                 ))}
               </ul>
             </Reveal>
-            <div className="grid gap-px border border-bronze/25 bg-bronze/25 sm:grid-cols-2 lg:col-span-7">
+            <div className="grid gap-px border border-brand/25 bg-brand/25 sm:grid-cols-2 lg:col-span-7">
               {commitments.map((c, i) => {
                 const Icon = commitmentIcons[i];
                 return (
                   <Reveal key={c.title} delay={i * 90} className="bg-anthracite-950 p-8">
-                    <Icon weight="regular" className="size-7 text-bronze-light" aria-hidden />
+                    <Icon weight="regular" className="size-7 text-brand-soft" aria-hidden />
                     <h3 className="mt-6 font-v3-display text-xl font-semibold text-limestone">{c.title}</h3>
                     <p className="mt-3 text-[14.5px] leading-relaxed text-granite-300">{c.description}</p>
                   </Reveal>
@@ -373,9 +373,9 @@ export function V3Site() {
 
           <div className="mt-28 grid gap-12 lg:grid-cols-3">
             {testimonials.map((t, i) => (
-              <Reveal key={t.author} delay={i * 100} className="border-t border-bronze/30 pt-8">
+              <Reveal key={t.author} delay={i * 100} className="border-t border-brand/30 pt-8">
                 <p className="v3-display font-v3-display text-xl leading-snug text-limestone sm:text-2xl">„{t.quote}”</p>
-                <p className="mt-6 text-[11px] font-medium uppercase tracking-[0.22em] text-bronze-light">{t.author}</p>
+                <p className="mt-6 text-[11px] font-medium uppercase tracking-[0.22em] text-brand-soft">{t.author}</p>
                 <p className="mt-1 text-[13px] text-granite-500">{t.role}</p>
               </Reveal>
             ))}
@@ -388,8 +388,8 @@ export function V3Site() {
             </Reveal>
             <div className="lg:col-span-7 lg:col-start-6">
               {faq.map((f, i) => (
-                <Reveal as="details" key={f.question} delay={i * 60} className="group border-t border-bronze/20 py-6 last:border-b">
-                  <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 font-v3-display text-lg font-semibold text-limestone transition-colors group-open:text-bronze-light [&::-webkit-details-marker]:hidden">
+                <Reveal as="details" key={f.question} delay={i * 60} className="group border-t border-brand/20 py-6 last:border-b">
+                  <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 font-v3-display text-lg font-semibold text-limestone transition-colors group-open:text-brand-soft [&::-webkit-details-marker]:hidden">
                     {f.question}
                     <span className="shrink-0 text-[11px] uppercase tracking-[0.22em] text-granite-300 group-open:hidden">Deschide</span>
                     <span className="hidden shrink-0 text-[11px] uppercase tracking-[0.22em] text-granite-300 group-open:inline">Închide</span>
@@ -403,7 +403,7 @@ export function V3Site() {
       </section>
 
       {/* ---------------- CONTACT ---------------- */}
-      <section id="contact" className="v3-granite scroll-mt-24 border-y border-bronze/20 py-28 lg:py-40">
+      <section id="contact" className="v3-granite scroll-mt-24 border-y border-brand/20 py-28 lg:py-40">
         <Container>
           <Reveal>
             <Eyebrow index="06">Contact</Eyebrow>
@@ -436,7 +436,7 @@ export function V3Site() {
                 <div>
                   <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-granite-300">Adresă</p>
                   <p className="mt-3 text-[15px] leading-relaxed text-limestone">{contact.addressLine}</p>
-                  <a href={contact.location.mapsUrl} target="_blank" rel="noreferrer" className="v3-link mt-2 inline-flex items-center gap-1 text-[11.5px] uppercase tracking-[0.18em] text-bronze-light">
+                  <a href={contact.location.mapsUrl} target="_blank" rel="noreferrer" className="v3-link mt-2 inline-flex items-center gap-1 text-[11.5px] uppercase tracking-[0.18em] text-brand-soft">
                     Google Maps
                     <ArrowUpRight weight="regular" className="size-3.5" aria-hidden />
                   </a>
@@ -444,7 +444,7 @@ export function V3Site() {
                 <div>
                   <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-granite-300">Program</p>
                   {contact.hours.map((h) => (
-                    <p key={h.days} className="mt-3 flex justify-between gap-4 border-b border-bronze/20 pb-2 text-[14px] text-limestone">
+                    <p key={h.days} className="mt-3 flex justify-between gap-4 border-b border-brand/20 pb-2 text-[14px] text-limestone">
                       <span>{h.days}</span>
                       <span className="text-granite-300">{h.hours}</span>
                     </p>
@@ -463,14 +463,14 @@ export function V3Site() {
       {/* ---------------- DECIZIE (portal) ---------------- */}
       <section className="py-28" aria-label="Alegerea acestui design">
         <Container>
-          <Reveal className="border-y border-bronze/25 py-16 text-center">
+          <Reveal className="border-y border-brand/25 py-16 text-center">
             <p className="text-[11px] font-medium uppercase tracking-[0.26em] text-granite-300">Design V3 · Infrastructure Elite &amp; Premium Partner</p>
             <h2 className="v3-display balance mx-auto mt-8 max-w-3xl font-v3-display text-4xl text-limestone sm:text-5xl">
-              Este aceasta <span className="text-bronze-light">direcția</span> pe care o alegeți?
+              Este aceasta <span className="text-brand-soft">direcția</span> pe care o alegeți?
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-granite-300">Confirmați varianta preferată sau reveniți la Index pentru a compara cu Design V1 și Design V2. Concept dezvoltat de {brixwave.name}.</p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <ChooseDesignButton className="inline-flex h-14 items-center justify-center border border-bronze bg-bronze px-8 text-[11.5px] font-medium uppercase tracking-[0.22em] text-anthracite-950 transition-all duration-500 hover:bg-bronze-light data-[chosen]:border-emerald-500 data-[chosen]:bg-emerald-500" />
+              <ChooseDesignButton className="inline-flex h-14 items-center justify-center border border-brand bg-brand px-8 text-[11.5px] font-medium uppercase tracking-[0.22em] text-anthracite-950 transition-all duration-500 hover:bg-brand-soft data-[chosen]:border-emerald-500 data-[chosen]:bg-emerald-500" />
               <BackToIndexLink className="inline-flex h-14 items-center justify-center border border-limestone/40 px-8 text-[11.5px] font-medium uppercase tracking-[0.22em] text-limestone transition-all duration-500 hover:border-limestone hover:bg-limestone hover:text-anthracite-950" />
             </div>
           </Reveal>
@@ -528,7 +528,7 @@ export function V3Site() {
               </ul>
             </div>
           </div>
-          <div className="mt-16 flex flex-col gap-2 border-t border-bronze/20 pt-6 text-[11px] uppercase tracking-[0.18em] text-granite-500 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-16 flex flex-col gap-2 border-t border-brand/20 pt-6 text-[11px] uppercase tracking-[0.18em] text-granite-500 sm:flex-row sm:items-center sm:justify-between">
             <p>
               © {new Date().getFullYear()} {company.name}
             </p>

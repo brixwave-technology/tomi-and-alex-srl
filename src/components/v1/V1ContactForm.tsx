@@ -6,14 +6,14 @@ import { contact } from "@/data/company";
 import { cn } from "@/lib/cn";
 
 const input =
-  "h-12 w-full rounded-[2px] border border-steel-400/35 bg-navy-950 px-4 text-[15px] text-white placeholder:text-steel-400/70 transition focus:border-brand focus:outline-none";
+  "h-12 w-full rounded-[2px] border border-steel-400/35 bg-graphite-950 px-4 text-[15px] text-white placeholder:text-steel-400/70 transition focus:border-brand focus:outline-none";
 
 export function V1ContactForm() {
   const form = useContactForm();
 
   if (form.status === "success") {
     return (
-      <div className="flex min-h-[460px] flex-col justify-center border border-steel-400/25 bg-navy-900 p-8 sm:p-12" role="status" aria-live="polite">
+      <div className="flex min-h-[460px] flex-col justify-center border border-steel-400/25 bg-graphite-900 p-8 sm:p-12" role="status" aria-live="polite">
         <span className="inline-flex size-12 items-center justify-center rounded-[2px] bg-brand text-white">
           <Check weight="bold" className="size-6" aria-hidden />
         </span>
@@ -64,7 +64,7 @@ export function V1ContactForm() {
   };
 
   return (
-    <form onSubmit={form.onSubmit} noValidate className="border border-steel-400/25 bg-navy-900 p-6 sm:p-10">
+    <form onSubmit={form.onSubmit} noValidate className="border border-steel-400/25 bg-graphite-900 p-6 sm:p-10">
       <div className="grid gap-5 sm:grid-cols-2">
         {field("name", "Nume", { autoComplete: "name", placeholder: "Numele și prenumele" })}
         {field("phone", "Telefon", { type: "tel", autoComplete: "tel", placeholder: "07xx xxx xxx" })}

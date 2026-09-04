@@ -6,22 +6,21 @@ import { contact } from "@/data/company";
 import { cn } from "@/lib/cn";
 
 const input =
-  "h-12 w-full border border-white/15 bg-carbon-950 px-4 text-[15px] text-white placeholder:text-steel-500 transition focus:border-electric focus:outline-none";
+  "h-13 w-full border-2 border-concrete-200 bg-white px-4 text-[15.5px] text-asphalt-950 placeholder:text-concrete-500 transition focus:border-brand focus:outline-none";
 
 export function V2ContactForm() {
   const form = useContactForm();
 
   if (form.status === "success") {
     return (
-      <div className="v2-corners flex min-h-[460px] flex-col justify-center border border-white/10 bg-carbon-800 p-8 sm:p-12" role="status" aria-live="polite">
-        <CheckCircle weight="fill" className="size-10 text-electric" aria-hidden />
-        <p className="mt-6 font-v2-mono text-[11px] uppercase tracking-[0.24em] text-steel-300">Solicitare înregistrată</p>
-        <h3 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Vă mulțumim, {form.firstName}.</h3>
-        <p className="mt-4 max-w-md text-[15.5px] leading-relaxed text-steel-300">
-          Solicitarea a fost transmisă departamentului de ofertare. Veți fi contactat în aceeași zi lucrătoare la numărul indicat.
+      <div className="flex min-h-[460px] flex-col justify-center border-t-8 border-brand bg-white p-8 sm:p-12" role="status" aria-live="polite">
+        <CheckCircle weight="fill" className="size-12 text-brand" aria-hidden />
+        <h3 className="v2-display mt-6 font-v2-display text-4xl text-asphalt-950 sm:text-5xl">Cererea a fost înregistrată</h3>
+        <p className="mt-4 max-w-md text-[16px] leading-relaxed text-concrete-500">
+          Vă mulțumim, {form.firstName}. Un responsabil de ofertare vă contactează în aceeași zi lucrătoare la numărul indicat.
         </p>
-        <button type="button" onClick={form.reset} className="mt-10 inline-flex h-11 w-fit items-center border border-white/20 px-6 text-[13.5px] font-semibold text-white transition hover:bg-white/5">
-          Transmiteți o altă solicitare
+        <button type="button" onClick={form.reset} className="mt-10 inline-flex h-13 w-fit items-center border-2 border-asphalt-950 px-6 font-v2-display text-[17px] font-bold uppercase tracking-wide text-asphalt-950 transition hover:bg-asphalt-950 hover:text-white">
+          Trimiteți altă cerere
         </button>
       </div>
     );
@@ -34,15 +33,15 @@ export function V2ContactForm() {
   ) => {
     const { error, errorId, ...props } = form.fieldProps(key);
     return (
-      <div className={cn("flex flex-col gap-2", opts.className)}>
-        <label htmlFor={props.id} className="flex items-baseline justify-between font-v2-mono text-[11px] uppercase tracking-[0.2em] text-steel-300">
+      <div className={cn("flex flex-col gap-1.5", opts.className)}>
+        <label htmlFor={props.id} className="flex items-baseline justify-between font-v2-display text-[14px] font-semibold uppercase tracking-wider text-asphalt-950">
           {label}
-          {opts.optional && <span className="text-[10px] normal-case tracking-normal text-steel-500">opțional</span>}
+          {opts.optional && <span className="font-v2 text-[12px] font-medium normal-case tracking-normal text-concrete-500">opțional</span>}
         </label>
         {opts.textarea ? (
-          <textarea rows={6} placeholder={opts.placeholder} {...props} className={cn(input, "h-auto py-3", error && "border-red-400")} />
+          <textarea rows={6} placeholder={opts.placeholder} {...props} className={cn(input, "h-auto py-3", error && "border-brand")} />
         ) : opts.select ? (
-          <select {...props} className={cn(input, error && "border-red-400")}>
+          <select {...props} className={cn(input, error && "border-brand")}>
             <option value="">Selectați tipul solicitării</option>
             {contactSubjects.map((s) => (
               <option key={s} value={s}>
@@ -51,10 +50,10 @@ export function V2ContactForm() {
             ))}
           </select>
         ) : (
-          <input type={opts.type ?? "text"} autoComplete={opts.autoComplete} placeholder={opts.placeholder} {...props} className={cn(input, error && "border-red-400")} />
+          <input type={opts.type ?? "text"} autoComplete={opts.autoComplete} placeholder={opts.placeholder} {...props} className={cn(input, error && "border-brand")} />
         )}
         {error && (
-          <p id={errorId} className="text-[13px] text-red-300">
+          <p id={errorId} className="text-[13px] font-semibold text-brand">
             {error}
           </p>
         )}
@@ -63,10 +62,10 @@ export function V2ContactForm() {
   };
 
   return (
-    <form onSubmit={form.onSubmit} noValidate className="v2-corners border border-white/10 bg-carbon-800 p-6 sm:p-10">
-      <div className="mb-8 flex items-center justify-between border-b border-white/10 pb-5">
-        <p className="font-v2-mono text-[11px] uppercase tracking-[0.24em] text-steel-300">Formular de solicitare · F-01</p>
-        <p className="font-v2-mono text-[11px] uppercase tracking-[0.24em] text-electric">Răspuns în 24 h</p>
+    <form onSubmit={form.onSubmit} noValidate className="border-t-8 border-brand bg-white p-6 sm:p-10">
+      <div className="mb-8 border-b-2 border-concrete-100 pb-5">
+        <h3 className="v2-display font-v2-display text-3xl text-asphalt-950">Cerere de ofertă pentru lucrări</h3>
+        <p className="mt-2 text-[14.5px] text-concrete-500">Pentru materiale folosiți comanda rapidă de mai sus. Pentru lucrări de execuție, completați formularul; oferta este gata în maximum 5 zile lucrătoare de la vizita în teren.</p>
       </div>
       <div className="grid gap-5 sm:grid-cols-2">
         {field("name", "Nume și prenume", { autoComplete: "name", placeholder: "Persoana de contact" })}
@@ -74,15 +73,11 @@ export function V2ContactForm() {
         {field("company", "Companie / instituție", { optional: true, autoComplete: "organization", placeholder: "Denumirea beneficiarului" })}
         {field("email", "E-mail", { type: "email", optional: true, autoComplete: "email", placeholder: "nume@companie.ro" })}
         {field("subject", "Tipul solicitării", { select: true, optional: true, className: "sm:col-span-2" })}
-        {field("message", "Descrierea lucrării sau a comenzii", {
-          textarea: true,
-          placeholder: "Obiectivul, amplasamentul, materialele și cantitățile estimate, termenul de execuție.",
-          className: "sm:col-span-2",
-        })}
+        {field("message", "Descrierea lucrării", { textarea: true, placeholder: "Obiectivul, amplasamentul, cantitățile estimate, termenul de execuție.", className: "sm:col-span-2" })}
       </div>
       {form.status === "error" && (
-        <p role="alert" className="mt-6 border border-red-400/50 bg-red-400/10 px-4 py-3 text-[14px] text-red-200">
-          Solicitarea nu a putut fi transmisă. Reîncercați sau apelați dispeceratul la {contact.phoneDisplay}.
+        <p role="alert" className="mt-6 border-2 border-brand bg-brand/10 px-4 py-3 text-[14px] font-semibold text-brand-dark">
+          Cererea nu a putut fi transmisă. Reîncercați sau sunați la {contact.phoneDisplay}.
         </p>
       )}
       <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -90,12 +85,12 @@ export function V2ContactForm() {
           type="submit"
           disabled={form.status === "submitting"}
           aria-busy={form.status === "submitting"}
-          className="inline-flex h-12 items-center justify-center gap-2 bg-electric px-7 text-[14px] font-semibold text-white transition hover:bg-electric-soft disabled:opacity-60"
+          className="inline-flex h-14 items-center justify-center gap-2 bg-brand px-8 font-v2-display text-xl font-bold uppercase tracking-wide text-white transition hover:bg-brand-soft disabled:opacity-60"
         >
-          {form.status === "submitting" ? "Se transmite..." : "Transmiteți solicitarea"}
-          <ArrowRight weight="bold" className="size-4" aria-hidden />
+          {form.status === "submitting" ? "Se transmite..." : "Trimiteți cererea"}
+          <ArrowRight weight="bold" className="size-5" aria-hidden />
         </button>
-        <p className="text-[12.5px] leading-relaxed text-steel-500">Datele sunt prelucrate exclusiv pentru formularea ofertei.</p>
+        <p className="text-[12.5px] leading-relaxed text-concrete-500">Datele sunt folosite exclusiv pentru formularea ofertei.</p>
       </div>
     </form>
   );

@@ -49,7 +49,7 @@ function SectionLabel({ index, children, light }: { index: string; children: str
 
 export function V1Site() {
   return (
-    <div id="top" className="relative bg-navy-950 text-frost">
+    <div id="top" className="relative bg-graphite-950 text-frost">
       <V1Header />
 
       {/* ---------------- HERO ---------------- */}
@@ -103,7 +103,7 @@ export function V1Site() {
             </ul>
           </div>
           <aside className="anim-rise self-end lg:col-span-5 [animation-delay:600ms]">
-            <div className="border border-steel-400/25 bg-navy-900/80 p-6 backdrop-blur sm:p-8">
+            <div className="border border-steel-400/25 bg-graphite-900/80 p-6 backdrop-blur sm:p-8">
               <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-steel-400">Ofertare directă</p>
               <a href={`tel:${contact.phone}`} className="v1-display mt-3 block text-3xl text-white sm:text-4xl">
                 {contact.phoneDisplay}
@@ -131,7 +131,7 @@ export function V1Site() {
       </section>
 
       {/* ---------------- CIFRE ---------------- */}
-      <section className="border-y border-steel-400/20 bg-navy-900" aria-label="Cifre cheie">
+      <section className="border-y border-steel-400/20 bg-graphite-900" aria-label="Cifre cheie">
         <div className="mx-auto grid w-full max-w-7xl grid-cols-2 divide-steel-400/20 px-5 sm:px-8 lg:grid-cols-4 lg:divide-x">
           {company.stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 90} className="py-8 lg:px-8 lg:first:pl-0 lg:last:pr-0">
@@ -168,7 +168,7 @@ export function V1Site() {
             </Reveal>
             <div className="mt-12 grid gap-px border border-steel-400/20 bg-steel-400/20 sm:grid-cols-2 lg:ml-10">
               {company.values.map((v, i) => (
-                <Reveal key={v.title} delay={i * 80} className="bg-navy-950 p-6">
+                <Reveal key={v.title} delay={i * 80} className="bg-graphite-950 p-6">
                   <p className="font-mono text-[12px] text-brand">0{i + 1}</p>
                   <h3 className="mt-3 text-lg font-bold text-white">{v.title}</h3>
                   <p className="mt-2 text-[14.5px] leading-relaxed text-steel-400">{v.description}</p>
@@ -180,7 +180,7 @@ export function V1Site() {
       </section>
 
       {/* ---------------- DIRECȚII ---------------- */}
-      <section id="servicii" className="scroll-mt-20 border-t border-steel-400/20 bg-navy-900 py-24 lg:py-32">
+      <section id="servicii" className="scroll-mt-20 border-t border-steel-400/20 bg-graphite-900 py-24 lg:py-32">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <Reveal className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
@@ -195,7 +195,7 @@ export function V1Site() {
             {directions.map((d, i) => {
               const Icon = directionIcons[i];
               return (
-                <Reveal key={d.slug} delay={i * 90} className="group relative flex flex-col bg-navy-950">
+                <Reveal key={d.slug} delay={i * 90} className="group relative flex flex-col bg-graphite-950">
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <Image src={d.image.src} alt={d.image.alt} fill sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-700 ease-out-quint group-hover:scale-105" />
                     <div className="absolute inset-0 bg-[linear-gradient(to_top,#07101f_10%,transparent_70%)]" />
@@ -347,7 +347,7 @@ export function V1Site() {
             </Reveal>
             <div className="mt-8 grid gap-px border border-steel-400/20 bg-steel-400/20 sm:grid-cols-2 xl:grid-cols-5">
               {prefabProducts.map((p, i) => (
-                <Reveal key={p.name} delay={i * 70} className="flex flex-col bg-navy-950">
+                <Reveal key={p.name} delay={i * 70} className="flex flex-col bg-graphite-950">
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image src={p.image.src} alt={p.image.alt} fill sizes="(min-width: 1280px) 20vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
                   </div>
@@ -373,7 +373,7 @@ export function V1Site() {
       </section>
 
       {/* ---------------- PROCES ---------------- */}
-      <section id="proces" className="scroll-mt-20 border-t border-steel-400/20 bg-navy-900 py-24 lg:py-32">
+      <section id="proces" className="scroll-mt-20 border-t border-steel-400/20 bg-graphite-900 py-24 lg:py-32">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <Reveal className="max-w-2xl">
             <SectionLabel index="04">Cum lucrăm</SectionLabel>
@@ -381,7 +381,7 @@ export function V1Site() {
           </Reveal>
           <ol className="mt-14 grid gap-px border border-steel-400/20 bg-steel-400/20 md:grid-cols-2 xl:grid-cols-4">
             {process.map((s, i) => (
-              <Reveal as="li" key={s.title} delay={i * 100} className="relative bg-navy-950 p-7">
+              <Reveal as="li" key={s.title} delay={i * 100} className="relative bg-graphite-950 p-7">
                 <span className="v1-display text-5xl text-brand/90">{s.index}</span>
                 <h3 className="mt-6 text-xl font-bold text-white">{s.title}</h3>
                 <p className="mt-3 text-[14.5px] leading-relaxed text-steel-400">{s.description}</p>
@@ -389,7 +389,7 @@ export function V1Site() {
               </Reveal>
             ))}
           </ol>
-          <Reveal className="mt-10 grid gap-6 border border-steel-400/20 bg-navy-950 p-7 md:grid-cols-[auto_1fr_auto] md:items-center">
+          <Reveal className="mt-10 grid gap-6 border border-steel-400/20 bg-graphite-950 p-7 md:grid-cols-[auto_1fr_auto] md:items-center">
             <Certificate weight="fill" className="size-10 text-brand" aria-hidden />
             <div>
               <p className="text-lg font-bold text-white">Certificări și sisteme de management</p>
@@ -416,7 +416,7 @@ export function V1Site() {
             </Reveal>
             <div className="mt-10 grid gap-px border border-steel-400/20 bg-steel-400/20">
               {testimonials.map((t, i) => (
-                <Reveal key={t.author} delay={i * 90} className="bg-navy-950 p-7">
+                <Reveal key={t.author} delay={i * 90} className="bg-graphite-950 p-7">
                   <Quotes weight="fill" className="size-6 text-brand" aria-hidden />
                   <p className="mt-4 text-[17px] leading-relaxed text-white">„{t.quote}”</p>
                   <p className="mt-4 text-[13.5px] font-bold text-steel-200">{t.author}</p>
@@ -446,7 +446,7 @@ export function V1Site() {
       </section>
 
       {/* ---------------- CONTACT ---------------- */}
-      <section id="contact" className="scroll-mt-20 border-t border-steel-400/20 bg-navy-900 py-24 lg:py-32">
+      <section id="contact" className="scroll-mt-20 border-t border-steel-400/20 bg-graphite-900 py-24 lg:py-32">
         <div className="mx-auto grid w-full max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Reveal>
@@ -463,7 +463,7 @@ export function V1Site() {
                 { icon: MapPin, label: "Sediu și unități de producție", lines: [contact.addressLine], href: contact.location.mapsUrl },
                 { icon: Clock, label: "Program", lines: contact.hours.map((h) => `${h.days}: ${h.hours}`) },
               ].map((item) => (
-                <div key={item.label} className="flex gap-4 bg-navy-950 p-5">
+                <div key={item.label} className="flex gap-4 bg-graphite-950 p-5">
                   <item.icon weight="fill" className="mt-1 size-5 shrink-0 text-brand" aria-hidden />
                   <div>
                     <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-steel-400">{item.label}</p>
@@ -493,7 +493,7 @@ export function V1Site() {
       </section>
 
       {/* ---------------- DECIZIE (portal) ---------------- */}
-      <section className="border-t border-steel-400/20 bg-navy-950 py-16" aria-label="Alegerea acestui design">
+      <section className="border-t border-steel-400/20 bg-graphite-950 py-16" aria-label="Alegerea acestui design">
         <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-8 px-5 sm:px-8 lg:flex-row lg:items-center">
           <div>
             <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-steel-400">Design V1 · Corporate / Autoritate</p>
@@ -510,7 +510,7 @@ export function V1Site() {
       </section>
 
       {/* ---------------- FOOTER ---------------- */}
-      <footer className="border-t border-steel-400/20 bg-navy-950 pb-32 pt-16">
+      <footer className="border-t border-steel-400/20 bg-graphite-950 pb-32 pt-16">
         <div className="mx-auto grid w-full max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <Image src={logo.full.light} alt={company.name} width={logo.full.width} height={logo.full.height} className="h-20 w-auto" />

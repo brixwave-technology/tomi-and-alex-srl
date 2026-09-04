@@ -6,7 +6,7 @@ import { contact } from "@/data/company";
 import { cn } from "@/lib/cn";
 
 const input =
-  "w-full border-0 border-b border-granite-500/50 bg-transparent px-0 py-4 text-[16px] text-limestone placeholder:text-granite-500 transition-colors duration-500 focus:border-bronze-light focus:outline-none";
+  "w-full border-0 border-b border-granite-500/50 bg-transparent px-0 py-4 text-[16px] text-limestone placeholder:text-granite-500 transition-colors duration-500 focus:border-brand-soft focus:outline-none";
 
 export function V3ContactForm() {
   const form = useContactForm();
@@ -19,7 +19,7 @@ export function V3ContactForm() {
         <p className="mt-6 max-w-md text-[15.5px] leading-relaxed text-granite-300">
           Solicitarea a fost înregistrată. Un responsabil de ofertare vă va contacta în aceeași zi lucrătoare.
         </p>
-        <button type="button" onClick={form.reset} className="v3-link mt-10 w-fit text-[11.5px] font-medium uppercase tracking-[0.22em] text-bronze-light">
+        <button type="button" onClick={form.reset} className="v3-link mt-10 w-fit text-[11.5px] font-medium uppercase tracking-[0.22em] text-brand-soft">
           Transmiteți o altă solicitare
         </button>
       </div>
@@ -39,9 +39,9 @@ export function V3ContactForm() {
           {opts.optional && <span className="text-[10px] normal-case tracking-normal text-granite-500">opțional</span>}
         </label>
         {opts.textarea ? (
-          <textarea rows={4} placeholder={opts.placeholder} {...props} className={cn(input, "resize-none", error && "border-bronze-light")} />
+          <textarea rows={4} placeholder={opts.placeholder} {...props} className={cn(input, "resize-none", error && "border-brand-soft")} />
         ) : opts.select ? (
-          <select {...props} className={cn(input, "appearance-none [&>option]:bg-anthracite-900", error && "border-bronze-light")}>
+          <select {...props} className={cn(input, "appearance-none [&>option]:bg-anthracite-900", error && "border-brand-soft")}>
             <option value="">Selectați</option>
             {contactSubjects.map((s) => (
               <option key={s} value={s}>
@@ -50,10 +50,10 @@ export function V3ContactForm() {
             ))}
           </select>
         ) : (
-          <input type={opts.type ?? "text"} autoComplete={opts.autoComplete} placeholder={opts.placeholder} {...props} className={cn(input, error && "border-bronze-light")} />
+          <input type={opts.type ?? "text"} autoComplete={opts.autoComplete} placeholder={opts.placeholder} {...props} className={cn(input, error && "border-brand-soft")} />
         )}
         {error && (
-          <p id={errorId} className="mt-2 text-[13px] text-bronze-light">
+          <p id={errorId} className="mt-2 text-[13px] text-brand-soft">
             {error}
           </p>
         )}
@@ -72,7 +72,7 @@ export function V3ContactForm() {
         {field("message", "Mesaj", { textarea: true, placeholder: "Obiectivul, amplasamentul, cantitățile estimate, termenul.", className: "sm:col-span-2" })}
       </div>
       {form.status === "error" && (
-        <p role="alert" className="mt-8 border-l border-bronze pl-4 text-[14px] text-bronze-light">
+        <p role="alert" className="mt-8 border-l border-brand pl-4 text-[14px] text-brand-soft">
           Solicitarea nu a putut fi transmisă. Reîncercați sau apelați {contact.phoneDisplay}.
         </p>
       )}
@@ -81,7 +81,7 @@ export function V3ContactForm() {
           type="submit"
           disabled={form.status === "submitting"}
           aria-busy={form.status === "submitting"}
-          className="group inline-flex h-14 items-center justify-center gap-4 border border-bronze bg-bronze px-8 text-[11.5px] font-medium uppercase tracking-[0.22em] text-anthracite-950 transition-all duration-500 hover:bg-bronze-light disabled:opacity-60"
+          className="group inline-flex h-14 items-center justify-center gap-4 border border-brand bg-brand px-8 text-[11.5px] font-medium uppercase tracking-[0.22em] text-anthracite-950 transition-all duration-500 hover:bg-brand-soft disabled:opacity-60"
         >
           {form.status === "submitting" ? "Se transmite" : "Transmiteți solicitarea"}
           <ArrowRight weight="regular" className="size-4 transition-transform duration-500 group-hover:translate-x-1" aria-hidden />
