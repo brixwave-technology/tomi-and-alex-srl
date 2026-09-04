@@ -19,9 +19,9 @@ export function Hub() {
     <div className="relative isolate min-h-dvh overflow-hidden font-portal">
       {/* Fundal: gradient în derivă, grilă fină, zgomot */}
       <div className="absolute inset-0 -z-10 grid-lines" aria-hidden />
-      <div className="absolute -top-1/3 left-1/2 -z-10 h-[80vh] w-[120vw] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(99,102,241,0.35),transparent_70%)] blur-3xl animate-drift" aria-hidden />
-      <div className="absolute -bottom-1/3 right-0 -z-10 h-[70vh] w-[70vw] rounded-full bg-[radial-gradient(closest-side,rgba(34,211,238,0.22),transparent_70%)] blur-3xl animate-drift [animation-delay:-8s]" aria-hidden />
-      <div className="absolute -bottom-1/4 left-0 -z-10 h-[60vh] w-[60vw] rounded-full bg-[radial-gradient(closest-side,rgba(192,38,211,0.2),transparent_70%)] blur-3xl animate-drift [animation-delay:-14s]" aria-hidden />
+      <div className="absolute -top-1/3 left-1/2 -z-10 h-[80vh] w-[120vw] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(59,91,219,0.38),transparent_70%)] blur-3xl animate-drift" aria-hidden />
+      <div className="absolute -bottom-1/3 right-0 -z-10 h-[70vh] w-[70vw] rounded-full bg-[radial-gradient(closest-side,rgba(107,133,240,0.18),transparent_70%)] blur-3xl animate-drift [animation-delay:-8s]" aria-hidden />
+      <div className="absolute -bottom-1/4 left-0 -z-10 h-[60vh] w-[60vw] rounded-full bg-[radial-gradient(closest-side,rgba(42,68,176,0.28),transparent_70%)] blur-3xl animate-drift [animation-delay:-14s]" aria-hidden />
       <div className="noise absolute inset-0 -z-10" aria-hidden />
 
       <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-6 sm:px-8">
@@ -37,11 +37,11 @@ export function Hub() {
         {/* Semnătura BRIXWAVE */}
         <section className="mx-auto max-w-3xl text-center">
           <div className="anim-rise inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.2em] text-portal-300 backdrop-blur [animation-delay:150ms]">
-            <Sparkle weight="fill" className="size-3.5 text-bw-cyan" aria-hidden />
+            <Sparkle weight="fill" className="size-3.5 text-bw-blue-soft" aria-hidden />
             Portal de selecție design
           </div>
           <div className="anim-rise-blur mt-8 flex justify-center [animation-delay:250ms]">
-            <BrixwaveLogo variant="mark" className="size-20 drop-shadow-[0_20px_50px_rgba(99,102,241,0.55)] sm:size-24" />
+            <BrixwaveLogo variant="mark" className="size-20 drop-shadow-[0_20px_50px_rgba(59,91,219,0.6)] sm:size-24" />
           </div>
           <h1 className="anim-rise-blur balance mt-8 text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl [animation-delay:350ms]">
             {brixwave.claim}
@@ -88,7 +88,7 @@ export function Hub() {
                 key={design.id}
                 href={design.href}
                 className={cn(
-                  "group anim-rise relative flex flex-col overflow-hidden rounded-3xl border bg-portal-900/70 p-2 backdrop-blur transition-all duration-500 ease-out-quint hover:-translate-y-1.5 hover:border-white/25 hover:shadow-[0_40px_80px_-40px_rgba(99,102,241,0.6)]",
+                  "group anim-rise relative flex flex-col overflow-hidden rounded-3xl border bg-portal-900/70 p-2 backdrop-blur transition-all duration-500 ease-out-quint hover:-translate-y-1.5 hover:border-white/25 hover:shadow-[0_40px_80px_-40px_rgba(59,91,219,0.6)]",
                   active ? "border-emerald-400/60 shadow-[0_0_0_1px_rgba(52,211,153,0.4)]" : "border-white/10",
                 )}
                 style={{ animationDelay: `${650 + i * 120}ms` }}
@@ -110,7 +110,7 @@ export function Hub() {
                   </span>
                 </div>
                 <div className="flex flex-1 flex-col p-5 sm:p-6">
-                  <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-bw-cyan">{design.concept}</p>
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-bw-blue-soft">{design.concept}</p>
                   <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-white">{design.name}</h2>
                   <p className="pretty mt-3 text-[14.5px] leading-relaxed text-portal-300">{design.summary}</p>
                   <ul className="mt-5 flex flex-wrap gap-2" aria-label="Caracteristici">

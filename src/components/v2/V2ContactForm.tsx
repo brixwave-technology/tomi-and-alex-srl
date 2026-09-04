@@ -1,24 +1,27 @@
 "use client";
 
-import { ArrowRight, Confetti } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, CheckCircle } from "@phosphor-icons/react/dist/ssr";
 import { contactSubjects, useContactForm, type ContactValues } from "@/lib/useContactForm";
 import { contact } from "@/data/company";
 import { cn } from "@/lib/cn";
 
 const input =
-  "h-13 w-full rounded-xl border-3 border-ink bg-paper px-4 text-[16px] text-ink placeholder:text-ink/40 transition focus:bg-lime/40 focus:outline-none";
+  "h-12 w-full border border-white/15 bg-carbon-950 px-4 text-[15px] text-white placeholder:text-steel-500 transition focus:border-electric focus:outline-none";
 
 export function V2ContactForm() {
   const form = useContactForm();
 
   if (form.status === "success") {
     return (
-      <div className="v2-sticker flex min-h-[460px] flex-col justify-center rounded-3xl bg-lime p-8 text-ink sm:p-12" role="status" aria-live="polite">
-        <Confetti weight="fill" className="size-14 text-violet" aria-hidden />
-        <h3 className="mt-6 font-v2-display text-4xl font-extrabold uppercase leading-none sm:text-5xl">Am primit! Te sunăm, {form.firstName}.</h3>
-        <p className="mt-4 max-w-md text-[17px] leading-relaxed">Un coleg din echipa de ofertare te contactează în aceeași zi lucrătoare. Între timp, scrolează liniștit.</p>
-        <button type="button" onClick={form.reset} className="v2-sticker mt-10 inline-flex h-13 w-fit items-center gap-2 rounded-full bg-paper px-6 font-v2-display text-[14px] font-extrabold uppercase tracking-wider">
-          Încă o cerere
+      <div className="v2-corners flex min-h-[460px] flex-col justify-center border border-white/10 bg-carbon-800 p-8 sm:p-12" role="status" aria-live="polite">
+        <CheckCircle weight="fill" className="size-10 text-electric" aria-hidden />
+        <p className="mt-6 font-v2-mono text-[11px] uppercase tracking-[0.24em] text-steel-300">Solicitare înregistrată</p>
+        <h3 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Vă mulțumim, {form.firstName}.</h3>
+        <p className="mt-4 max-w-md text-[15.5px] leading-relaxed text-steel-300">
+          Solicitarea a fost transmisă departamentului de ofertare. Veți fi contactat în aceeași zi lucrătoare la numărul indicat.
+        </p>
+        <button type="button" onClick={form.reset} className="mt-10 inline-flex h-11 w-fit items-center border border-white/20 px-6 text-[13.5px] font-semibold text-white transition hover:bg-white/5">
+          Transmiteți o altă solicitare
         </button>
       </div>
     );
@@ -32,15 +35,15 @@ export function V2ContactForm() {
     const { error, errorId, ...props } = form.fieldProps(key);
     return (
       <div className={cn("flex flex-col gap-2", opts.className)}>
-        <label htmlFor={props.id} className="flex items-baseline justify-between font-v2-display text-[13px] font-extrabold uppercase tracking-wider text-ink">
+        <label htmlFor={props.id} className="flex items-baseline justify-between font-v2-mono text-[11px] uppercase tracking-[0.2em] text-steel-300">
           {label}
-          {opts.optional && <span className="font-v2-body text-[12px] font-medium normal-case tracking-normal text-ink/60">opțional</span>}
+          {opts.optional && <span className="text-[10px] normal-case tracking-normal text-steel-500">opțional</span>}
         </label>
         {opts.textarea ? (
-          <textarea rows={5} placeholder={opts.placeholder} {...props} className={cn(input, "h-auto py-3", error && "border-coral bg-coral/10")} />
+          <textarea rows={6} placeholder={opts.placeholder} {...props} className={cn(input, "h-auto py-3", error && "border-red-400")} />
         ) : opts.select ? (
-          <select {...props} className={cn(input, error && "border-coral")}>
-            <option value="">Ce te interesează?</option>
+          <select {...props} className={cn(input, error && "border-red-400")}>
+            <option value="">Selectați tipul solicitării</option>
             {contactSubjects.map((s) => (
               <option key={s} value={s}>
                 {s}
@@ -48,10 +51,10 @@ export function V2ContactForm() {
             ))}
           </select>
         ) : (
-          <input type={opts.type ?? "text"} autoComplete={opts.autoComplete} placeholder={opts.placeholder} {...props} className={cn(input, error && "border-coral bg-coral/10")} />
+          <input type={opts.type ?? "text"} autoComplete={opts.autoComplete} placeholder={opts.placeholder} {...props} className={cn(input, error && "border-red-400")} />
         )}
         {error && (
-          <p id={errorId} className="text-[13px] font-bold text-coral">
+          <p id={errorId} className="text-[13px] text-red-300">
             {error}
           </p>
         )}
@@ -60,18 +63,26 @@ export function V2ContactForm() {
   };
 
   return (
-    <form onSubmit={form.onSubmit} noValidate className="v2-sticker rounded-3xl bg-paper p-6 sm:p-10 [--sticker-rotate:0deg]">
+    <form onSubmit={form.onSubmit} noValidate className="v2-corners border border-white/10 bg-carbon-800 p-6 sm:p-10">
+      <div className="mb-8 flex items-center justify-between border-b border-white/10 pb-5">
+        <p className="font-v2-mono text-[11px] uppercase tracking-[0.24em] text-steel-300">Formular de solicitare · F-01</p>
+        <p className="font-v2-mono text-[11px] uppercase tracking-[0.24em] text-electric">Răspuns în 24 h</p>
+      </div>
       <div className="grid gap-5 sm:grid-cols-2">
-        {field("name", "Cum te cheamă", { autoComplete: "name", placeholder: "Nume și prenume" })}
+        {field("name", "Nume și prenume", { autoComplete: "name", placeholder: "Persoana de contact" })}
         {field("phone", "Telefon", { type: "tel", autoComplete: "tel", placeholder: "07xx xxx xxx" })}
-        {field("company", "Firmă / instituție", { optional: true, autoComplete: "organization", placeholder: "Denumirea" })}
-        {field("email", "E-mail", { type: "email", optional: true, autoComplete: "email", placeholder: "nume@firma.ro" })}
-        {field("subject", "Subiect", { select: true, optional: true, className: "sm:col-span-2" })}
-        {field("message", "Spune-ne ce construiești", { textarea: true, placeholder: "Lucrarea, locația, cantitățile, termenul. Pe scurt e perfect.", className: "sm:col-span-2" })}
+        {field("company", "Companie / instituție", { optional: true, autoComplete: "organization", placeholder: "Denumirea beneficiarului" })}
+        {field("email", "E-mail", { type: "email", optional: true, autoComplete: "email", placeholder: "nume@companie.ro" })}
+        {field("subject", "Tipul solicitării", { select: true, optional: true, className: "sm:col-span-2" })}
+        {field("message", "Descrierea lucrării sau a comenzii", {
+          textarea: true,
+          placeholder: "Obiectivul, amplasamentul, materialele și cantitățile estimate, termenul de execuție.",
+          className: "sm:col-span-2",
+        })}
       </div>
       {form.status === "error" && (
-        <p role="alert" className="mt-6 rounded-xl border-3 border-coral bg-coral/10 px-4 py-3 text-[14px] font-bold text-coral">
-          Nu a mers. Mai încearcă o dată sau sună la {contact.phoneDisplay}.
+        <p role="alert" className="mt-6 border border-red-400/50 bg-red-400/10 px-4 py-3 text-[14px] text-red-200">
+          Solicitarea nu a putut fi transmisă. Reîncercați sau apelați dispeceratul la {contact.phoneDisplay}.
         </p>
       )}
       <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -79,12 +90,12 @@ export function V2ContactForm() {
           type="submit"
           disabled={form.status === "submitting"}
           aria-busy={form.status === "submitting"}
-          className="v2-sticker inline-flex h-14 items-center justify-center gap-2 rounded-full bg-coral px-8 font-v2-display text-[15px] font-extrabold uppercase tracking-wider text-paper disabled:opacity-60 [--sticker-rotate:-1deg]"
+          className="inline-flex h-12 items-center justify-center gap-2 bg-electric px-7 text-[14px] font-semibold text-white transition hover:bg-electric-soft disabled:opacity-60"
         >
-          {form.status === "submitting" ? "Se trimite..." : "Trimite"}
-          <ArrowRight weight="bold" className="size-5" aria-hidden />
+          {form.status === "submitting" ? "Se transmite..." : "Transmiteți solicitarea"}
+          <ArrowRight weight="bold" className="size-4" aria-hidden />
         </button>
-        <p className="text-[13px] leading-relaxed text-ink/60">Zero spam. Folosim datele doar ca să îți răspundem.</p>
+        <p className="text-[12.5px] leading-relaxed text-steel-500">Datele sunt prelucrate exclusiv pentru formularea ofertei.</p>
       </div>
     </form>
   );

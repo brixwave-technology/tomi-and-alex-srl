@@ -9,10 +9,10 @@ Portal web de prezentare pentru **Tomi Alex SRL** (lucrări de infrastructură �
 
 | Rută   | Conținut |
 | ------ | -------- |
-| `/`    | **Index (hub)**: semnătura BRIXWAVE (logo SVG + „Concepte de design dezvoltate exclusiv de BRIXWAVE”), trei carduri mari „Design V1 / V2 / V3” cu miniaturi, starea alegerii clientului |
+| `/`    | **Index (hub)**: semnătura BRIXWAVE (logo Brixwave (cub izometric hexagonal + wordmark „Brix” alb / „wave” albastru) + „Concepte de design dezvoltate exclusiv de BRIXWAVE”), trei carduri mari „Design V1 / V2 / V3” cu miniaturi, starea alegerii clientului |
 | `/v1/` | **Design V1 — Corporate / Autoritate**: layout pe grilă, paletă navy + roșu din logo, tabele de produse, certificări, FAQ, formular de ofertă |
-| `/v2/` | **Design V2 — Creativ / Inovator**: arhitectură asimetrică, paletă coral / lime / violet, stickere, marquee, meniu full-screen, rail orizontal de produse |
-| `/v3/` | **Design V3 — Minimalist / Premium**: spațiu alb generos, tipografie serif supradimensionată (Fraunces), linii fine, animații lente |
+| `/v2/` | **Design V2 — Modern Logistics & High-Tech Fleet**: rail de navigare lateral fix, carbon / oțel / albastru electric, capacități și volume ca într-un centru de comandă (grafice SVG), fișe tehnice, cronologie |
+| `/v3/` | **Design V3 — Infrastructure Elite & Premium Partner**: antracit mat cu textură fină de granit, accente de bronz închis, tipografie geometrică masivă (Sora), capacitate de producție, angajamente de conformitate și mediu |
 
 Fiecare variantă are aceeași structură și același conținut (Despre noi, servicii și direcții de activitate, agregate, clase de beton, prefabricate, proces, referințe, FAQ, contact complet cu formular și hartă, footer cu date juridice) și conține:
 
@@ -21,7 +21,7 @@ Fiecare variantă are aceeași structură și același conținut (Despre noi, se
 
 ## Stack
 
-Next.js 16 (App Router, export static, Turbopack) · React 19 · TypeScript · Tailwind CSS v4 · `@phosphor-icons/react` · fonturi Google self-hosted prin `next/font` (Manrope, Archivo, Syne, Space Grotesk, Fraunces, Inter)
+Next.js 16 (App Router, export static, Turbopack) · React 19 · TypeScript · Tailwind CSS v4 · `@phosphor-icons/react` · fonturi Google self-hosted prin `next/font` (Manrope, Archivo, IBM Plex Sans, IBM Plex Mono, Sora, Inter)
 
 ## Comenzi
 
@@ -47,7 +47,7 @@ src/
     shared/                Reveal (animații la scroll)
     v1/ v2/ v3/            Header, Site, ContactForm și ancorele de navigare ale fiecărui concept
   data/
-    company.ts             tot conținutul companiei (texte, servicii, produse, contact, program, date juridice)
+    company.ts             tot conținutul companiei (texte, servicii, produse, capacități, volume, repere, angajamente, contact, date juridice)
     designs.ts             metadatele celor trei concepte
     brixwave.ts            semnătura BRIXWAVE și adresa la care se trimite confirmarea
     images.ts              manifestul fotografiilor

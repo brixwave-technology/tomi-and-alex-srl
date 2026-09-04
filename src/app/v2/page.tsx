@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Syne } from "next/font/google";
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { DesignShell } from "@/components/portal/DesignShell";
 import { V2Site } from "@/components/v2/V2Site";
 import { designById } from "@/data/designs";
 
-const syne = Syne({
-  variable: "--font-syne",
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-plex-sans",
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "700", "800"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
   subsets: ["latin", "latin-ext"],
-  weight: "variable",
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 export default function DesignV2Page() {
   return (
     <DesignShell designId="v2">
-      <div className={`${syne.variable} ${spaceGrotesk.variable} font-v2-body`}>
+      <div className={`${plexSans.variable} ${plexMono.variable} font-v2`}>
         <V2Site />
       </div>
     </DesignShell>

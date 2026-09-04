@@ -366,6 +366,48 @@ export const process: ProcessStep[] = [
   },
 ];
 
+export type Capacity = { label: string; value: string; unit: string; share: number; note: string };
+
+/** Capacități de producție și logistică (demo, de confirmat cu clientul). `share` este gradul de utilizare mediu, în procente. */
+export const capacities: Capacity[] = [
+  { label: "Agregate sortate", value: "1.200", unit: "t / zi", share: 78, note: "stație de sortare și spălare, două linii" },
+  { label: "Beton proaspăt", value: "420", unit: "mc / zi", share: 71, note: "stație automatizată, 6 autobetoniere, 2 pompe" },
+  { label: "Prefabricate", value: "60", unit: "buc / zi", share: 64, note: "tipare metalice, beton vibrat, hală acoperită" },
+  { label: "Transport propriu", value: "18", unit: "autobasculante", share: 82, note: "24–40 t, GPS și programare centralizată" },
+];
+
+export type YearVolume = { year: string; value: number };
+
+/** Volum anual livrat, în mii de tone de agregate și beton (demo). */
+export const annualVolumes: YearVolume[] = [
+  { year: "2021", value: 186 },
+  { year: "2022", value: 214 },
+  { year: "2023", value: 241 },
+  { year: "2024", value: 268 },
+  { year: "2025", value: 302 },
+];
+
+export type Milestone = { year: string; title: string; description: string };
+
+export const milestones: Milestone[] = [
+  { year: "2008", title: "Înființarea companiei", description: "Primele lucrări de terasamente și rețele de apă în județul Satu Mare." },
+  { year: "2012", title: "Balastiera proprie", description: "Deschiderea exploatării de agregate cu stație de sortare și spălare." },
+  { year: "2016", title: "Stația de betoane", description: "Punerea în funcțiune a stației automatizate și a laboratorului propriu." },
+  { year: "2019", title: "Linia de prefabricate", description: "Producție de tuburi, cămine, borduri și elemente pentru podețe." },
+  { year: "2022", title: "Certificare integrată", description: "Sistem de management integrat calitate, mediu și securitate în muncă." },
+  { year: "2025", title: "Flotă extinsă", description: "18 autobasculante, utilaje noi de compactare și pompe de beton de 36 m." },
+];
+
+export type Commitment = { title: string; description: string };
+
+/** Angajamente de conformitate și mediu, prezentate partenerilor mari. */
+export const commitments: Commitment[] = [
+  { title: "Conformitate ecologică", description: "Autorizație de mediu pentru balastieră și stație, apă recirculată la spălare, refacerea terenurilor exploatate." },
+  { title: "Trasabilitate completă", description: "Fiecare transport de beton și agregate pleacă cu certificat de calitate și buletin de laborator, arhivate cinci ani." },
+  { title: "Securitate în muncă", description: "Zero accidente cu incapacitate temporară în ultimele patru sezoane, instruiri lunare și echipamente certificate." },
+  { title: "Capacitate contractuală", description: "Garanții de bună execuție, asigurare de răspundere civilă profesională și bonitate verificabilă pentru licitații publice." },
+];
+
 export type Faq = { question: string; answer: string };
 
 export const faq: Faq[] = [

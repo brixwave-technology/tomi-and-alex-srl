@@ -8,9 +8,9 @@
   --color-portal-700: #1c2340;
   --color-portal-300: #9aa4c7;
   --color-portal-100: #e8ebf7;
-  --color-bw-cyan: #22d3ee;
-  --color-bw-indigo: #6366f1;
-  --color-bw-magenta: #c026d3;
+  --color-bw-blue: #3b5bdb;
+  --color-bw-blue-soft: #6b85f0;
+  --color-bw-blue-deep: #2a44b0;
 
   /* V1 Corporate */
   --color-navy-950: #07101f;
@@ -24,24 +24,29 @@
   --color-brand: #d23b3c;
   --color-brand-soft: #f26b6b;
 
-  /* V2 Creative */
-  --color-ink: #0e0e10;
-  --color-paper: #fff6e9;
-  --color-coral: #ff4d3d;
-  --color-lime: #cbff3a;
-  --color-violet: #5b2eff;
-  --color-cyan: #18e0ff;
-  --color-sun: #ffc83d;
-  --color-pink: #ff5fb8;
+  /* V2 Modern Logistics & High-Tech Fleet */
+  --color-carbon-950: #090a0c;
+  --color-carbon-900: #0f1113;
+  --color-carbon-800: #171a1e;
+  --color-carbon-700: #21252b;
+  --color-carbon-600: #2c313a;
+  --color-steel-500: #6f7a8a;
+  --color-steel-300: #a9b2c0;
+  --color-silver: #d7dce4;
+  --color-electric: #2f6bff;
+  --color-electric-soft: #6f97ff;
 
-  /* V3 Minimal premium */
-  --color-ivory: #f8f6f1;
-  --color-sand: #efeae0;
-  --color-hair: #e4e0d8;
-  --color-stone: #6e6a63;
-  --color-inkk: #141414;
-  --color-bronze: #9c7c4e;
-  --color-bronze-soft: #c9ae84;
+  /* V3 Infrastructure Elite & Premium Partner */
+  --color-anthracite-950: #0c0c0d;
+  --color-anthracite-900: #141416;
+  --color-anthracite-800: #1c1c1f;
+  --color-anthracite-700: #26262a;
+  --color-granite-500: #6d6a66;
+  --color-granite-300: #a5a19a;
+  --color-limestone: #ece8e1;
+  --color-bronze-dark: #8a6a3c;
+  --color-bronze: #a8814a;
+  --color-bronze-light: #c9a86e;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
@@ -79,9 +84,9 @@
 @theme inline {
   --font-portal: var(--font-manrope), "Manrope", "Inter", system-ui, sans-serif;
   --font-v1: var(--font-archivo), "Archivo", "Inter", system-ui, sans-serif;
-  --font-v2-display: var(--font-syne), "Syne", "Arial Black", system-ui, sans-serif;
-  --font-v2-body: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
-  --font-v3-display: var(--font-fraunces), "Fraunces", "Georgia", serif;
+  --font-v2: var(--font-plex-sans), "IBM Plex Sans", system-ui, sans-serif;
+  --font-v2-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+  --font-v3-display: var(--font-sora), "Sora", "Manrope", system-ui, sans-serif;
   --font-v3-body: var(--font-inter), "Inter", system-ui, sans-serif;
 }
 
@@ -98,7 +103,7 @@ body {
 }
 
 ::selection {
-  background: #6366f1;
+  background: #3b5bdb;
   color: #fff;
 }
 
@@ -265,39 +270,67 @@ body {
   height: 8px;
 }
 
-/* ---------- V2: stickere și rotații ---------- */
-.v2-sticker {
-  border: 3px solid #0e0e10;
-  box-shadow: 6px 6px 0 0 #0e0e10;
-  transition: transform 0.35s var(--ease-spring), box-shadow 0.35s var(--ease-spring);
+/* ---------- V2: linii precise, colțuri tehnice ---------- */
+.v2-corners {
+  position: relative;
 }
-.v2-sticker:hover {
-  transform: translate(-3px, -3px) rotate(var(--sticker-rotate, 0deg));
-  box-shadow: 10px 10px 0 0 #0e0e10;
+.v2-corners::before,
+.v2-corners::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: #2f6bff;
+  border-style: solid;
+  pointer-events: none;
 }
-.v2-outline {
-  -webkit-text-stroke: 2px #0e0e10;
-  color: transparent;
+.v2-corners::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+.v2-corners::after { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+.v2-scan {
+  background-image: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 4px);
 }
-@media (min-width: 640px) {
-  .v2-outline { -webkit-text-stroke-width: 3px; }
+.v2-flow {
+  background-image: linear-gradient(90deg, transparent 0%, rgba(47, 107, 255, 0.35) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: flow 6s linear infinite;
 }
-.v2-highlight {
-  background-image: linear-gradient(120deg, #cbff3a 0%, #cbff3a 100%);
-  background-repeat: no-repeat;
-  background-size: 100% 42%;
-  background-position: 0 88%;
+@keyframes flow {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
 }
+.v2-bar {
+  transform-origin: bottom;
+  transform: scaleY(0);
+  transition: transform 1.1s var(--ease-out-expo);
+  transition-delay: var(--bar-delay, 0ms);
+}
+[data-inview="true"] .v2-bar { transform: scaleY(1); }
+.v2-meter {
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1.2s var(--ease-out-expo);
+  transition-delay: var(--bar-delay, 0ms);
+}
+[data-inview="true"] .v2-meter { transform: scaleX(1); }
 
-/* ---------- V3: serife, linii fine, tranziții lente ---------- */
+/* ---------- V3: granit, bronz, sans geometric masiv ---------- */
 .v3-display {
-  font-variation-settings: "opsz" 144, "SOFT" 30;
-  letter-spacing: -0.035em;
-  line-height: 0.95;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  font-weight: 600;
 }
-.v3-italic {
-  font-style: italic;
-  font-weight: 300;
+.v3-granite {
+  background-color: #141416;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.035) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.03) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 45% 85%, rgba(0, 0, 0, 0.35) 0 1px, transparent 1.5px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0.16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 7px 7px, 11px 11px, 9px 9px, 220px 220px;
+}
+.v3-rule {
+  height: 1px;
+  background: linear-gradient(90deg, #a8814a, rgba(168, 129, 74, 0.15));
 }
 .v3-link {
   position: relative;
@@ -306,10 +339,10 @@ body {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -2px;
+  bottom: -3px;
   height: 1px;
   width: 100%;
-  background: currentColor;
+  background: #c9a86e;
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.6s var(--ease-out-expo);
@@ -317,4 +350,11 @@ body {
 .v3-link:hover::after {
   transform: scaleX(1);
   transform-origin: left;
+}
+.v3-frame {
+  border: 1px solid rgba(168, 129, 74, 0.3);
+  transition: border-color 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo);
+}
+.v3-frame:hover {
+  border-color: #c9a86e;
 }
