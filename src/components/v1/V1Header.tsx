@@ -40,7 +40,7 @@ export function V1Header() {
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
-          scrolled || open ? "border-steel-400/20 bg-navy-950/95 backdrop-blur" : "border-transparent bg-transparent",
+          scrolled || open ? "border-steel-400/20 bg-graphite-950/95 backdrop-blur" : "border-transparent bg-transparent",
         )}
       >
         <div className="mx-auto flex h-[72px] w-full max-w-7xl items-center justify-between px-5 sm:px-8">
@@ -75,7 +75,7 @@ export function V1Header() {
           </button>
         </div>
         {open && (
-          <div id="v1-menu" className="border-t border-steel-400/20 bg-navy-950 px-5 pb-8 pt-4 lg:hidden">
+          <div id="v1-menu" className="border-t border-steel-400/20 bg-graphite-950 px-5 pb-8 pt-4 lg:hidden">
             <nav className="grid" aria-label="Navigare mobilă">
               {v1Nav.map((item) => (
                 <a key={item.href} href={item.href} onClick={() => setOpen(false)} className="border-b border-steel-400/15 py-4 text-lg font-semibold text-white">

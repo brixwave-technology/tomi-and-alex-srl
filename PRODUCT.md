@@ -19,9 +19,9 @@ A selection portal built by BRIXWAVE for Tomi Alex SRL. It opens on an index (hu
 
 ## The three concepts
 
-1. **V1 Corporate Clasic & Autoritate.** Rigid grid, dark navy palette with the red of the logo, tables and certifications, phone number always visible, one conversion intent ("Cere o ofertă").
-2. **V2 Modern Logistics & High-Tech Fleet.** Fixed left navigation rail, carbon / steel / silver palette with restrained electric-blue accents, data-led layout: capacity tiles with utilisation meters, single-series volume chart, technical spec tables, timeline, status bar. IBM Plex Sans and Mono.
-3. **V3 Infrastructure Elite & Premium Partner.** Matte anthracite with a fine granite texture, dark-bronze accents, massive geometric sans-serif headlines (Sora), airy spacing, production-capacity block, compliance and environmental commitments for large contractors.
+1. **V1 Corporate Clasic & Autoritate.** Rigid grid, dark graphite palette with the red of the logo, tables and certifications, phone number always visible, one conversion intent ("Cere o ofertă").
+2. **V2 Industrial Authority & Trust.** Heavy-duty layout: red utility bar, black header with a massive order button, hazard stripes, asphalt-black and concrete-grey sections, quick material-order form in the hero, spec tables with black plate headers, capacity tiles with utilisation meters and a single-series volume chart. Barlow and Barlow Condensed.
+3. **V3 Infrastructure Elite & Premium Partner.** Matte anthracite with a fine granite texture, restrained accents in the logo red, massive geometric sans-serif headlines (Sora), airy spacing, production-capacity block, compliance and environmental commitments for large contractors.
 
 ## Shared content (all three)
 
@@ -33,7 +33,7 @@ Confirmed facts: company name, founding year 2008 (from the logo), coordinates 4
 
 ## Brand commitments
 
-- Tomi Alex logo (red wordmark, EST. 2008) used in the headers of all three concepts. Red from the logo carries through V1. Tone of voice: formal, sober, second person plural.
+- Tomi Alex logo (red wordmark, EST. 2008) used in the headers of all three concepts. All three concepts use only the logo palette: red, grey, black, white. Tone of voice: formal, sober, second person plural.
 - BRIXWAVE signature on the index: the Brixwave logo (isometric cube in a hexagonal outline, white-to-royal-blue gradient; wordmark "Brix" in white and "wave" in royal blue #3B5BDB) recreated as SVG, plus the claim "Concepte de design dezvoltate exclusiv de BRIXWAVE".
 - Language: Romanian throughout.
 

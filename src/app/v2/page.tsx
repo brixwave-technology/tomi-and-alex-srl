@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { Barlow, Barlow_Condensed } from "next/font/google";
 import { DesignShell } from "@/components/portal/DesignShell";
 import { V2Site } from "@/components/v2/V2Site";
 import { designById } from "@/data/designs";
 
-const plexSans = IBM_Plex_Sans({
-  variable: "--font-plex-sans",
+const barlow = Barlow({
+  variable: "--font-barlow",
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
+const barlowCondensed = Barlow_Condensed({
+  variable: "--font-barlow-condensed",
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500"],
+  weight: ["600", "700", "800"],
   display: "swap",
 });
 
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 export default function DesignV2Page() {
   return (
     <DesignShell designId="v2">
-      <div className={`${plexSans.variable} ${plexMono.variable} font-v2`}>
+      <div className={`${barlow.variable} ${barlowCondensed.variable} font-v2`}>
         <V2Site />
       </div>
     </DesignShell>

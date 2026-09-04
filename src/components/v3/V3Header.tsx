@@ -39,7 +39,7 @@ export function V3Header() {
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-50 border-b transition-all duration-700 ease-out-expo",
-          scrolled || open ? "border-bronze/20 bg-anthracite-950/90 py-3 backdrop-blur-md" : "border-transparent bg-transparent py-6",
+          scrolled || open ? "border-brand/20 bg-anthracite-950/90 py-3 backdrop-blur-md" : "border-transparent bg-transparent py-6",
         )}
       >
         <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-6 sm:px-10">
@@ -57,7 +57,7 @@ export function V3Header() {
             <a href={`tel:${contact.phone}`} className="text-[13px] font-medium tracking-wide text-limestone">
               {contact.phoneDisplay}
             </a>
-            <a href="#contact" className="inline-flex h-10 items-center border border-bronze px-5 text-[11.5px] font-medium uppercase tracking-[0.2em] text-bronze-light transition hover:bg-bronze hover:text-anthracite-950">
+            <a href="#contact" className="inline-flex h-10 items-center border border-brand px-5 text-[11.5px] font-medium uppercase tracking-[0.2em] text-brand-soft transition hover:bg-brand hover:text-anthracite-950">
               Solicitați o ofertă
             </a>
           </div>
@@ -88,7 +88,7 @@ export function V3Header() {
               href={item.href}
               onClick={() => setOpen(false)}
               tabIndex={open ? 0 : -1}
-              className={cn("border-b border-bronze/20 py-5 font-v3-display text-3xl font-semibold tracking-tight text-limestone transition-all duration-700 ease-out-expo", open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0")}
+              className={cn("border-b border-brand/20 py-5 font-v3-display text-3xl font-semibold tracking-tight text-limestone transition-all duration-700 ease-out-expo", open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0")}
               style={{ transitionDelay: open ? `${100 + i * 60}ms` : "0ms" }}
             >
               {item.label}
@@ -102,7 +102,7 @@ export function V3Header() {
           <a href={`mailto:${contact.email}`} tabIndex={open ? 0 : -1}>
             {contact.email}
           </a>
-          <BackToIndexLink className="mt-4 text-bronze-light">← Înapoi la Index</BackToIndexLink>
+          <BackToIndexLink className="mt-4 text-brand-soft">← Înapoi la Index</BackToIndexLink>
         </div>
       </div>
     </>
