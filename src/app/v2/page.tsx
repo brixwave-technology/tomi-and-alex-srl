@@ -3,7 +3,6 @@ import { Barlow, Barlow_Condensed } from "next/font/google";
 import { DesignShell } from "@/components/portal/DesignShell";
 import { V2Site } from "@/components/v2/V2Site";
 import { designById } from "@/data/designs";
-import { getBrixwaveAssets } from "@/lib/brandAssets";
 
 const barlow = Barlow({
   variable: "--font-barlow",
@@ -29,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function DesignV2Page() {
   return (
-    <DesignShell designId="v2" markSrc={getBrixwaveAssets().mark}>
+    <DesignShell designId="v2">
       <div className={`${barlow.variable} ${barlowCondensed.variable} font-v2`}>
         <V2Site />
       </div>

@@ -3,7 +3,6 @@ import { Inter, Sora } from "next/font/google";
 import { DesignShell } from "@/components/portal/DesignShell";
 import { V3Site } from "@/components/v3/V3Site";
 import { designById } from "@/data/designs";
-import { getBrixwaveAssets } from "@/lib/brandAssets";
 
 const sora = Sora({
   variable: "--font-sora",
@@ -29,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function DesignV3Page() {
   return (
-    <DesignShell designId="v3" markSrc={getBrixwaveAssets().mark}>
+    <DesignShell designId="v3">
       <div className={`${sora.variable} ${inter.variable} font-v3-body`}>
         <V3Site />
       </div>

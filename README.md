@@ -9,7 +9,7 @@ Portal web de prezentare pentru **Tomi Alex SRL** (lucrări de infrastructură �
 
 | Rută   | Conținut |
 | ------ | -------- |
-| `/`    | **Index (hub)**: semnătura BRIXWAVE (logo Brixwave (cub izometric hexagonal + wordmark „Brix” alb / „wave” albastru) + „Concepte de design dezvoltate exclusiv de BRIXWAVE”), trei carduri mari „Design V1 / V2 / V3” cu miniaturi, starea alegerii clientului |
+| `/`    | **Index (hub)**: semnătura BRIXWAVE (logo Brixwave original (simbolul cub cu undă + wordmark „Brix” alb / „wave” albastru), legat de brixwave.com + „Concepte de design dezvoltate exclusiv de BRIXWAVE”), trei carduri mari „Design V1 / V2 / V3” cu miniaturi, starea alegerii clientului |
 | `/v1/` | **Design V1 — Corporate / Autoritate**: layout pe grilă, paletă navy + roșu din logo, tabele de produse, certificări, FAQ, formular de ofertă |
 | `/v2/` | **Design V2 — Industrial Authority & Trust**: heavy-duty, asfalt negru / beton gri / roșu, bară utilitară roșie, butoane masive, comandă rapidă de materiale în hero, fișe tehnice, benzi de semnalizare, capacități cu grafic SVG |
 | `/v3/` | **Design V3 — Infrastructure Elite & Premium Partner**: antracit mat cu textură fină de granit, accente rafinate în roșul logo-ului, tipografie geometrică masivă (Sora), capacitate de producție, angajamente de conformitate și mediu |
@@ -60,7 +60,7 @@ public/images/             fotografii (temporar stock) și logo-ul Tomi Alex
 ## Cum se actualizează conținutul
 
 - **Texte, servicii, produse, telefon, e-mail, adresă, program, date juridice, cifre:** `src/data/company.ts`. Datele de contact, juridice și cifrele de activitate sunt completate demonstrativ pentru ca portalul să arate ca un produs finalizat și se înlocuiesc cu datele reale ale clientului din acest singur fișier.
-- **Logo-ul original Brixwave pe Index:** adăugați fișierele `public/images/brixwave-logo.png` (simbol + wordmark) și `public/images/brixwave-mark.png` (doar simbolul); sunt acceptate și `.svg` / `.webp`. La următorul build, Index-ul și bara plutitoare le folosesc automat în locul replicii SVG (`src/lib/brandAssets.ts`).
+- **Logo-ul Brixwave:** simbolul original este `public/images/brixwave-mark.png` (PNG transparent derivat din `logo.jfif`); wordmark-ul „Brixwave” este randat ca text lângă simbol (`src/components/portal/BrixwaveLogo.tsx`). Orice logo sau mențiune Brixwave duce la adresa din `brixwave.url`.
 - **Adresa de e-mail la care ajunge confirmarea alegerii:** `src/data/brixwave.ts`.
 - **Formularul de contact:** setați `contact.formEndpoint` în `src/data/company.ts` cu un serviciu (Formspree, Resend etc.); până atunci rulează în mod demonstrativ, cu validare și stare de succes.
 - **Imagini:** înlocuiți fișierele din `public/images/` și actualizați textul alternativ în `src/data/images.ts`.

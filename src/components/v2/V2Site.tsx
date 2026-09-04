@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Certificate, Clock, Envelope, MapPin, Phone, ShieldCheck, Truck } from "@phosphor-icons/react/dist/ssr";
 import { Reveal } from "@/components/shared/Reveal";
 import { BackToIndexLink, ChooseDesignButton } from "@/components/portal/DesignShell";
+import { BrixwaveLink } from "@/components/portal/BrixwaveLogo";
 import { V2Header } from "./V2Header";
 import { V2ContactForm } from "./V2ContactForm";
 import { V2QuickOrder } from "./V2QuickOrder";
@@ -473,7 +474,7 @@ export function V2Site() {
             <div>
               <Kicker dark>Design V2 · Industrial Authority &amp; Trust</Kicker>
               <h2 className="v2-display mt-3 font-v2-display text-4xl">Corespunde această direcție companiei dumneavoastră?</h2>
-              <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-concrete-300">Confirmați varianta preferată sau reveniți la Index pentru a compara cu Design V1 și Design V3. Concept dezvoltat de {brixwave.name}.</p>
+              <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-concrete-300">Confirmați varianta preferată sau reveniți la Index pentru a compara cu Design V1 și Design V3. Concept dezvoltat de <BrixwaveLink>{brixwave.name}</BrixwaveLink>.</p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <ChooseDesignButton className="inline-flex h-14 items-center justify-center bg-brand px-8 font-v2-display text-xl font-bold uppercase tracking-wide text-white transition hover:bg-brand-soft data-[chosen]:bg-emerald-500" />
@@ -543,7 +544,7 @@ export function V2Site() {
           <p>
             © {new Date().getFullYear()} {company.name}. Toate drepturile rezervate.
           </p>
-          <p>Website realizat de {brixwave.name}.</p>
+          <p>Website realizat de <BrixwaveLink>{brixwave.name}</BrixwaveLink>.</p>
         </Wrap>
       </footer>
     </div>

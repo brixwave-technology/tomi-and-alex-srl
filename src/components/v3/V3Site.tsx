@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Handshake, Leaf, Scales, ShieldCheck } from "@phosphor-icons/react/dist/ssr";
 import { Reveal } from "@/components/shared/Reveal";
 import { BackToIndexLink, ChooseDesignButton } from "@/components/portal/DesignShell";
+import { BrixwaveLink } from "@/components/portal/BrixwaveLogo";
 import { V3Header } from "./V3Header";
 import { V3ContactForm } from "./V3ContactForm";
 import { v3Nav } from "./nav";
@@ -468,7 +469,7 @@ export function V3Site() {
             <h2 className="v3-display balance mx-auto mt-8 max-w-3xl font-v3-display text-4xl text-limestone sm:text-5xl">
               Este aceasta <span className="text-brand-soft">direcția</span> pe care o alegeți?
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-granite-300">Confirmați varianta preferată sau reveniți la Index pentru a compara cu Design V1 și Design V2. Concept dezvoltat de {brixwave.name}.</p>
+            <p className="mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-granite-300">Confirmați varianta preferată sau reveniți la Index pentru a compara cu Design V1 și Design V2. Concept dezvoltat de <BrixwaveLink>{brixwave.name}</BrixwaveLink>.</p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <ChooseDesignButton className="inline-flex h-14 items-center justify-center border border-brand bg-brand px-8 text-[11.5px] font-medium uppercase tracking-[0.22em] text-anthracite-950 transition-all duration-500 hover:bg-brand-soft data-[chosen]:border-emerald-500 data-[chosen]:bg-emerald-500" />
               <BackToIndexLink className="inline-flex h-14 items-center justify-center border border-limestone/40 px-8 text-[11.5px] font-medium uppercase tracking-[0.22em] text-limestone transition-all duration-500 hover:border-limestone hover:bg-limestone hover:text-anthracite-950" />
@@ -532,7 +533,7 @@ export function V3Site() {
             <p>
               © {new Date().getFullYear()} {company.name}
             </p>
-            <p>Website realizat de {brixwave.name}</p>
+            <p>Website realizat de <BrixwaveLink>{brixwave.name}</BrixwaveLink></p>
           </div>
         </Container>
       </footer>
