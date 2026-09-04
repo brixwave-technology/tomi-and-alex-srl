@@ -19,9 +19,9 @@ A selection portal built by BRIXWAVE for Tomi Alex SRL. It opens on an index (hu
 
 ## The three concepts
 
-1. **V1 Corporate / Autoritate.** Strict grid, dark navy palette with the red of the logo, tables and certifications, phone number always visible, one conversion intent ("Cere o ofertă").
-2. **V2 Creativ / Inovator.** Asymmetric architecture, coral / lime / violet palette, sticker cards with hard shadows, marquee bands, full-screen menu, horizontal product rail, spring transitions.
-3. **V3 Minimalist / Premium.** Generous white space, oversized Fraunces serif headlines with bronze italics, hairlines, slow reveals and scroll-driven image zoom.
+1. **V1 Corporate Clasic & Autoritate.** Rigid grid, dark navy palette with the red of the logo, tables and certifications, phone number always visible, one conversion intent ("Cere o ofertă").
+2. **V2 Modern Logistics & High-Tech Fleet.** Fixed left navigation rail, carbon / steel / silver palette with restrained electric-blue accents, data-led layout: capacity tiles with utilisation meters, single-series volume chart, technical spec tables, timeline, status bar. IBM Plex Sans and Mono.
+3. **V3 Infrastructure Elite & Premium Partner.** Matte anthracite with a fine granite texture, dark-bronze accents, massive geometric sans-serif headlines (Sora), airy spacing, production-capacity block, compliance and environmental commitments for large contractors.
 
 ## Shared content (all three)
 
@@ -33,8 +33,8 @@ Confirmed facts: company name, founding year 2008 (from the logo), coordinates 4
 
 ## Brand commitments
 
-- Tomi Alex logo (red wordmark, EST. 2008) used in V1; V2 and V3 reinterpret the name typographically. Red from the logo carries through V1.
-- BRIXWAVE signature on the index: SVG mark (block cut by a wave, cyan to magenta gradient) and wordmark, claim "Concepte de design dezvoltate exclusiv de BRIXWAVE".
+- Tomi Alex logo (red wordmark, EST. 2008) used in the headers of all three concepts. Red from the logo carries through V1. Tone of voice: formal, sober, second person plural.
+- BRIXWAVE signature on the index: the Brixwave logo (isometric cube in a hexagonal outline, white-to-royal-blue gradient; wordmark "Brix" in white and "wave" in royal blue #3B5BDB) recreated as SVG, plus the claim "Concepte de design dezvoltate exclusiv de BRIXWAVE".
 - Language: Romanian throughout.
 
 ## Accessibility

@@ -4,60 +4,39 @@ type Props = {
   className?: string;
   /** "mark" doar simbolul, "full" simbol și wordmark. */
   variant?: "mark" | "full";
-  /** Culoarea de bază; simbolul folosește currentColor plus un gradient propriu. */
+  /** Culoarea wordmark-ului „Brix”; „wave” rămâne albastru. */
   tone?: "light" | "dark";
   title?: string;
 };
 
 /**
- * Logo BRIXWAVE: un bloc („brix”) tăiat de o undă („wave”), în gradient
- * cyan–violet, urmat de wordmark-ul cu litere late.
+ * Logo BRIXWAVE: cub izometric în contur hexagonal, trasat în gradient
+ * alb → albastru regal, urmat de wordmark-ul „Brix” (alb) + „wave” (albastru).
  */
-export function BrixwaveLogo({ className, variant = "full", tone = "light", title = "BRIXWAVE" }: Props) {
-  const ink = tone === "light" ? "#FFFFFF" : "#0B0D12";
-  const gradientId = `bw-grad-${variant}-${tone}`;
+export function BrixwaveLogo({ className, variant = "full", tone = "light", title = "Brixwave" }: Props) {
+  const ink = tone === "light" ? "#FFFFFF" : "#0B0F1A";
+  const id = `bw-${variant}-${tone}`;
+  const stroke = `url(#${id})`;
   return (
-    <svg
-      className={cn("block", className)}
-      viewBox={variant === "full" ? "0 0 372 64" : "0 0 64 64"}
-      role="img"
-      aria-label={title}
-      fill="none"
-    >
+    <svg className={cn("block", className)} viewBox={variant === "full" ? "0 0 344 72" : "0 0 72 72"} role="img" aria-label={title} fill="none">
       <title>{title}</title>
       <defs>
-        <linearGradient id={gradientId} x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#22D3EE" />
-          <stop offset="0.55" stopColor="#6366F1" />
-          <stop offset="1" stopColor="#C026D3" />
+        <linearGradient id={id} x1="12" y1="8" x2="60" y2="64" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#F4F7FF" />
+          <stop offset="0.45" stopColor="#8FA5F2" />
+          <stop offset="1" stopColor="#3B5BDB" />
         </linearGradient>
       </defs>
-      {/* Blocul */}
-      <rect x="4" y="4" width="56" height="56" rx="14" fill={`url(#${gradientId})`} />
-      {/* Unda care taie blocul */}
-      <path
-        d="M4 38 C 14 26, 22 26, 32 38 S 50 50, 60 38 L 60 46 C 50 58, 42 58, 32 46 S 14 34, 4 46 Z"
-        fill={ink}
-        fillOpacity="0.92"
-      />
-      <path
-        d="M4 24 C 14 12, 22 12, 32 24 S 50 36, 60 24"
-        stroke={ink}
-        strokeOpacity="0.55"
-        strokeWidth="4"
-        strokeLinecap="round"
-      />
+      {/* Contur hexagonal */}
+      <path d="M36 5 L63 20.5 V51.5 L36 67 L9 51.5 V20.5 Z" stroke={stroke} strokeWidth="2.6" strokeLinejoin="round" />
+      {/* Muchiile cubului */}
+      <path d="M36 67 V36 M36 36 L9 20.5 M36 36 L63 20.5" stroke={stroke} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Cubul interior, pentru adâncime */}
+      <path d="M36 21 L49 28.5 V44 L36 51.5 L23 44 V28.5 Z M36 51.5 V36.5 M36 36.5 L23 28.5 M36 36.5 L49 28.5" stroke={stroke} strokeWidth="1.6" strokeOpacity="0.85" strokeLinejoin="round" />
       {variant === "full" && (
-        <text
-          x="80"
-          y="45"
-          fill={ink}
-          fontFamily="var(--font-manrope), 'Manrope', 'Inter', system-ui, sans-serif"
-          fontWeight="800"
-          fontSize="36"
-          letterSpacing="6"
-        >
-          BRIXWAVE
+        <text x="88" y="49" fontFamily="var(--font-manrope), 'Manrope', 'Poppins', system-ui, sans-serif" fontWeight="800" fontSize="38" letterSpacing="-0.5">
+          <tspan fill={ink}>Brix</tspan>
+          <tspan fill="#3B5BDB">wave</tspan>
         </text>
       )}
     </svg>

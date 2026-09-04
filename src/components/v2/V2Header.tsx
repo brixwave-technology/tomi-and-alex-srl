@@ -1,14 +1,36 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Phone, X } from "@phosphor-icons/react/dist/ssr";
+import { List, Phone, X } from "@phosphor-icons/react/dist/ssr";
 import { BackToIndexLink } from "@/components/portal/DesignShell";
 import { company, contact } from "@/data/company";
+import { logo } from "@/data/images";
 import { cn } from "@/lib/cn";
 import { v2Nav } from "./nav";
 
+/**
+ * Navigarea V2: rail vertical fix pe desktop (ca într-un centru de comandă),
+ * bară superioară compactă cu meniu pe mobil. Secțiunea activă este urmărită
+ * cu IntersectionObserver.
+ */
 export function V2Header() {
+  const [active, setActive] = useState(v2Nav[0].href);
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const sections = v2Nav.map((n) => document.getElementById(n.href.slice(1))).filter(Boolean) as HTMLElement[];
+    if (sections.length === 0) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(`#${visible.target.id}`);
+      },
+      { rootMargin: "-35% 0px -55% 0px", threshold: [0, 0.2, 0.5] },
+    );
+    sections.forEach((s) => io.observe(s));
+    return () => io.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -24,69 +46,87 @@ export function V2Header() {
 
   return (
     <>
-      <header className="pointer-events-none fixed inset-x-0 top-0 z-50 flex items-start justify-between p-4 sm:p-6">
-        <a
-          href="#top"
-          className="v2-sticker pointer-events-auto anim-pop inline-flex -rotate-3 items-center gap-2 whitespace-nowrap rounded-xl bg-ink px-4 py-2.5 font-v2-display text-[15px] font-extrabold uppercase tracking-wider text-lime [--sticker-rotate:-3deg] [--pop-rotate:-3deg]"
-          aria-label={`${company.name}, începutul paginii`}
-        >
-          {company.shortName}
-          <span className="rounded-full bg-lime px-1.5 py-0.5 text-[9px] text-ink">est. {company.established}</span>
+      {/* Rail lateral, desktop */}
+      <aside className="fixed inset-y-0 left-0 z-50 hidden w-[232px] flex-col border-r border-white/10 bg-carbon-950 lg:flex" aria-label="Navigare principală">
+        <a href="#top" className="flex h-[72px] items-center border-b border-white/10 px-6" aria-label={`${company.name}, începutul paginii`}>
+          <Image src={logo.wordmark.light} alt={company.name} width={logo.wordmark.width} height={logo.wordmark.height} className="h-7 w-auto" priority />
         </a>
-        <div className="pointer-events-auto flex items-center gap-2">
-          <a
-            href={`tel:${contact.phone}`}
-            className="v2-sticker anim-pop hidden rotate-2 items-center gap-2 rounded-full bg-sun px-4 py-2.5 text-[14px] font-bold text-ink [--sticker-rotate:2deg] [--pop-rotate:2deg] [animation-delay:120ms] sm:inline-flex"
-          >
-            <Phone weight="fill" className="size-4" aria-hidden />
+        <nav className="flex-1 overflow-y-auto px-3 py-6">
+          <p className="px-3 font-v2-mono text-[10px] uppercase tracking-[0.24em] text-steel-500">Secțiuni</p>
+          <ul className="mt-3 grid gap-0.5">
+            {v2Nav.map((item) => {
+              const isActive = active === item.href;
+              return (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    className={cn(
+                      "group flex items-center gap-3 border-l-2 px-3 py-2.5 text-[13.5px] font-medium transition-colors",
+                      isActive ? "border-electric bg-white/[0.04] text-white" : "border-transparent text-steel-300 hover:bg-white/[0.03] hover:text-white",
+                    )}
+                    aria-current={isActive ? "true" : undefined}
+                  >
+                    <span className={cn("font-v2-mono text-[11px]", isActive ? "text-electric" : "text-steel-500")}>{item.code}</span>
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+        <div className="border-t border-white/10 p-5">
+          <p className="font-v2-mono text-[10px] uppercase tracking-[0.24em] text-steel-500">Dispecerat</p>
+          <a href={`tel:${contact.phone}`} className="mt-2 flex items-center gap-2 text-[15px] font-semibold text-white hover:text-electric-soft">
+            <Phone weight="fill" className="size-4 text-electric" aria-hidden />
             {contact.phoneDisplay}
+          </a>
+          <p className="mt-1 text-[12px] text-steel-500">{contact.hoursSummary}</p>
+          <a href="#contact" className="mt-4 flex h-11 items-center justify-center bg-electric text-[13px] font-semibold text-white transition hover:bg-electric-soft">
+            Solicitați o ofertă
+          </a>
+          <BackToIndexLink className="mt-3 block text-center text-[12px] text-steel-500 underline-offset-4 hover:text-white hover:underline" />
+        </div>
+      </aside>
+
+      {/* Bară superioară, mobil și tabletă */}
+      <header className="fixed inset-x-0 top-0 z-50 flex h-16 items-center justify-between border-b border-white/10 bg-carbon-950/95 px-4 backdrop-blur lg:hidden">
+        <a href="#top" aria-label={`${company.name}, începutul paginii`}>
+          <Image src={logo.wordmark.light} alt={company.name} width={logo.wordmark.width} height={logo.wordmark.height} className="h-6 w-auto" priority />
+        </a>
+        <div className="flex items-center gap-2">
+          <a href={`tel:${contact.phone}`} className="inline-flex size-10 items-center justify-center border border-white/15 text-white" aria-label={`Sunați la ${contact.phoneDisplay}`}>
+            <Phone weight="fill" className="size-4 text-electric" aria-hidden />
           </a>
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="v2-sticker anim-pop inline-flex h-12 items-center gap-2 rounded-full bg-coral px-5 font-v2-display text-[14px] font-extrabold uppercase tracking-wider text-paper [--sticker-rotate:-2deg] [--pop-rotate:0deg] [animation-delay:240ms]"
+            className="inline-flex size-10 items-center justify-center border border-white/15 text-white"
             aria-expanded={open}
             aria-controls="v2-menu"
+            aria-label={open ? "Închide meniul" : "Deschide meniul"}
           >
-            {open ? <X weight="bold" className="size-5" aria-hidden /> : "Meniu"}
+            {open ? <X weight="bold" className="size-5" aria-hidden /> : <List weight="bold" className="size-5" aria-hidden />}
           </button>
         </div>
       </header>
-
       <div
         id="v2-menu"
-        className={cn(
-          "fixed inset-0 z-40 grid grid-rows-[1fr_auto] bg-violet text-paper transition-[clip-path] duration-700 ease-out-expo",
-          open ? "pointer-events-auto [clip-path:circle(150%_at_100%_0%)]" : "pointer-events-none [clip-path:circle(0%_at_100%_0%)]",
-        )}
+        className={cn("fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col bg-carbon-950 px-4 pb-8 pt-4 transition-opacity duration-300 lg:hidden", open ? "opacity-100" : "pointer-events-none opacity-0")}
         aria-hidden={!open}
       >
-        <nav className="flex flex-col justify-center px-6 sm:px-14" aria-label="Navigare principală">
-          {v2Nav.map((item, i) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              tabIndex={open ? 0 : -1}
-              className="group flex items-baseline gap-4 border-b border-paper/20 py-3 font-v2-display text-3xl font-extrabold uppercase leading-none transition hover:text-lime sm:text-6xl lg:text-7xl"
-              style={{ transitionDelay: open ? `${i * 60}ms` : "0ms" }}
-            >
-              <span className="font-v2-body text-sm font-bold text-lime">0{i + 1}</span>
+        <nav className="grid" aria-label="Navigare mobilă">
+          {v2Nav.map((item) => (
+            <a key={item.href} href={item.href} onClick={() => setOpen(false)} tabIndex={open ? 0 : -1} className="flex items-center gap-4 border-b border-white/10 py-4 text-[17px] font-medium text-white">
+              <span className="font-v2-mono text-[12px] text-electric">{item.code}</span>
               {item.label}
-              <ArrowUpRight weight="bold" className="ml-auto size-8 -rotate-45 opacity-0 transition group-hover:rotate-0 group-hover:opacity-100" aria-hidden />
             </a>
           ))}
         </nav>
-        <div className="flex flex-col gap-4 border-t border-paper/20 px-6 py-6 text-[14px] sm:flex-row sm:items-center sm:justify-between sm:px-14">
-          <div className="flex flex-wrap gap-x-6 gap-y-2">
-            <a href={`tel:${contact.phone}`} tabIndex={open ? 0 : -1} className="font-bold hover:text-lime">
-              {contact.phoneDisplay}
-            </a>
-            <a href={`mailto:${contact.email}`} tabIndex={open ? 0 : -1} className="font-bold hover:text-lime">
-              {contact.email}
-            </a>
-          </div>
-          <BackToIndexLink className="font-bold underline underline-offset-4 hover:text-lime">← Înapoi la Index</BackToIndexLink>
+        <div className="mt-auto grid gap-3">
+          <a href="#contact" onClick={() => setOpen(false)} tabIndex={open ? 0 : -1} className="flex h-12 items-center justify-center bg-electric text-[14px] font-semibold text-white">
+            Solicitați o ofertă
+          </a>
+          <BackToIndexLink className="text-center text-[13px] text-steel-300 underline-offset-4 hover:underline" />
         </div>
       </div>
     </>

@@ -100,7 +100,7 @@ function FloatingBar({
               "inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-xl px-5 text-[13px] font-bold transition sm:flex-none sm:rounded-full",
               isChosen
                 ? "bg-emerald-400 text-portal-950 hover:bg-emerald-300"
-                : "bg-[linear-gradient(120deg,#22d3ee,#6366f1_55%,#c026d3)] text-white shadow-[0_10px_30px_-10px_rgba(99,102,241,0.9)] hover:brightness-110",
+                : "bg-bw-blue text-white shadow-[0_10px_30px_-10px_rgba(59,91,219,0.9)] hover:bg-bw-blue-soft",
             )}
             aria-live="polite"
           >
@@ -241,7 +241,7 @@ function ChooseDialog({
             <div className="mt-6 grid gap-2 sm:grid-cols-2">
               <a
                 href={mailto}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[linear-gradient(120deg,#22d3ee,#6366f1_55%,#c026d3)] px-5 text-[14px] font-bold text-white transition hover:brightness-110"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-bw-blue px-5 text-[14px] font-bold text-white transition hover:bg-bw-blue-soft"
               >
                 <EnvelopeSimple weight="bold" className="size-4" aria-hidden />
                 Trimite către {brixwave.name}
@@ -299,7 +299,7 @@ function ChooseDialog({
                   onChange={(e) => setName(e.target.value)}
                   autoComplete="name"
                   placeholder="Nume și prenume"
-                  className="h-12 rounded-xl border border-white/15 bg-portal-950/60 px-4 text-[15px] font-normal text-white placeholder:text-portal-300/60 focus:border-bw-indigo focus:outline-none"
+                  className="h-12 rounded-xl border border-white/15 bg-portal-950/60 px-4 text-[15px] font-normal text-white placeholder:text-portal-300/60 focus:border-bw-blue focus:outline-none"
                 />
               </label>
               <label className="grid gap-1.5 text-[13px] font-semibold">
@@ -309,7 +309,7 @@ function ChooseDialog({
                   onChange={(e) => setNote(e.target.value)}
                   rows={3}
                   placeholder="Ce v-a plăcut, ce ați ajusta, ce lipsește."
-                  className="rounded-xl border border-white/15 bg-portal-950/60 px-4 py-3 text-[15px] font-normal text-white placeholder:text-portal-300/60 focus:border-bw-indigo focus:outline-none"
+                  className="rounded-xl border border-white/15 bg-portal-950/60 px-4 py-3 text-[15px] font-normal text-white placeholder:text-portal-300/60 focus:border-bw-blue focus:outline-none"
                 />
               </label>
             </div>
@@ -323,7 +323,7 @@ function ChooseDialog({
               </button>
               <button
                 type="submit"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[linear-gradient(120deg,#22d3ee,#6366f1_55%,#c026d3)] px-6 text-[14px] font-bold text-white transition hover:brightness-110"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-bw-blue px-6 text-[14px] font-bold text-white transition hover:bg-bw-blue-soft"
               >
                 <Check weight="bold" className="size-4" aria-hidden />
                 Confirm: aleg {design.label}
