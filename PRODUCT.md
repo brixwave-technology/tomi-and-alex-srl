@@ -23,6 +23,10 @@ A selection portal built by BRIXWAVE for Tomi Alex SRL. It opens on an index (hu
 2. **V2 Industrial Authority & Trust.** Heavy-duty layout: red utility bar, black header with a massive order button, hazard stripes, asphalt-black and concrete-grey sections, quick material-order form in the hero, spec tables with black plate headers, capacity tiles with utilisation meters and a single-series volume chart. Barlow and Barlow Condensed.
 3. **V3 Infrastructure Elite & Premium Partner.** Matte anthracite with a fine granite texture, restrained accents in the logo red, massive geometric sans-serif headlines (Sora), airy spacing, production-capacity block, compliance and environmental commitments for large contractors.
 
+## Structure (all three)
+
+Five pages in the navigation bar, as requested by the client: Acasă (company presentation), Agregate (nisip, balast, sort 4–8, sort 8–16), Stație betoane (any concrete class), Prefabricate (five products), Contact. Fully responsive; on mobile and tablet a floating "Sună acum" button (a `tel:` link) is always visible and starts the call instantly. The original Tomi Alex logo, including the wheel-loader illustration, is shown unchanged on a white plate in every header and footer.
+
 ## Shared content (all three)
 
 Hero with the brand claim, "Despre noi" (story, mission, values, key figures), four business directions, six infrastructure services in detail, aggregates, concrete classes, precast products, four-step process, certifications, references, FAQ, contact section with phone, e-mails, address, opening hours, map and a validated contact form, footer with legal details. No placeholder text anywhere.

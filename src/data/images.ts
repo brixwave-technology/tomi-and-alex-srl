@@ -31,8 +31,8 @@ export const logo = {
   full: {
     dark: withBase("/images/logo-tomi-alex.png"),
     light: withBase("/images/logo-tomi-alex-light.png"),
-    width: 700,
-    height: 385,
+    width: 669,
+    height: 354,
   },
   wordmark: {
     dark: withBase("/images/logo-wordmark.png"),

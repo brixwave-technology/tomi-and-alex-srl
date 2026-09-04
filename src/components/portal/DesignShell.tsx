@@ -76,8 +76,8 @@ function FloatingBar({
   onChoose: () => void;
 }) {
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[90] flex justify-center px-3 pb-3 sm:pb-5 font-portal">
-      <div className="pointer-events-auto flex w-full max-w-3xl items-center gap-2 rounded-2xl border border-white/10 bg-portal-900/90 p-2 text-portal-100 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl sm:gap-3 sm:rounded-full sm:pl-4">
+    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[90] flex justify-center px-2 pb-2 sm:px-3 sm:pb-5 font-portal">
+      <div className="pointer-events-auto flex w-full max-w-3xl items-center gap-2 rounded-2xl border border-white/10 bg-portal-900/90 p-1.5 text-portal-100 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl sm:gap-3 sm:rounded-full sm:p-2 sm:pl-4">
         <div className="hidden shrink-0 items-center gap-3 sm:flex">
           <BrixwaveLogo variant="mark" size={32} />
           <div className="leading-tight">
@@ -88,7 +88,7 @@ function FloatingBar({
         <div className="ml-auto flex w-full items-center gap-2 sm:w-auto">
           <Link
             href="/"
-            className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-xl border border-white/15 px-4 text-[13px] font-semibold text-portal-100 transition hover:bg-white/10 sm:flex-none sm:rounded-full"
+            className="inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-xl border border-white/15 px-3 text-[12.5px] font-semibold text-portal-100 transition hover:bg-white/10 sm:h-11 sm:flex-none sm:rounded-full sm:px-4 sm:text-[13px]"
           >
             <ArrowLeft weight="bold" className="size-4" aria-hidden />
             Înapoi la Index
@@ -97,7 +97,7 @@ function FloatingBar({
             type="button"
             onClick={onChoose}
             className={cn(
-              "inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-xl px-5 text-[13px] font-bold transition sm:flex-none sm:rounded-full",
+              "inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-xl px-3 text-[12.5px] font-bold transition sm:h-11 sm:flex-none sm:rounded-full sm:px-5 sm:text-[13px]",
               isChosen
                 ? "bg-emerald-400 text-portal-950 hover:bg-emerald-300"
                 : "bg-bw-blue text-white shadow-[0_10px_30px_-10px_rgba(59,91,219,0.9)] hover:bg-bw-blue-soft",

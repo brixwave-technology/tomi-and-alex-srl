@@ -1,14 +1,18 @@
 "use client";
 
-import Image from "next/image";
+import Link from "next/link";
+import { TomiAlexLogo } from "@/components/shared/TomiAlexLogo";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { BackToIndexLink } from "@/components/portal/DesignShell";
 import { company, contact } from "@/data/company";
-import { logo } from "@/data/images";
 import { cn } from "@/lib/cn";
-import { v3Nav } from "./nav";
+import { isActivePath, navFor } from "@/lib/routes";
+
+const nav = navFor("v3");
 
 export function V3Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const sentinel = useRef<HTMLDivElement>(null);
@@ -20,6 +24,13 @@ export function V3Header() {
     io.observe(el);
     return () => io.disconnect();
   }, []);
+
+  // Închide meniul la schimbarea paginii (ajustare de stare în timpul randării, fără efect).
+  const [lastPath, setLastPath] = useState(pathname);
+  if (lastPath !== pathname) {
+    setLastPath(pathname);
+    setOpen(false);
+  }
 
   useEffect(() => {
     if (!open) return;
@@ -36,73 +47,51 @@ export function V3Header() {
   return (
     <>
       <div ref={sentinel} className="absolute top-0 h-px w-full" aria-hidden />
-      <header
-        className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b transition-all duration-700 ease-out-expo",
-          scrolled || open ? "border-brand/20 bg-anthracite-950/90 py-3 backdrop-blur-md" : "border-transparent bg-transparent py-6",
-        )}
-      >
-        <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-6 sm:px-10">
-          <a href="#top" aria-label={`${company.name}, începutul paginii`}>
-            <Image src={logo.wordmark.light} alt={company.name} width={logo.wordmark.width} height={logo.wordmark.height} className="h-7 w-auto" priority />
-          </a>
-          <nav className="hidden items-center gap-9 lg:flex" aria-label="Navigare principală">
-            {v3Nav.map((item) => (
-              <a key={item.href} href={item.href} className="v3-link text-[11.5px] font-medium uppercase tracking-[0.22em] text-granite-300 transition hover:text-limestone">
-                {item.label}
-              </a>
-            ))}
+      <header className={cn("sticky top-0 z-50 border-b transition-all duration-700 ease-out-expo", scrolled || open ? "border-brand/20 bg-anthracite-950/92 backdrop-blur-md" : "border-brand/10 bg-anthracite-950")}>
+        <div className="mx-auto flex h-[88px] w-full max-w-[1440px] items-center justify-between gap-6 px-6 sm:px-10">
+          <Link href="/v3/" className="flex shrink-0 items-center" aria-label={`${company.name}, pagina principală`}>
+            <TomiAlexLogo height={50} priority />
+          </Link>
+          <nav className="hidden items-center gap-8 lg:flex" aria-label="Navigare principală">
+            {nav.map((item) => {
+              const active = isActivePath(pathname, item.href);
+              return (
+                <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} className={cn("v3-link text-[11.5px] font-medium uppercase tracking-[0.22em] transition", active ? "text-brand-soft after:scale-x-100" : "text-granite-300 hover:text-limestone")}>
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
-          <div className="hidden items-center gap-6 lg:flex">
+          <div className="hidden items-center gap-6 xl:flex">
             <a href={`tel:${contact.phone}`} className="text-[13px] font-medium tracking-wide text-limestone">
               {contact.phoneDisplay}
             </a>
-            <a href="#contact" className="inline-flex h-10 items-center border border-brand px-5 text-[11.5px] font-medium uppercase tracking-[0.2em] text-brand-soft transition hover:bg-brand hover:text-anthracite-950">
+            <Link href="/v3/contact/" className="inline-flex h-10 items-center border border-brand px-5 text-[11.5px] font-medium uppercase tracking-[0.2em] text-brand-soft transition hover:bg-brand hover:text-white">
               Solicitați o ofertă
-            </a>
+            </Link>
           </div>
-          <button
-            type="button"
-            onClick={() => setOpen((o) => !o)}
-            className="text-[11.5px] font-medium uppercase tracking-[0.22em] text-limestone lg:hidden"
-            aria-expanded={open}
-            aria-controls="v3-menu"
-          >
+          <button type="button" onClick={() => setOpen((o) => !o)} className="text-[11.5px] font-medium uppercase tracking-[0.22em] text-limestone lg:hidden" aria-expanded={open} aria-controls="v3-menu">
             {open ? "Închide" : "Meniu"}
           </button>
         </div>
       </header>
-
-      <div
-        id="v3-menu"
-        className={cn(
-          "v3-granite fixed inset-0 z-40 flex flex-col justify-between px-6 pb-10 pt-28 transition-opacity duration-500 lg:hidden",
-          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
-        )}
-        aria-hidden={!open}
-      >
+      <div id="v3-menu" className={cn("v3-granite fixed inset-0 z-40 flex flex-col justify-between px-6 pb-10 pt-28 transition-opacity duration-500 lg:hidden", open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0")} aria-hidden={!open}>
         <nav className="grid" aria-label="Navigare mobilă">
-          {v3Nav.map((item, i) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              tabIndex={open ? 0 : -1}
-              className={cn("border-b border-brand/20 py-5 font-v3-display text-3xl font-semibold tracking-tight text-limestone transition-all duration-700 ease-out-expo", open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0")}
-              style={{ transitionDelay: open ? `${100 + i * 60}ms` : "0ms" }}
-            >
-              {item.label}
-            </a>
-          ))}
+          {nav.map((item, i) => {
+            const active = isActivePath(pathname, item.href);
+            return (
+              <Link key={item.href} href={item.href} tabIndex={open ? 0 : -1} aria-current={active ? "page" : undefined} className={cn("border-b border-brand/20 py-5 font-v3-display text-3xl font-semibold tracking-tight transition-all duration-700 ease-out-expo", active ? "text-brand-soft" : "text-limestone", open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0")} style={{ transitionDelay: open ? `${100 + i * 60}ms` : "0ms" }}>
+                {item.label}
+                <span className="block font-v3-body text-[13px] font-normal text-granite-300">{item.description}</span>
+              </Link>
+            );
+          })}
         </nav>
         <div className="grid gap-3 text-[12px] uppercase tracking-[0.2em] text-granite-300">
-          <a href={`tel:${contact.phone}`} tabIndex={open ? 0 : -1} className="text-limestone">
-            {contact.phoneDisplay}
+          <a href={`tel:${contact.phone}`} tabIndex={open ? 0 : -1} className="inline-flex h-14 items-center justify-center bg-brand text-[12px] font-medium uppercase tracking-[0.22em] text-white">
+            Sună acum: {contact.phoneDisplay}
           </a>
-          <a href={`mailto:${contact.email}`} tabIndex={open ? 0 : -1}>
-            {contact.email}
-          </a>
-          <BackToIndexLink className="mt-4 text-brand-soft">← Înapoi la Index</BackToIndexLink>
+          <BackToIndexLink className="mt-2 text-center text-brand-soft">← Înapoi la Index</BackToIndexLink>
         </div>
       </div>
     </>

@@ -1,31 +1,11 @@
 import type { Metadata } from "next";
-import { Archivo } from "next/font/google";
-import { DesignShell } from "@/components/portal/DesignShell";
-import { V1Site } from "@/components/v1/V1Site";
-import { designById } from "@/data/designs";
+import { V1Home } from "@/components/v1/V1Pages";
+import { sitePages } from "@/data/company";
 
-const archivo = Archivo({
-  variable: "--font-archivo",
-  subsets: ["latin", "latin-ext"],
-  weight: "variable",
-  axes: ["wdth"],
-  display: "swap",
-});
+const page = sitePages.find((p) => p.slug === "")!;
 
-const design = designById.v1;
+export const metadata: Metadata = { title: page.label, description: page.description, alternates: { canonical: "/v1/" } };
 
-export const metadata: Metadata = {
-  title: `${design.label} · ${design.name}`,
-  description: design.summary,
-  alternates: { canonical: design.href },
-};
-
-export default function DesignV1Page() {
-  return (
-    <DesignShell designId="v1">
-      <div className={`${archivo.variable} font-v1`}>
-        <V1Site />
-      </div>
-    </DesignShell>
-  );
+export default function Page() {
+  return <V1Home />;
 }
