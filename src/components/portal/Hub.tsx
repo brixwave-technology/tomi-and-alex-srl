@@ -1,19 +1,17 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, CheckCircle, Sparkle } from "@phosphor-icons/react/dist/ssr";
-import { BrixwaveLogo } from "./BrixwaveLogo";
+import { BrixwaveLink, BrixwaveLogo } from "./BrixwaveLogo";
 import { DesignPreview } from "./DesignPreview";
 import { designs, designById } from "@/data/designs";
 import { brixwave } from "@/data/brixwave";
 import { company } from "@/data/company";
 import { formatChoiceDate, useDesignChoice } from "@/lib/selection";
 import { cn } from "@/lib/cn";
-import type { BrandAssets } from "@/lib/brandAssets";
 
 /** Ecranul de start: semnătura BRIXWAVE și cele trei carduri de design. */
-export function Hub({ assets }: { assets: BrandAssets }) {
+export function Hub() {
   const { choice, ready, clear } = useDesignChoice();
   const chosen = ready && choice ? designById[choice.design] : null;
 
@@ -27,13 +25,7 @@ export function Hub({ assets }: { assets: BrandAssets }) {
       <div className="noise absolute inset-0 -z-10" aria-hidden />
 
       <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-6 sm:px-8">
-        <a href={brixwave.url} target="_blank" rel="noreferrer" className="anim-rise inline-flex items-center gap-3" aria-label={`${brixwave.fullName} (se deschide într-o filă nouă)`}>
-          {assets.logo ? (
-            <Image src={assets.logo} alt={brixwave.fullName} width={344} height={72} className="h-9 w-auto sm:h-10" priority />
-          ) : (
-            <BrixwaveLogo className="h-9 w-auto sm:h-10" />
-          )}
-        </a>
+        <BrixwaveLogo size={40} priority className="anim-rise" />
         <p className="anim-rise hidden text-[12px] font-semibold uppercase tracking-[0.22em] text-portal-300 sm:block [animation-delay:120ms]">
           Client: {company.name}
         </p>
@@ -46,18 +38,27 @@ export function Hub({ assets }: { assets: BrandAssets }) {
             <Sparkle weight="fill" className="size-3.5 text-bw-blue-soft" aria-hidden />
             Portal de selecție design
           </div>
-          <div className="anim-rise-blur mt-8 flex justify-center [animation-delay:250ms]">
-            {assets.mark ? (
-              <Image src={assets.mark} alt="" width={96} height={96} className="size-20 object-contain drop-shadow-[0_20px_50px_rgba(59,91,219,0.6)] sm:size-24" priority />
-            ) : (
-              <BrixwaveLogo variant="mark" className="size-20 drop-shadow-[0_20px_50px_rgba(59,91,219,0.6)] sm:size-24" />
-            )}
+          <div className="anim-rise-blur mt-10 flex justify-center [animation-delay:250ms]">
+            <a
+              href={brixwave.url}
+              target="_blank"
+              rel="noreferrer"
+              className="group relative inline-flex items-center justify-center rounded-[32px] p-2 transition duration-500 hover:-translate-y-0.5"
+              aria-label={`${brixwave.fullName}, ${brixwave.urlLabel} (se deschide într-o filă nouă)`}
+            >
+              <span className="absolute -inset-6 rounded-full bg-[radial-gradient(closest-side,rgba(59,91,219,0.45),transparent)] opacity-80 blur-2xl transition group-hover:opacity-100" aria-hidden />
+              <span className="absolute inset-0 rounded-[32px] border border-white/10 bg-white/[0.04]" aria-hidden />
+              <BrixwaveLogo variant="mark" size={104} linked={false} priority className="relative [&>span]:rounded-[28px] [&>span]:shadow-[0_30px_70px_-25px_rgba(59,91,219,0.9)]" />
+            </a>
           </div>
           <h1 className="anim-rise-blur balance mt-8 text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl [animation-delay:350ms]">
             {brixwave.claim}
           </h1>
           <p className="anim-rise balance mx-auto mt-6 max-w-2xl text-[17px] leading-relaxed text-portal-300 sm:text-lg [animation-delay:500ms]">
             Trei website-uri complete pentru <strong className="font-semibold text-white">{company.name}</strong>. {brixwave.subclaim}
+          </p>
+          <p className="anim-rise mt-4 text-[13px] font-medium uppercase tracking-[0.22em] text-portal-300 [animation-delay:550ms]">
+            <BrixwaveLink className="text-white">{brixwave.urlLabel}</BrixwaveLink>
           </p>
           <p className="anim-rise mt-8 inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[13px] font-medium text-portal-300 [animation-delay:600ms]">
             <span className="rounded-full bg-white/5 px-3 py-1">Același conținut</span>
@@ -155,9 +156,9 @@ export function Hub({ assets }: { assets: BrandAssets }) {
 
       <footer className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 px-5 py-8 text-[13px] text-portal-300 sm:flex-row sm:px-8">
         <p className="inline-flex items-center gap-3">
-          {assets.mark ? <Image src={assets.mark} alt="" width={24} height={24} className="size-6 object-contain" /> : <BrixwaveLogo variant="mark" className="size-6" />}
+          <BrixwaveLogo variant="mark" size={24} />
           <span>
-            © {new Date().getFullYear()} {brixwave.fullName}. {brixwave.claim}.
+            © {new Date().getFullYear()} <BrixwaveLink className="text-portal-100">{brixwave.fullName}</BrixwaveLink>. {brixwave.claim}.
           </span>
         </p>
         <p>

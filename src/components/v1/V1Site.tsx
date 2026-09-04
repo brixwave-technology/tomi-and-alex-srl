@@ -15,6 +15,7 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import { Reveal } from "@/components/shared/Reveal";
 import { BackToIndexLink, ChooseDesignButton } from "@/components/portal/DesignShell";
+import { BrixwaveLink } from "@/components/portal/BrixwaveLogo";
 import { V1Header } from "./V1Header";
 import { v1Nav } from "./nav";
 import { V1ContactForm } from "./V1ContactForm";
@@ -499,7 +500,7 @@ export function V1Site() {
             <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-steel-400">Design V1 · Corporate / Autoritate</p>
             <h2 className="v1-display mt-3 text-3xl text-white sm:text-4xl">Vă reprezintă această direcție?</h2>
             <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-steel-400">
-              Confirmați varianta preferată sau reveniți la Index pentru a compara cu Design V2 și Design V3. Concept dezvoltat de {brixwave.name}.
+              Confirmați varianta preferată sau reveniți la Index pentru a compara cu Design V2 și Design V3. Concept dezvoltat de <BrixwaveLink>{brixwave.name}</BrixwaveLink>.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
@@ -569,7 +570,7 @@ export function V1Site() {
           <p>
             © {new Date().getFullYear()} {company.name}. Toate drepturile rezervate.
           </p>
-          <p>Website realizat de {brixwave.name}.</p>
+          <p>Website realizat de <BrixwaveLink>{brixwave.name}</BrixwaveLink>.</p>
         </div>
       </footer>
     </div>

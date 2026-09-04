@@ -1,44 +1,59 @@
+import Image from "next/image";
+import { brixwave } from "@/data/brixwave";
 import { cn } from "@/lib/cn";
 
 type Props = {
   className?: string;
   /** "mark" doar simbolul, "full" simbol și wordmark. */
   variant?: "mark" | "full";
+  /** Dimensiunea simbolului în pixeli (lățime = înălțime). */
+  size?: number;
   /** Culoarea wordmark-ului „Brix”; „wave” rămâne albastru. */
   tone?: "light" | "dark";
-  title?: string;
+  /** Învelit într-un link către site-ul Brixwave (implicit da). */
+  linked?: boolean;
+  /** Plăcuță albă rotunjită sub simbol, pentru fundaluri închise (implicit da). */
+  plate?: boolean;
+  priority?: boolean;
 };
 
 /**
- * Logo BRIXWAVE: cub izometric în contur hexagonal, trasat în gradient
- * alb → albastru regal, urmat de wordmark-ul „Brix” (alb) + „wave” (albastru).
+ * Logo BRIXWAVE: simbolul original (cubul cu undă) și wordmark-ul
+ * „Brix” + „wave”. Orice instanță duce la brixwave.com.
  */
-export function BrixwaveLogo({ className, variant = "full", tone = "light", title = "Brixwave" }: Props) {
-  const ink = tone === "light" ? "#FFFFFF" : "#0B0F1A";
-  const id = `bw-${variant}-${tone}`;
-  const stroke = `url(#${id})`;
-  return (
-    <svg className={cn("block", className)} viewBox={variant === "full" ? "0 0 344 72" : "0 0 72 72"} role="img" aria-label={title} fill="none">
-      <title>{title}</title>
-      <defs>
-        <linearGradient id={id} x1="12" y1="8" x2="60" y2="64" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#F4F7FF" />
-          <stop offset="0.45" stopColor="#8FA5F2" />
-          <stop offset="1" stopColor="#3B5BDB" />
-        </linearGradient>
-      </defs>
-      {/* Contur hexagonal */}
-      <path d="M36 5 L63 20.5 V51.5 L36 67 L9 51.5 V20.5 Z" stroke={stroke} strokeWidth="2.6" strokeLinejoin="round" />
-      {/* Muchiile cubului */}
-      <path d="M36 67 V36 M36 36 L9 20.5 M36 36 L63 20.5" stroke={stroke} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-      {/* Cubul interior, pentru adâncime */}
-      <path d="M36 21 L49 28.5 V44 L36 51.5 L23 44 V28.5 Z M36 51.5 V36.5 M36 36.5 L23 28.5 M36 36.5 L49 28.5" stroke={stroke} strokeWidth="1.6" strokeOpacity="0.85" strokeLinejoin="round" />
-      {variant === "full" && (
-        <text x="88" y="49" fontFamily="var(--font-manrope), 'Manrope', 'Poppins', system-ui, sans-serif" fontWeight="800" fontSize="38" letterSpacing="-0.5">
-          <tspan fill={ink}>Brix</tspan>
-          <tspan fill="#3B5BDB">wave</tspan>
-        </text>
+export function BrixwaveLogo({ className, variant = "full", size = 36, tone = "light", linked = true, plate = true, priority }: Props) {
+  const inner = Math.round(size * (plate ? 0.74 : 1));
+  const mark = <Image src={brixwave.mark} alt={variant === "mark" ? brixwave.fullName : ""} width={inner} height={inner} priority={priority} className="shrink-0 object-contain" style={{ width: inner, height: inner }} />;
+  const content = (
+    <>
+      {plate ? (
+        <span className="inline-flex shrink-0 items-center justify-center rounded-[24%] bg-white shadow-[0_8px_24px_-8px_rgba(0,0,0,0.6)]" style={{ width: size, height: size }} aria-hidden={variant === "full"}>
+          {mark}
+        </span>
+      ) : (
+        mark
       )}
-    </svg>
+      {variant === "full" && (
+        <span className={cn("font-portal font-extrabold tracking-tight", tone === "light" ? "text-white" : "text-portal-950")} style={{ fontSize: Math.round(size * 0.72), lineHeight: 1 }}>
+          Brix<span className="text-[#3B5BDB]">wave</span>
+        </span>
+      )}
+    </>
+  );
+  const classes = cn("inline-flex items-center gap-2.5", className);
+  if (!linked) return <span className={classes}>{content}</span>;
+  return (
+    <a href={brixwave.url} target="_blank" rel="noreferrer" className={cn(classes, "transition-opacity hover:opacity-85")} aria-label={`${brixwave.fullName}, ${brixwave.urlLabel} (se deschide într-o filă nouă)`}>
+      {content}
+    </a>
+  );
+}
+
+/** Mențiune textuală „BRIXWAVE” legată de site-ul agenției. */
+export function BrixwaveLink({ className, children }: { className?: string; children?: React.ReactNode }) {
+  return (
+    <a href={brixwave.url} target="_blank" rel="noreferrer" className={cn("font-semibold underline decoration-current/40 underline-offset-4 transition hover:decoration-current", className)}>
+      {children ?? brixwave.name}
+    </a>
   );
 }
