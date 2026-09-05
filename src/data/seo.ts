@@ -40,7 +40,7 @@ export const pagesSeo: Record<string, PageSeo> = {
     crumb: "Acasă",
     title: `${company.name} | Agregate, beton, prefabricate – Satu Mare, Nord-Vest`,
     description: `Balastieră, stație de betoane și prefabricate proprii în Satu Mare. Agregate și beton livrate în ${region}. Tel. ${contact.phoneDisplay}.`,
-    h1: "Agregate, beton, prefabricate și lucrări de infrastructură în Nord-Vestul României.",
+    h1: "Agregate, beton, prefabricate și lucrări de infrastructură.",
     keywords: [
       "agregate Satu Mare",
       "balastieră Satu Mare",

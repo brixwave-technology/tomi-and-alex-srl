@@ -9,7 +9,7 @@ import { nav } from "@/lib/routes";
 export function Footer() {
   return (
     <>
-      <footer className="border-t border-steel-400/20 bg-graphite-950 pb-28 lg:pb-16">
+      <footer className="border-t border-steel-400/20 bg-graphite-950 pb-32 lg:pb-16">
         <div className="bg-white">
           <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-4 px-5 py-6 sm:flex-row sm:px-8">
             <TomiAlexLogo height={64} />
