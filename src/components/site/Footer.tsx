@@ -5,6 +5,8 @@ import { BrixwaveLink } from "@/components/shared/BrixwaveLink";
 import { company, contact, legal, social } from "@/data/company";
 import { brixwave } from "@/data/brixwave";
 import { nav } from "@/lib/routes";
+import { regions } from "@/data/regions";
+import { guides } from "@/data/guides";
 
 export function Footer() {
   return (
@@ -37,6 +39,16 @@ export function Footer() {
                 </li>
               ))}
             </ul>
+            <p className="mt-8 text-[12px] font-bold uppercase tracking-[0.16em] text-steel-400">Zone deservite</p>
+            <ul className="mt-4 grid gap-2 text-[14.5px] text-steel-200">
+              {regions.map((r) => (
+                <li key={r.slug}>
+                  <Link href={`/zone/${r.slug}/`} className="hover:text-white">
+                    Județul {r.county}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="lg:col-span-3">
             <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-steel-400">Contact</p>
@@ -61,7 +73,17 @@ export function Footer() {
             </ul>
           </div>
           <div className="lg:col-span-3">
-            <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-steel-400">Date juridice</p>
+            <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-steel-400">Ghiduri utile</p>
+            <ul className="mt-4 grid gap-2 text-[14.5px] text-steel-200">
+              {guides.map((g) => (
+                <li key={g.slug}>
+                  <Link href={`/ghiduri/${g.slug}/`} className="hover:text-white">
+                    {g.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-8 text-[12px] font-bold uppercase tracking-[0.16em] text-steel-400">Date juridice</p>
             <ul className="mt-4 grid gap-2 text-[14.5px] text-steel-200">
               <li>{legal.legalName}</li>
               <li>CUI {legal.cui}</li>

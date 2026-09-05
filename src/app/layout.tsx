@@ -41,7 +41,11 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: home.title, description: home.description, images: ["/og.jpg"] },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
   formatDetection: { telephone: true },
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } : undefined,
 };
+
+/** Analiză de trafic fără cookie-uri (Plausible), activată doar când domeniul este setat în mediu. */
+const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
 
 export const viewport: Viewport = {
   themeColor: "#0c0d0f",
@@ -63,6 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="continut">{children}</main>
         <Footer />
         <CallFab />
+        {plausibleDomain && <script defer data-domain={plausibleDomain} src="https://plausible.io/js/script.outbound-links.js" />}
       </body>
     </html>
   );

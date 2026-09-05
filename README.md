@@ -14,8 +14,10 @@ Website de prezentare pentru **Tomi Alex SRL** (agregate din balastieră proprie
 | `/beton/`        | Stație betoane   | Orice clasă de beton, tabel de clase, aplicații, capacitate |
 | `/prefabricate/` | Prefabricate     | Cinci produse, dimensiuni, utilizări |
 | `/contact/`      | Contact          | Telefon, e-mail, datele firmei, program, Google Maps (fără formular) |
+| `/zone/` + `/zone/<judet>/` | Zone deservite | Pagini locale pentru Satu Mare, Maramureș, Bihor, Sălaj: orașe, distanțe și timpi de livrare, produse cerute în zonă, FAQ local (SEO local) |
+| `/ghiduri/` + `/ghiduri/<slug>/` | Ghiduri utile | Articole practice (clasă de beton pentru fundație, nisip vs balast, calcul cantitate beton, comandă beton la domiciliu, prefabricate pentru canalizare) cu schema `Article` (creștere organică) |
 
-Toate paginile sunt în bara de navigare. Pe mobil și tabletă o **bară fixă de contact rapid** în partea de jos (apel direct cu numărul afișat, e-mail, locație în Google Maps) este mereu vizibilă; fiecare acțiune pornește instant prin link nativ. Logo-ul original (cu încărcătorul frontal) stă pe header-ul alb și pe banda albă din footer.
+Cele 5 pagini principale sunt în bara de navigare; zonele și ghidurile sunt legate din prima pagină și din footer. Pe mobil și tabletă o **bară fixă de contact rapid** în partea de jos (apel direct cu numărul afișat, e-mail, locație în Google Maps) este mereu vizibilă; fiecare acțiune pornește instant prin link nativ. Logo-ul original (cu încărcătorul frontal) stă pe header-ul alb și pe banda albă din footer.
 
 ## Stack
 
@@ -45,6 +47,9 @@ src/
     shared/                Reveal, CallFab (bara fixă de contact rapid pe mobil), TomiAlexLogo, ContactBlocks, BrixwaveLink
   data/
     company.ts             tot conținutul (texte, servicii, produse, contact, program, date juridice)
+    seo.ts                 titluri, descrieri, H1, cuvinte-cheie și FAQ pe pagină; județe și orașe
+    regions.ts             paginile locale pe județ
+    guides.ts              articolele din Ghiduri utile
     brixwave.ts            creditul agenției din footer
     images.ts              manifestul fotografiilor
 public/images/             fotografii (temporar stock) și logo-ul Tomi Alex
@@ -71,6 +76,20 @@ public/images/             fotografii (temporar stock) și logo-ul Tomi Alex
 4. **Google Search Console**: verificați domeniul, trimiteți `sitemap.xml`, urmăriți indexarea celor 5 pagini.
 5. **Fotografii proprii** (balastieră, stație, flotă, prefabricate) în locul celor stock, cu text alternativ actualizat în `src/data/images.ts`.
 6. **Recenzii și citări locale**: pagina de Facebook legată în footer, listări în directoare de construcții din Satu Mare, Baia Mare, Oradea, Zalău.
+
+## SEO și creștere organică
+
+Ce este deja în site: titluri și descrieri unice pe pagină, un singur H1 localizat, date structurate (afacere locală cu adresă, program, zone deservite și oferte; breadcrumbs; FAQ; Article pentru ghiduri), sitemap și robots, imagini WebP, pagini locale pe județ, ghiduri utile, legături interne.
+
+Ce trebuie făcut în afara codului, în ordinea impactului:
+
+1. **Domeniu propriu** (ex. `tomialex.ro`). Un domeniu propriu contează pentru încredere și pentru Google Business Profile. Pași: cumpărați domeniul, adăugați fișierul `public/CNAME` cu domeniul, setați în GitHub → Settings → Pages → Custom domain, configurați DNS (CNAME `www` → `brixwave-technology.github.io`, A/ALIAS pentru rădăcină), apoi în `.github/workflows/deploy.yml` eliminați `NEXT_PUBLIC_BASE_PATH` și schimbați `siteUrl` în `src/data/seo.ts` și `src/data/company.ts`.
+2. **Google Business Profile** pentru sediul din Turulung, cu exact aceleași nume, adresă, telefon și program ca pe site, categoria „Furnizor de materiale de construcții” + „Antreprenor de construcții”, fotografii reale, produsele listate. Cereți recenzii clienților după fiecare livrare; profilul este principalul canal pentru căutări locale de tip „beton Satu Mare”.
+3. **Google Search Console**: verificați domeniul (variabila `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` adaugă automat meta-tagul), trimiteți `sitemap.xml`, urmăriți interogările și paginile indexate.
+4. **Analiză de trafic fără cookie-uri**: setați `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` pentru Plausible (nu necesită banner de consimțământ). Alternativ, Google Analytics 4 necesită banner de cookie-uri.
+5. **Date și fotografii reale**: înlocuiți datele demonstrative din `src/data/company.ts` și fotografiile stock cu imagini de la balastieră, stație și șantiere (Google preferă fotografii originale; și profilul GBP).
+6. **Conținut nou lunar**: câte un ghid nou în `src/data/guides.ts` (întrebări reale ale clienților) și actualizarea paginilor de județ cu lucrări recente. Creșterea organică vine din conținut util publicat constant.
+7. **Linkuri locale**: listări în directoare de firme (ex. listafirme, firme.info), pagina Facebook cu link către site, parteneri și primării care menționează lucrările.
 
 ## Deploy
 
