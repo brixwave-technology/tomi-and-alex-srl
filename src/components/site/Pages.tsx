@@ -68,7 +68,7 @@ function PageHero({ kicker, title, lead, image, children }: { kicker: string; ti
 
 function PrimaryLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <Link href={href} className="inline-flex h-13 items-center justify-center gap-2 rounded-[2px] border border-steel-400/50 px-7 text-[15px] font-bold text-white transition hover:bg-white/5">
+    <Link href={href} className="inline-flex h-13 items-center justify-center gap-2 whitespace-nowrap rounded-[2px] border border-steel-400/50 px-7 text-[15px] font-bold text-white transition hover:bg-white/5">
       {children}
       <ArrowRight weight="bold" className="size-4" aria-hidden />
     </Link>
@@ -77,7 +77,7 @@ function PrimaryLink({ href, children }: { href: string; children: React.ReactNo
 
 function CallLink() {
   return (
-    <a href={`tel:${contact.phone}`} className="inline-flex h-13 items-center justify-center gap-2 rounded-[2px] bg-brand px-7 text-[15px] font-bold text-white transition hover:bg-brand-soft">
+    <a href={`tel:${contact.phone}`} className="inline-flex h-13 items-center justify-center gap-2 whitespace-nowrap rounded-[2px] bg-brand px-7 text-[15px] font-bold text-white transition hover:bg-brand-soft">
       <Phone weight="fill" className="size-4" aria-hidden />
       Sună: {contact.phoneDisplay}
     </a>
@@ -94,7 +94,7 @@ function Cta({ title, text }: { title: string; text: string }) {
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
           <CallLink />
-          <PrimaryLink href={pageHref("v1", "contact")}>Date de contact</PrimaryLink>
+          <PrimaryLink href={pageHref("contact")}>Date de contact</PrimaryLink>
         </div>
       </Reveal>
     </section>
@@ -105,62 +105,65 @@ const cell = "border border-steel-400/20 bg-steel-400/20";
 
 /* ---------- ACASĂ ---------- */
 
-export function V1Home() {
-  const products = directions.slice(0, 3);
-  const slugs = ["agregate", "beton", "prefabricate"];
+const serviceCards = [
+  { slug: "agregate", title: "Agregate", kicker: "Balastieră proprie", text: "Nisip, balast, sort 4–8, sort 8–16. Livrare cu flota proprie.", image: images.agregate.cover },
+  { slug: "beton", title: "Stație betoane", kicker: "Orice clasă de beton", text: "C8/10 – C35/45, certificat de calitate la fiecare transport.", image: images.beton.pouring },
+  { slug: "prefabricate", title: "Prefabricate", kicker: "Produse din beton", text: "Tuburi, cămine, borduri, dale, elemente pentru podețe.", image: images.prefabricate.forms },
+  { slug: "contact", title: "Lucrări de infrastructură", kicker: "Echipe și utilaje proprii", text: "Rețele de apă și canalizare, drumuri, poduri, terasamente.", image: images.infrastructura.asphalt },
+];
+
+/**
+ * Prima pagină: serviciile sunt primul lucru pe care îl vede vizitatorul,
+ * imediat sub titlu, fără scroll. Descrierea firmei și restul urmează.
+ */
+export function Home() {
   return (
     <>
       <section className="relative isolate overflow-hidden border-b border-steel-400/20">
         <div className="absolute inset-0 -z-10">
-          <Image src={images.hero.src} alt={images.hero.alt} fill priority sizes="100vw" className="anim-settle object-cover opacity-40" />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,13,15,0.98)_0%,rgba(12,13,15,0.86)_45%,rgba(12,13,15,0.45)_100%)]" />
+          <Image src={images.hero.src} alt={images.hero.alt} fill priority sizes="100vw" className="anim-settle object-cover opacity-30" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,13,15,0.92)_0%,rgba(12,13,15,0.86)_60%,#0c0d0f_100%)]" />
         </div>
-        <Wrap className="grid gap-12 py-16 lg:grid-cols-12 lg:py-28">
-          <div className="lg:col-span-7">
-            <div className="anim-draw v1-rule w-24 text-brand" aria-hidden />
-            <p className="anim-rise mt-6 text-[13px] font-bold uppercase tracking-[0.22em] text-steel-200 [animation-delay:150ms]">Agregate · Beton · Prefabricate · Infrastructură</p>
-            <h1 className="v1-display mt-6 text-5xl text-white sm:text-6xl lg:text-7xl">
-              {company.taglineLines.map((line, i) => (
-                <span key={line} className="block overflow-hidden">
-                  <span className="anim-letter-up block" style={{ animationDelay: `${250 + i * 120}ms` }}>
-                    {line}
-                  </span>
-                </span>
-              ))}
-            </h1>
-            <p className="anim-rise mt-8 max-w-xl text-lg leading-relaxed text-steel-200 [animation-delay:700ms]">
-              {company.claim} {company.heroSubtitle}
-            </p>
-            <div className="anim-rise mt-10 flex flex-col gap-3 sm:flex-row [animation-delay:850ms]">
+        <Wrap className="pb-12 pt-10 lg:pb-16 lg:pt-14">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-3xl">
+              <div className="anim-draw v1-rule w-20 text-brand" aria-hidden />
+              <p className="anim-rise mt-4 text-[13px] font-bold uppercase tracking-[0.22em] text-steel-200 [animation-delay:100ms]">{company.tagline} · Satu Mare, din {company.established}</p>
+              <h1 className="v1-display anim-rise mt-4 text-[2rem] text-white sm:text-5xl lg:text-6xl [animation-delay:200ms]">Agregate, beton, prefabricate și lucrări de infrastructură.</h1>
+              <p className="anim-rise mt-3 hidden max-w-2xl text-[16.5px] leading-relaxed text-steel-200 sm:block [animation-delay:300ms]">Produse în unitățile proprii și livrate cu flota noastră. Alegeți serviciul de care aveți nevoie sau sunați-ne direct.</p>
+            </div>
+            <div className="anim-rise hidden flex-col gap-3 sm:flex sm:flex-row [animation-delay:400ms]">
               <CallLink />
-              <PrimaryLink href={pageHref("v1", "contact")}>Date de contact</PrimaryLink>
+              <PrimaryLink href={pageHref("contact")}>Date de contact</PrimaryLink>
             </div>
           </div>
-          <aside className="anim-rise self-end lg:col-span-5 [animation-delay:600ms]">
-            <div className="border border-steel-400/25 bg-graphite-900/85 p-6 backdrop-blur sm:p-8">
-              <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-steel-400">Ce producem</p>
-              <ul className="mt-4 divide-y divide-steel-400/20">
-                {products.map((d, i) => (
-                  <li key={d.slug}>
-                    <Link href={pageHref("v1", slugs[i])} className="group flex items-center justify-between gap-4 py-3.5">
-                      <span>
-                        <span className="block text-[17px] font-bold text-white">{d.title}</span>
-                        <span className="block text-[13px] text-steel-400">{d.kicker}</span>
-                      </span>
-                      <ArrowRight weight="bold" className="size-5 text-brand transition-transform group-hover:translate-x-1" aria-hidden />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </aside>
+
+          <div className={cn("anim-rise mt-6 grid grid-cols-2 gap-px xl:grid-cols-4 sm:mt-10 [animation-delay:500ms]", cell)}>
+            {serviceCards.map((c, i) => (
+              <Link key={c.slug} href={pageHref(c.slug)} className="group flex flex-col bg-graphite-950 transition hover:bg-graphite-900">
+                <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[16/9]">
+                  <Image src={c.image.src} alt={c.image.alt} fill priority={i < 2} sizes="(min-width: 1280px) 25vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-[linear-gradient(to_top,#0c0d0f_5%,transparent_60%)]" />
+                  <span className="absolute left-3 top-3 hidden rounded-[2px] bg-brand px-2.5 py-1 text-[11.5px] font-bold uppercase tracking-wider text-white sm:inline-block">{c.kicker}</span>
+                </div>
+                <div className="flex flex-1 flex-col p-3.5 sm:p-5">
+                  <h2 className="text-[16px] font-bold leading-tight text-white sm:text-[22px]">{c.title}</h2>
+                  <p className="mt-2 hidden text-[14px] leading-relaxed text-steel-200 sm:block">{c.text}</p>
+                  <span className="mt-2 inline-flex items-center gap-2 text-[13px] font-bold text-brand-soft sm:mt-4 sm:text-[14px]">
+                    {c.slug === "contact" ? "Contactați-ne" : `Vezi ${c.title.toLowerCase()}`}
+                    <ArrowRight weight="bold" className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
         </Wrap>
       </section>
 
       <section className="border-b border-steel-400/20 bg-graphite-900" aria-label="Cifre cheie">
         <Wrap className="grid grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-steel-400/20">
           {company.stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 80} className="py-8 lg:px-8 lg:first:pl-0">
+            <Reveal key={s.label} delay={i * 80} className="py-7 lg:px-8 lg:first:pl-0">
               <p className="v1-display text-4xl text-white sm:text-5xl">{s.value}</p>
               <p className="mt-2 text-[13px] font-bold uppercase tracking-[0.14em] text-steel-200">{s.label}</p>
             </Reveal>
@@ -169,46 +172,10 @@ export function V1Home() {
       </section>
 
       <section className="py-20 lg:py-28">
-        <Wrap>
-          <Reveal className="max-w-2xl">
-            <Label index="01">Ce producem și livrăm</Label>
-            <h2 className="v1-display mt-5 text-4xl text-white sm:text-5xl">Trei unități de producție proprii.</h2>
-          </Reveal>
-          <div className={cn("mt-12 grid gap-px md:grid-cols-3", cell)}>
-            {products.map((d, i) => (
-              <Reveal key={d.slug} delay={i * 90} className="group flex flex-col bg-graphite-950">
-                <Link href={pageHref("v1", slugs[i])} className="relative aspect-[16/10] overflow-hidden">
-                  <Image src={d.image.src} alt={d.image.alt} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-[linear-gradient(to_top,#0c0d0f_5%,transparent_60%)]" />
-                  <span className="absolute left-5 top-5 rounded-[2px] bg-brand px-2.5 py-1 text-[12px] font-bold uppercase tracking-wider text-white">{d.kicker}</span>
-                </Link>
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="text-2xl font-bold text-white">{d.title}</h3>
-                  <p className="mt-3 text-[14.5px] leading-relaxed text-steel-200">{d.summary}</p>
-                  <ul className="mt-4 grid grid-cols-2 gap-1.5 text-[13.5px] text-steel-400">
-                    {d.bullets.slice(0, 4).map((b) => (
-                      <li key={b} className="flex items-center gap-2">
-                        <span className="size-1 bg-brand" aria-hidden />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href={pageHref("v1", slugs[i])} className="mt-6 inline-flex items-center gap-2 text-[14px] font-bold text-white">
-                    Vezi {d.title.toLowerCase()}
-                    <ArrowRight weight="bold" className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
-                  </Link>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </Wrap>
-      </section>
-
-      <section className="border-y border-steel-400/20 bg-graphite-900 py-20 lg:py-28">
         <Wrap className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Reveal>
-              <Label index="02">Despre noi</Label>
+              <Label index="01">Despre noi</Label>
               <h2 className="v1-display mt-5 text-4xl text-white sm:text-5xl">Materiale și execuție din aceeași sursă.</h2>
               <p className="mt-6 text-[17px] leading-relaxed text-steel-200">{company.description}</p>
               <p className="mt-4 text-[15.5px] leading-relaxed text-steel-400">{company.descriptionSecondary}</p>
@@ -239,10 +206,10 @@ export function V1Home() {
         </Wrap>
       </section>
 
-      <section className="py-20 lg:py-28">
+      <section className="border-y border-steel-400/20 bg-graphite-900 py-20 lg:py-28">
         <Wrap className="grid gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-4">
-            <Label index="03">Lucrări de infrastructură</Label>
+            <Label index="02">Lucrări de infrastructură</Label>
             <h2 className="v1-display mt-5 text-3xl text-white sm:text-4xl">Executăm cu echipe și utilaje proprii.</h2>
             <p className="mt-5 text-[15px] leading-relaxed text-steel-400">{directions[3].description}</p>
             <div className="relative mt-8 aspect-[4/3] overflow-hidden">
@@ -271,10 +238,10 @@ export function V1Home() {
         </Wrap>
       </section>
 
-      <section className="border-t border-steel-400/20 bg-graphite-900 py-20 lg:py-28">
+      <section className="py-20 lg:py-28">
         <Wrap>
           <Reveal className="max-w-2xl">
-            <Label index="04">Cum lucrăm</Label>
+            <Label index="03">Cum lucrăm</Label>
             <h2 className="v1-display mt-5 text-4xl text-white sm:text-5xl">De la primul telefon la livrare, în patru pași.</h2>
           </Reveal>
           <ol className={cn("mt-12 grid gap-px md:grid-cols-2 xl:grid-cols-4", cell)}>
@@ -287,7 +254,7 @@ export function V1Home() {
             ))}
           </ol>
           <div className="mt-12 grid gap-8 lg:grid-cols-12">
-            <Reveal className="flex gap-5 border border-steel-400/20 bg-graphite-950 p-6 lg:col-span-5">
+            <Reveal className="flex gap-5 border border-steel-400/20 bg-graphite-900 p-6 lg:col-span-5">
               <Certificate weight="fill" className="size-10 shrink-0 text-brand" aria-hidden />
               <div>
                 <p className="text-lg font-bold text-white">Certificări</p>
@@ -317,7 +284,7 @@ export function V1Home() {
 
 /* ---------- AGREGATE ---------- */
 
-export function V1Agregate() {
+export function Agregate() {
   return (
     <>
       <PageHero
@@ -327,7 +294,7 @@ export function V1Agregate() {
         image={images.agregate.cover}
       >
         <CallLink />
-        <PrimaryLink href={pageHref("v1", "contact")}>Date de contact</PrimaryLink>
+        <PrimaryLink href={pageHref("contact")}>Date de contact</PrimaryLink>
       </PageHero>
 
       <section className="py-20 lg:py-28">
@@ -416,7 +383,7 @@ export function V1Agregate() {
 
 /* ---------- STAȚIE BETOANE ---------- */
 
-export function V1Beton() {
+export function Beton() {
   return (
     <>
       <PageHero
@@ -426,7 +393,7 @@ export function V1Beton() {
         image={images.beton.pouring}
       >
         <CallLink />
-        <PrimaryLink href={pageHref("v1", "contact")}>Date de contact</PrimaryLink>
+        <PrimaryLink href={pageHref("contact")}>Date de contact</PrimaryLink>
       </PageHero>
 
       <section className="py-20 lg:py-28">
@@ -505,7 +472,7 @@ export function V1Beton() {
 
 /* ---------- PREFABRICATE ---------- */
 
-export function V1Prefabricate() {
+export function Prefabricate() {
   return (
     <>
       <PageHero
@@ -515,7 +482,7 @@ export function V1Prefabricate() {
         image={images.prefabricate.forms}
       >
         <CallLink />
-        <PrimaryLink href={pageHref("v1", "contact")}>Date de contact</PrimaryLink>
+        <PrimaryLink href={pageHref("contact")}>Date de contact</PrimaryLink>
       </PageHero>
 
       <section className="py-20 lg:py-28">
@@ -563,7 +530,7 @@ export function V1Prefabricate() {
 
 /* ---------- CONTACT ---------- */
 
-export function V1Contact() {
+export function Contact() {
   return (
     <>
       <section className="border-b border-steel-400/20 bg-graphite-900">

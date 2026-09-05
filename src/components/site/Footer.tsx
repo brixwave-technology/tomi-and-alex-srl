@@ -1,34 +1,15 @@
 import Link from "next/link";
 import { TomiAlexLogo } from "@/components/shared/TomiAlexLogo";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
-import { Reveal } from "@/components/shared/Reveal";
-import { BackToIndexLink, ChooseDesignButton } from "@/components/portal/DesignShell";
-import { BrixwaveLink } from "@/components/portal/BrixwaveLogo";
+import { BrixwaveLink } from "@/components/shared/BrixwaveLink";
 import { company, contact, legal, social } from "@/data/company";
 import { brixwave } from "@/data/brixwave";
-import { navFor } from "@/lib/routes";
+import { nav } from "@/lib/routes";
 
-const nav = navFor("v1");
-
-export function V1Footer() {
+export function Footer() {
   return (
     <>
-      <section className="border-t border-steel-400/20 bg-graphite-900 py-14" aria-label="Alegerea acestui design">
-        <Reveal className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-6 px-5 sm:px-8 lg:flex-row lg:items-center">
-          <div>
-            <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-steel-400">Design V1 · Corporate Clasic &amp; Autoritate</p>
-            <h2 className="v1-display mt-2 text-2xl text-white sm:text-3xl">Vă reprezintă această direcție?</h2>
-            <p className="mt-2 max-w-xl text-[14.5px] text-steel-400">
-              Confirmați varianta preferată sau reveniți la Index pentru a compara. Concept dezvoltat de <BrixwaveLink>{brixwave.name}</BrixwaveLink>.
-            </p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <ChooseDesignButton className="inline-flex h-12 items-center justify-center rounded-[2px] bg-brand px-6 text-[14px] font-bold text-white transition hover:bg-brand-soft data-[chosen]:bg-emerald-500" />
-            <BackToIndexLink className="inline-flex h-12 items-center justify-center rounded-[2px] border border-steel-400/50 px-6 text-[14px] font-bold text-white transition hover:bg-white/5" />
-          </div>
-        </Reveal>
-      </section>
-      <footer className="border-t border-steel-400/20 bg-graphite-950 pb-40 lg:pb-16">
+      <footer className="border-t border-steel-400/20 bg-graphite-950 pb-28 lg:pb-16">
         <div className="bg-white">
           <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-4 px-5 py-6 sm:flex-row sm:px-8">
             <TomiAlexLogo height={64} />

@@ -1,5 +1,5 @@
-import { Hub } from "@/components/portal/Hub";
+import { Home } from "@/components/site/Pages";
 
-export default function IndexPage() {
-  return <Hub />;
+export default function Page() {
+  return <Home />;
 }
