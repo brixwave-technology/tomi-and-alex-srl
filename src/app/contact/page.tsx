@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
 import { Contact } from "@/components/site/Pages";
-import { sitePages } from "@/data/company";
+import { pagesSeo } from "@/data/seo";
 
-const page = sitePages.find((p) => p.slug === "contact")!;
+const seo = pagesSeo["contact"];
 
-export const metadata: Metadata = { title: page.label, description: page.description, alternates: { canonical: "/contact/" } };
+export const metadata: Metadata = {
+  title: { absolute: seo.title },
+  description: seo.description,
+  keywords: seo.keywords,
+  alternates: { canonical: "/contact/" },
+  openGraph: { title: seo.title, description: seo.description, url: "/contact/", type: "website", images: [{ url: "/og.jpg", width: 1200, height: 630 }] },
+  twitter: { card: "summary_large_image", title: seo.title, description: seo.description, images: ["/og.jpg"] },
+};
 
 export default function Page() {
   return <Contact />;

@@ -3,8 +3,8 @@
  * replacing the temporary stock photography with the company's own images
  * is a matter of swapping files in /public/images and updating alt text.
  *
- * Current files are temporary Unsplash photos (free license) used for the
- * client mockup only.
+ * Current files are temporary Unsplash photos (free license), converted to
+ * WebP at 1600px for fast loading; replace them with the company's own photos.
  */
 export type SiteImage = {
   src: string;
@@ -22,8 +22,8 @@ export const withBase = (path: string) => `${basePath}${path}`;
 const img = (
   file: string,
   alt: string,
-  width = 1800,
-  height = 1199,
+  width = 1600,
+  height = 1066,
   position?: string,
 ): SiteImage => ({ src: withBase(`/images/${file}`), alt, width, height, position });
 
@@ -44,98 +44,90 @@ export const logo = {
 
 export const images = {
   hero: img(
-    "hero-excavator.jpg",
+    "hero-excavator.webp",
     "Excavator încărcând pământ într-o autobasculantă pe un șantier de infrastructură",
   ),
   company: img(
-    "company-quarry.jpg",
+    "company-quarry.webp",
     "Excavator pe un front de agregate din balastieră",
-    1800,
-    1198,
+    1600, 1065,
   ),
   earthworks: img(
-    "earthworks.jpg",
+    "earthworks.webp",
     "Buldozer executând terasamente pe un șantier",
-    1800,
-    1012,
+    1600, 900,
   ),
   agregate: {
     cover: img(
-      "agregate-conveyors.jpg",
+      "agregate-conveyors.webp",
       "Depozite de nisip și balast cu benzi transportoare industriale",
     ),
     loader: img(
-      "agregate-loader.jpg",
+      "agregate-loader.webp",
       "Încărcător frontal încărcând balast într-o autobasculantă",
     ),
-    rocks: img("agregate-rocks.jpg", "Grămadă de piatră sortată", 1800, 1199, "center bottom"),
+    rocks: img("agregate-rocks.webp", "Grămadă de piatră sortată", 1600, 1066, "center bottom"),
     aerial: img(
-      "agregate-aerial.jpg",
+      "agregate-aerial.webp",
       "Vedere aeriană a unei stații de sortare cu benzi transportoare",
-      1800,
-      1012,
+      1600, 900,
     ),
   },
   beton: {
     pouring: img(
-      "beton-pouring.jpg",
+      "beton-pouring.webp",
       "Echipă de muncitori nivelând betonul proaspăt turnat pe o platformă",
     ),
     finishing: img(
-      "beton-finishing.jpg",
+      "beton-finishing.webp",
       "Turnarea și nivelarea betonului peste armătură",
     ),
-    rebar: img("beton-rebar.jpg", "Armătură din oțel pregătită pentru turnare"),
+    rebar: img("beton-rebar.webp", "Armătură din oțel pregătită pentru turnare"),
   },
   prefabricate: {
     forms: img(
-      "prefab-forms.jpg",
+      "prefab-forms.webp",
       "Elemente prefabricate din beton stivuite pe paleți",
-      1800,
-      1350,
+      1600, 1200,
     ),
     slabs: img(
-      "prefab-slabs.jpg",
+      "prefab-slabs.webp",
       "Verificarea unor plăci prefabricate din beton",
     ),
     blocks: img(
-      "prefab-blocks.jpg",
+      "prefab-blocks.webp",
       "Blocuri din beton depozitate pe șantier",
-      1800,
-      1350,
+      1600, 1200,
     ),
   },
   infrastructura: {
     asphalt: img(
-      "infra-asphalt.jpg",
+      "infra-asphalt.webp",
       "Compactor cu tambur pe un drum în construcție",
-      1800,
-      1366,
+      1600, 1214,
     ),
     bridge: img(
-      "infra-bridge.jpg",
+      "infra-bridge.webp",
       "Pile de pod în construcție și macara turn la apus",
     ),
     bridgeCrane: img(
-      "infra-bridge-crane.jpg",
+      "infra-bridge-crane.webp",
       "Macara ridicând un tronson de pod",
-      1800,
-      1012,
+      1600, 900,
     ),
     excavatorPipes: img(
-      "infra-excavator-pipes.jpg",
+      "infra-excavator-pipes.webp",
       "Excavator și conducte pregătite pentru rețea de canalizare",
     ),
   },
   trucks: {
     haul: img(
-      "truck-haul.jpg",
+      "truck-haul.webp",
       "Autobasculantă de carieră pe un drum de exploatare",
-      1800,
-      1197,
+      1600, 1064,
     ),
     quarry: img(
-      "truck-quarry.jpg",
+      "truck-quarry.webp",
       "Autobasculantă articulată încărcată cu agregate",
     ),
   },

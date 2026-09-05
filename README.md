@@ -56,6 +56,22 @@ public/images/             fotografii (temporar stock) și logo-ul Tomi Alex
 - **Logo:** `public/images/logo-tomi-alex.png` (original, fundal transparent).
 - **Imagini:** înlocuiți fișierele din `public/images/` și actualizați textul alternativ în `src/data/images.ts`.
 
+## SEO local (Nord-Vestul României)
+
+- **Cuvinte-cheie și texte pe pagină** în `src/data/seo.ts`: titluri (≤ 60 caractere), descrieri (≤ 160), H1 cu localizare, cuvinte-cheie pentru Satu Mare, Maramureș, Bihor și Sălaj, întrebări frecvente pe fiecare pagină de serviciu.
+- **Date structurate JSON-LD** (`src/components/seo/JsonLd.tsx`): `GeneralContractor`/`LocalBusiness` cu adresă, coordonate, program, zone deservite (cele patru județe), oferte (agregate, beton, prefabricate, lucrări), `WebSite`, `WebPage`, `BreadcrumbList` și `FAQPage` pe fiecare pagină.
+- **Secțiunea „Zone deservite”** pe Acasă și pe paginile de produs, cu județele și orașele principale.
+- **Tehnic:** canonical pe fiecare pagină, Open Graph și Twitter cu imagine 1200×630 (`public/og.jpg`), sitemap și robots, manifest și iconițe, pagina 404, `lang="ro"`, breadcrumbs, alt text pe toate imaginile, fotografii WebP la 1600 px (3,9 MB în loc de 10 MB), font self-hosted.
+
+### Checklist la lansare (de făcut de client sau de agenție)
+
+1. **Domeniu propriu** (ex. `tomialex.ro`): adăugați `public/CNAME` cu domeniul, setați DNS-ul către GitHub Pages, scoateți `NEXT_PUBLIC_BASE_PATH` din `.github/workflows/deploy.yml` și schimbați `siteUrl` în `src/data/seo.ts`.
+2. **Date reale** în `src/data/company.ts`: telefon, e-mail, adresă, program, CUI, Reg. Com., cifre, certificări, referințe.
+3. **Google Business Profile** pentru sediul din Turulung, cu aceleași nume, adresă și telefon ca pe site (NAP identic), categorii „Furnizor de materiale de construcții”, „Stație de betoane”, „Firmă de construcții”, program și fotografii reale.
+4. **Google Search Console**: verificați domeniul, trimiteți `sitemap.xml`, urmăriți indexarea celor 5 pagini.
+5. **Fotografii proprii** (balastieră, stație, flotă, prefabricate) în locul celor stock, cu text alternativ actualizat în `src/data/images.ts`.
+6. **Recenzii și citări locale**: pagina de Facebook legată în footer, listări în directoare de construcții din Satu Mare, Baia Mare, Oradea, Zalău.
+
 ## Deploy
 
 Push pe `main` declanșează workflow-ul `.github/workflows/deploy.yml`, care construiește exportul static cu `NEXT_PUBLIC_BASE_PATH=/tomi-and-alex-srl` și îl publică pe GitHub Pages.

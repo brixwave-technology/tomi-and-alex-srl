@@ -2,6 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Certificate, Clock, Envelope, MapPin, Phone, ShieldCheck, Truck } from "@phosphor-icons/react/dist/ssr";
 import { MapEmbed, contactGroups } from "@/components/shared/ContactBlocks";
+import { PageJsonLd } from "@/components/seo/JsonLd";
+import { Breadcrumbs } from "./Breadcrumbs";
+import { ServiceArea } from "./ServiceArea";
+import { Faq } from "./Faq";
+import { pagesSeo } from "@/data/seo";
 import { Reveal } from "@/components/shared/Reveal";
 import {
   aggregates,
@@ -119,6 +124,7 @@ const serviceCards = [
 export function Home() {
   return (
     <>
+      <PageJsonLd slug="" />
       <section className="relative isolate overflow-hidden border-b border-steel-400/20">
         <div className="absolute inset-0 -z-10">
           <Image src={images.hero.src} alt={images.hero.alt} fill priority sizes="100vw" className="anim-settle object-cover opacity-30" />
@@ -129,7 +135,7 @@ export function Home() {
             <div className="max-w-3xl">
               <div className="anim-draw v1-rule w-20 text-brand" aria-hidden />
               <p className="anim-rise mt-4 text-[13px] font-bold uppercase tracking-[0.22em] text-steel-200 [animation-delay:100ms]">{company.tagline} · Satu Mare, din {company.established}</p>
-              <h1 className="v1-display anim-rise mt-4 text-[2rem] text-white sm:text-5xl lg:text-6xl [animation-delay:200ms]">Agregate, beton, prefabricate și lucrări de infrastructură.</h1>
+              <h1 className="v1-display anim-rise mt-4 text-[2rem] text-white sm:text-5xl lg:text-6xl [animation-delay:200ms]">{pagesSeo[""].h1}</h1>
               <p className="anim-rise mt-3 hidden max-w-2xl text-[16.5px] leading-relaxed text-steel-200 sm:block [animation-delay:300ms]">Produse în unitățile proprii și livrate cu flota noastră. Alegeți serviciul de care aveți nevoie sau sunați-ne direct.</p>
             </div>
             <div className="anim-rise hidden flex-col gap-3 sm:flex sm:flex-row [animation-delay:400ms]">
@@ -277,6 +283,8 @@ export function Home() {
           </div>
         </Wrap>
       </section>
+      <ServiceArea />
+      <Faq slug="" />
       <Cta title="Aveți un proiect sau o comandă?" text="Sunați-ne sau scrieți-ne pe e-mail. Răspundem în aceeași zi lucrătoare." />
     </>
   );
@@ -287,9 +295,11 @@ export function Home() {
 export function Agregate() {
   return (
     <>
+      <PageJsonLd slug="agregate" />
+      <Breadcrumbs slug="agregate" />
       <PageHero
-        kicker="Balastieră proprie"
-        title="Agregate pentru construcții: nisip, balast, sort 4–8, sort 8–16."
+        kicker="Balastieră proprie · județul Satu Mare"
+        title={pagesSeo.agregate.h1}
         lead="Exploatăm o balastieră proprie cu stație de sortare și spălare. Agregatele sunt verificate granulometric în laborator și livrate cu flota proprie de autobasculante, de la o mașină până la volume de șantier."
         image={images.agregate.cover}
       >
@@ -376,6 +386,8 @@ export function Agregate() {
           </Reveal>
         </Wrap>
       </section>
+      <ServiceArea what="agregate" />
+      <Faq slug="agregate" />
       <Cta title="Comandați agregate astăzi." text="Spuneți-ne sortul, cantitatea și localitatea. Confirmăm telefonic prețul și intervalul de livrare." />
     </>
   );
@@ -386,9 +398,11 @@ export function Agregate() {
 export function Beton() {
   return (
     <>
+      <PageJsonLd slug="beton" />
+      <Breadcrumbs slug="beton" />
       <PageHero
-        kicker="Stație de betoane proprie"
-        title="Beton de orice clasă, cu certificat de calitate la fiecare transport."
+        kicker="Stație de betoane proprie · județul Satu Mare"
+        title={pagesSeo.beton.h1}
         lead="Stația automatizată produce orice clasă de beton, de la C8/10 la C35/45, după rețete verificate în laboratorul propriu, conform SR EN 206 și NE 012. Livrăm cu autobetoniere de 8–10 mc și pompe de beton de 28–36 m."
         image={images.beton.pouring}
       >
@@ -465,6 +479,8 @@ export function Beton() {
           </div>
         </Wrap>
       </section>
+      <ServiceArea what="beton" />
+      <Faq slug="beton" />
       <Cta title="Programați o livrare de beton." text="Spuneți-ne clasa, cantitatea, amplasamentul și ora dorită. Confirmăm telefonic în aceeași zi." />
     </>
   );
@@ -475,9 +491,11 @@ export function Beton() {
 export function Prefabricate() {
   return (
     <>
+      <PageJsonLd slug="prefabricate" />
+      <Breadcrumbs slug="prefabricate" />
       <PageHero
-        kicker="Linie proprie de prefabricate"
-        title="Prefabricate din beton, gata de montaj."
+        kicker="Linie proprie de prefabricate · județul Satu Mare"
+        title={pagesSeo.prefabricate.h1}
         lead="Produse în tipare metalice cu beton vibrat din stația proprie. Stoc permanent pentru dimensiunile uzuale și producție pe comandă după proiect, cu livrare și descărcare la șantier."
         image={images.prefabricate.forms}
       >
@@ -523,6 +541,8 @@ export function Prefabricate() {
           </Reveal>
         </Wrap>
       </section>
+      <ServiceArea what="prefabricate" />
+      <Faq slug="prefabricate" />
       <Cta title="Aveți nevoie de prefabricate?" text="Trimiteți lista de produse și cantitățile sau sunați-ne. Verificăm stocul și confirmăm termenul de livrare." />
     </>
   );
@@ -533,12 +553,14 @@ export function Prefabricate() {
 export function Contact() {
   return (
     <>
+      <PageJsonLd slug="contact" />
       <section className="border-b border-steel-400/20 bg-graphite-900">
+        <Breadcrumbs slug="contact" />
         <Wrap className="py-14 lg:py-20">
           <div className="anim-draw v1-rule w-20 text-brand" aria-hidden />
-          <h1 className="v1-display anim-rise mt-5 text-4xl text-white sm:text-5xl lg:text-6xl [animation-delay:150ms]">Contact</h1>
+          <h1 className="v1-display anim-rise mt-5 text-4xl text-white sm:text-5xl lg:text-6xl [animation-delay:150ms]">Contact Tomi Alex SRL, Turulung, județul Satu Mare</h1>
           <p className="anim-rise mt-5 max-w-2xl text-lg leading-relaxed text-steel-200 [animation-delay:300ms]">
-            Cel mai rapid: sunați-ne. Pentru materiale răspundem în aceeași zi lucrătoare; pentru lucrări, după vizita în teren.
+            Cel mai rapid: sunați-ne. Livrăm agregate, beton și prefabricate în Satu Mare, Maramureș, Bihor și Sălaj; pentru lucrări, discutăm după vizita în teren.
           </p>
           <div className="anim-rise mt-8 flex flex-col gap-3 sm:flex-row [animation-delay:400ms]">
             <a href={`tel:${contact.phone}`} className="v1-display inline-flex items-center gap-3 rounded-[2px] bg-brand px-6 py-3 text-3xl text-white transition hover:bg-brand-soft sm:text-4xl">
