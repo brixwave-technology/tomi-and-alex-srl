@@ -62,7 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="continut">{children}</main>
         <Footer />
-        <CallFab className="bg-brand text-white hover:bg-brand-soft" />
+        <CallFab />
       </body>
     </html>
   );

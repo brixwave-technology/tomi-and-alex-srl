@@ -15,7 +15,7 @@ Website de prezentare pentru **Tomi Alex SRL** (agregate din balastieră proprie
 | `/prefabricate/` | Prefabricate     | Cinci produse, dimensiuni, utilizări |
 | `/contact/`      | Contact          | Telefon, e-mail, datele firmei, program, Google Maps (fără formular) |
 
-Toate paginile sunt în bara de navigare. Pe mobil și tabletă un buton plutitor **„Sună acum”** (link `tel:`) este mereu vizibil și pornește apelul instant. Logo-ul original (cu încărcătorul frontal) stă pe header-ul alb și pe banda albă din footer.
+Toate paginile sunt în bara de navigare. Pe mobil și tabletă o **bară fixă de contact rapid** în partea de jos (apel direct cu numărul afișat, e-mail, locație în Google Maps) este mereu vizibilă; fiecare acțiune pornește instant prin link nativ. Logo-ul original (cu încărcătorul frontal) stă pe header-ul alb și pe banda albă din footer.
 
 ## Stack
 
@@ -42,7 +42,7 @@ src/
     globals.css            tokeni Tailwind (paleta din logo), animații
   components/
     site/                  Header (5 pagini, meniu mobil), Footer, Pages (cele 5 pagini)
-    shared/                Reveal, CallFab (buton plutitor Sună), TomiAlexLogo, ContactBlocks, BrixwaveLink
+    shared/                Reveal, CallFab (bara fixă de contact rapid pe mobil), TomiAlexLogo, ContactBlocks, BrixwaveLink
   data/
     company.ts             tot conținutul (texte, servicii, produse, contact, program, date juridice)
     brixwave.ts            creditul agenției din footer
