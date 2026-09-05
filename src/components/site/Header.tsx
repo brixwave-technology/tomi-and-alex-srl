@@ -5,14 +5,11 @@ import { TomiAlexLogo } from "@/components/shared/TomiAlexLogo";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { List, Phone, X } from "@phosphor-icons/react/dist/ssr";
-import { BackToIndexLink } from "@/components/portal/DesignShell";
 import { contact, company } from "@/data/company";
 import { cn } from "@/lib/cn";
-import { isActivePath, navFor } from "@/lib/routes";
+import { isActivePath, nav } from "@/lib/routes";
 
-const nav = navFor("v1");
-
-export function V1Header() {
+export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -50,7 +47,7 @@ export function V1Header() {
       <div ref={sentinel} className="absolute top-0 h-px w-full" aria-hidden />
       <header className={cn("sticky top-0 z-50 border-b border-graphite-950/10 bg-white text-graphite-950 transition-shadow duration-300", (scrolled || open) && "shadow-[0_10px_30px_-20px_rgba(0,0,0,0.5)]")}>
         <div className="mx-auto flex h-[84px] w-full max-w-7xl items-center justify-between gap-6 px-5 sm:px-8">
-          <Link href="/v1/" className="flex shrink-0 items-center" aria-label={`${company.name}, pagina principală`}>
+          <Link href="/" className="flex shrink-0 items-center" aria-label={`${company.name}, pagina principală`}>
             <TomiAlexLogo height={50} priority />
           </Link>
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Navigare principală">
@@ -82,13 +79,13 @@ export function V1Header() {
             onClick={() => setOpen((o) => !o)}
             className="inline-flex size-12 items-center justify-center rounded-[2px] border border-graphite-950/25 text-graphite-950 lg:hidden"
             aria-expanded={open}
-            aria-controls="v1-menu"
+            aria-controls="meniu-mobil"
             aria-label={open ? "Închide meniul" : "Deschide meniul"}
           >
             {open ? <X weight="bold" className="size-5" aria-hidden /> : <List weight="bold" className="size-5" aria-hidden />}
           </button>
         </div>
-        <div id="v1-menu" className={cn("border-t border-graphite-950/10 bg-white px-5 pb-8 pt-2 lg:hidden", open ? "block" : "hidden")}>
+        <div id="meniu-mobil" className={cn("border-t border-graphite-950/10 bg-white px-5 pb-8 pt-2 lg:hidden", open ? "block" : "hidden")}>
           <nav className="grid" aria-label="Navigare mobilă">
             {nav.map((item) => {
               const active = isActivePath(pathname, item.href);
@@ -105,7 +102,6 @@ export function V1Header() {
               <Phone weight="fill" className="size-5" aria-hidden />
               Sună acum: {contact.phoneDisplay}
             </a>
-            <BackToIndexLink className="mt-2 text-center text-[13px] font-semibold text-graphite-700 underline-offset-4 hover:underline" />
           </div>
         </div>
       </header>

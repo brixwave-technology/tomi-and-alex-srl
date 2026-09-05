@@ -11,7 +11,7 @@ export function CallFab({ className, labelClassName }: { className?: string; lab
     <a
       href={`tel:${contact.phone}`}
       className={cn(
-        "fixed bottom-[76px] right-3 z-[95] inline-flex h-14 items-center gap-2.5 rounded-full pl-4 pr-5 text-[15px] font-bold shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)] transition active:scale-95 lg:hidden",
+        "fixed bottom-4 right-3 z-[95] inline-flex h-14 items-center gap-2.5 rounded-full pl-4 pr-5 text-[15px] font-bold shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)] transition active:scale-95 lg:hidden",
         className,
       )}
       aria-label={`Sunați acum la ${contact.phoneDisplay}`}

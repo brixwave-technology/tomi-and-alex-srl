@@ -6,48 +6,40 @@ web
 
 ## Stack
 
-Next.js 16 (App Router, static export), TypeScript, Tailwind CSS v4, `@phosphor-icons/react`. Deploy target is GitHub Pages (static files under the `/tomi-and-alex-srl` base path), which rules out server features; there are no forms (the client wants contact by phone and e-mail only), and the client's design choice is stored in the browser.
+Next.js 16 (App Router, static export), TypeScript, Tailwind CSS v4, `@phosphor-icons/react`. Deploy target is GitHub Pages (static files under the `/tomi-and-alex-srl` base path), which rules out server features. There are no forms: the client takes orders by phone and e-mail.
 
 ## Purpose
 
-A selection portal built by BRIXWAVE for Tomi Alex SRL. It opens on an index (hub) that carries the BRIXWAVE signature and three large cards, Design V1, V2 and V3. Each card opens a complete presentation website for the company built on the same content and structure but with a radically different visual language. The client validates the preferred variant with the "Aleg acest design" button and returns to the index with "Înapoi la Index".
+The official presentation website of Tomi Alex SRL, built by BRIXWAVE on the concept the client chose (Design V1, Corporate Clasic & Autoritate) out of three proposals. The site must let a visitor reach the service they need within seconds and call the company with one tap.
 
 ## Users
 
-- The client (Tomi Alex SRL management) comparing three visual directions and confirming one.
-- BRIXWAVE, who receives the confirmation (e-mail or copied summary) and continues the build on the chosen direction.
+- Beneficiaries of infrastructure and construction works (local administrations, developers, general contractors) checking capacity and contact details.
+- Buyers of construction materials (aggregates, concrete, precast) who want to order quickly, usually from a phone on site.
 
-## The three concepts
+## Structure
 
-1. **V1 Corporate Clasic & Autoritate.** Rigid grid, dark graphite palette with the red of the logo, tables and certifications, phone number always visible, one conversion intent ("Cere o ofertă").
-2. **V2 Industrial Authority & Trust.** Heavy-duty layout: red utility bar, black header with a massive order button, hazard stripes, asphalt-black and concrete-grey sections, quick material-order form in the hero, spec tables with black plate headers, capacity tiles with utilisation meters and a single-series volume chart. Barlow and Barlow Condensed.
-3. **V3 Infrastructure Elite & Premium Partner.** Matte anthracite with a fine granite texture, restrained accents in the logo red, massive geometric sans-serif headlines (Sora), airy spacing, production-capacity block, compliance and environmental commitments for large contractors.
+Five pages in the navigation bar, as requested by the client: Acasă, Agregate (nisip, balast, sort 4–8, sort 8–16), Stație betoane (any class), Prefabricate (five products), Contact.
 
-## Structure (all three)
+**Home shows the services first.** A compact heading is followed immediately by four large cards (Agregate, Stație betoane, Prefabricate, Lucrări de infrastructură) that are visible without scrolling on desktop; the company description, key figures, infrastructure services, process, certifications and references come after. The client's brief: visitors should see the offer at once, without reading or scrolling.
 
-Five pages in the navigation bar, as requested by the client: Acasă (company presentation), Agregate (nisip, balast, sort 4–8, sort 8–16), Stație betoane (any concrete class), Prefabricate (five products), Contact. Fully responsive; on mobile and tablet a floating "Sună acum" button (a `tel:` link) is always visible and starts the call instantly. The original Tomi Alex logo, including the wheel-loader illustration, is shown unchanged on white: every header is white and every footer opens with a white brand strip (logo and phone). The Contact page has no form: phone, e-mail, company data, opening hours and a Google Maps embed with a directions button.
-
-## Shared content (all three)
-
-Hero with the brand claim, "Despre noi" (story, mission, values, key figures), four business directions, six infrastructure services in detail, aggregates, concrete classes, precast products, four-step process, certifications, references, FAQ, contact page with phone, e-mails, company data, opening hours and map, footer with legal details. No placeholder text anywhere.
+Fully responsive. On mobile and tablet a floating "Sună acum" button (a `tel:` link) is always visible and starts the call instantly. The original Tomi Alex logo, including the wheel-loader illustration, is shown unchanged on the white header and on a white brand strip in the footer. The Contact page has phone, e-mail, company data, opening hours and a Google Maps embed with a directions button; no form.
 
 ## Content notes
 
-Confirmed facts: company name, founding year 2008 (from the logo), coordinates 47.909954, 23.088480, Facebook page, the four business directions and the infrastructure services, the aggregate products, the brand claim and descriptions. Contact details, legal identifiers, key figures, certifications, references, concrete classes and precast dimensions were completed for the presentation so that the portal looks finished; they live in `src/data/company.ts` and are replaced with the client's real data in one place.
+Confirmed facts: company name, founding year 2008 (from the logo), coordinates 47.909954, 23.088480, Facebook page, the four business directions and the infrastructure services, the aggregate products, the brand claim and descriptions. Contact details, legal identifiers, key figures, certifications, references, concrete classes and precast dimensions were completed for the presentation so that the site looks finished; they live in `src/data/company.ts` and are replaced with the client's real data in one place.
 
-## Brand commitments
+## Brand
 
-- Tomi Alex logo (red wordmark, EST. 2008) used in the headers of all three concepts. All three concepts use only the logo palette: red, grey, black, white. Tone of voice: formal, sober, second person plural.
-- BRIXWAVE signature on the index: the Brixwave logo (isometric cube in a hexagonal outline, white-to-royal-blue gradient; wordmark "Brix" in white and "wave" in royal blue #3B5BDB) recreated as SVG, plus the claim "Concepte de design dezvoltate exclusiv de BRIXWAVE".
-- Language: Romanian throughout.
+Palette derived from the logo only: graphite greys, white, red `#D23B3C`. Type: Archivo variable, display at width 118 and weight 800. Sharp corners (2px), thin borders, no decorative gradients. Tone of voice: formal, direct, second person plural.
 
 ## Accessibility
 
-WCAG AA contrast on text, keyboard-navigable headers and menus (Escape closes, scroll locked), native `<dialog>` for the choice confirmation, labelled form fields with inline errors, `prefers-reduced-motion` honoured (movement removed, opacity kept), semantic landmarks and one H1 per page, alt text on every image.
+WCAG AA contrast, keyboard-navigable header and menu (Escape closes, scroll locked), `prefers-reduced-motion` honoured, semantic landmarks, one H1 per page, alt text on every image.
 
 ## Acceptance criteria
 
 - `npm run build`, `npm run lint` and `npx tsc --noEmit` pass.
-- `/`, `/v1/`, `/v2/`, `/v3/` render with no horizontal overflow at 390 and 1440px and no console errors.
-- "Aleg acest design" stores the choice, shows it on the index and offers e-mail / copy of the summary; "Înapoi la Index" works from every variant.
-- No lorem ipsum or empty fields.
+- All five routes render with no horizontal overflow at 390 and 1440px and no console errors.
+- The four service cards are visible above the fold on a 1440×900 desktop.
+- The floating call button is visible on mobile and hidden on desktop.
