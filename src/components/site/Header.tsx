@@ -90,9 +90,9 @@ export function Header() {
             {nav.map((item) => {
               const active = isActivePath(pathname, item.href);
               return (
-                <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} className={cn("border-b border-steel-400/15 py-4 text-lg font-semibold", active ? "text-brand-soft" : "text-white")}>
+                <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} className={cn("block border-b border-graphite-950/10 py-4 text-lg font-semibold", active ? "text-brand" : "text-graphite-950")}>
                   {item.label}
-                  <span className="block text-[13px] font-medium text-steel-400">{item.description}</span>
+                  <span className="block text-[13px] font-normal text-graphite-700/80">{item.description}</span>
                 </Link>
               );
             })}
