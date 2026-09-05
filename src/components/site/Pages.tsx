@@ -146,22 +146,31 @@ export function Home() {
             </div>
           </div>
 
-          <div className={cn("anim-rise mt-6 grid grid-cols-2 gap-px xl:grid-cols-4 sm:mt-10 [animation-delay:500ms]", cell)}>
+          {/* Mobil (< sm): patru rânduri, câte un serviciu pe rând. De la sm în sus: cardurile pe coloane, ca înainte. */}
+          <div className={cn("anim-rise mt-6 grid grid-cols-1 gap-px sm:grid-cols-2 sm:mt-10 xl:grid-cols-4 [animation-delay:500ms]", cell)}>
             {serviceCards.map((c, i) => (
-              <Link key={c.slug} href={pageHref(c.slug)} className="group flex flex-col bg-graphite-950 transition hover:bg-graphite-900">
-                <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[16/9]">
-                  <Image src={c.image.src} alt={c.image.alt} fill priority={i < 2} sizes="(min-width: 1280px) 25vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-[linear-gradient(to_top,#0c0d0f_5%,transparent_60%)]" />
+              <Link
+                key={c.slug}
+                href={pageHref(c.slug)}
+                className="group flex flex-row items-center gap-3.5 bg-graphite-950 p-3 transition hover:bg-graphite-900 sm:flex-col sm:items-stretch sm:gap-0 sm:p-0"
+              >
+                <div className="relative size-[76px] shrink-0 overflow-hidden sm:aspect-[16/9] sm:h-auto sm:w-full">
+                  <Image src={c.image.src} alt={c.image.alt} fill priority={i < 2} sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 76px" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 hidden bg-[linear-gradient(to_top,#0c0d0f_5%,transparent_60%)] sm:block" />
                   <span className="absolute left-3 top-3 hidden rounded-[2px] bg-brand px-2.5 py-1 text-[11.5px] font-bold uppercase tracking-wider text-white sm:inline-block">{c.kicker}</span>
                 </div>
-                <div className="flex flex-1 flex-col p-3.5 sm:p-5">
-                  <h2 className="text-[16px] font-bold leading-tight text-white sm:text-[22px]">{c.title}</h2>
+                <div className="flex min-w-0 flex-1 flex-col sm:p-5">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-brand-soft sm:hidden">{c.kicker}</span>
+                  <h2 className="mt-0.5 text-[17px] font-bold leading-tight text-white sm:mt-0 sm:text-[22px]">{c.title}</h2>
                   <p className="mt-2 hidden text-[14px] leading-relaxed text-steel-200 sm:block">{c.text}</p>
-                  <span className="mt-2 inline-flex items-center gap-2 text-[13px] font-bold text-brand-soft sm:mt-4 sm:text-[14px]">
+                  <span className="mt-1 inline-flex items-center gap-2 text-[13px] font-bold text-brand-soft sm:mt-4 sm:text-[14px]">
                     {c.slug === "contact" ? "Contactați-ne" : `Vezi ${c.title.toLowerCase()}`}
-                    <ArrowRight weight="bold" className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
+                    <ArrowRight weight="bold" className="hidden size-4 transition-transform group-hover:translate-x-1 sm:inline" aria-hidden />
                   </span>
                 </div>
+                <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-[2px] border border-steel-400/30 text-white transition group-hover:border-brand group-hover:bg-brand sm:hidden" aria-hidden>
+                  <ArrowRight weight="bold" className="size-4" />
+                </span>
               </Link>
             ))}
           </div>
