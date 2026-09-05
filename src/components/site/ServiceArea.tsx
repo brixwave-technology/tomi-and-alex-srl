@@ -1,6 +1,8 @@
-import { MapPin } from "@phosphor-icons/react/dist/ssr";
+import Link from "next/link";
+import { ArrowRight, MapPin } from "@phosphor-icons/react/dist/ssr";
 import { Reveal } from "@/components/shared/Reveal";
 import { serviceRegion } from "@/data/seo";
+import { regions } from "@/data/regions";
 import { contact } from "@/data/company";
 import { cn } from "@/lib/cn";
 
@@ -22,12 +24,21 @@ export function ServiceArea({ what = "materiale și lucrări" }: { what?: string
           </p>
         </Reveal>
         <div className={cn("mt-8 grid gap-px border border-steel-400/20 bg-steel-400/20 sm:grid-cols-2 lg:grid-cols-4")}>
-          {serviceRegion.counties.map((c, i) => (
-            <Reveal key={c.name} delay={i * 70} className="bg-graphite-950 p-6">
-              <h3 className="text-lg font-bold text-white">Județul {c.name}</h3>
-              <p className="mt-2 text-[14px] leading-relaxed text-steel-400">{c.cities.join(" · ")}</p>
-            </Reveal>
-          ))}
+          {serviceRegion.counties.map((c, i) => {
+            const region = regions.find((r) => r.county === c.name);
+            return (
+              <Reveal key={c.name} delay={i * 70} className="group bg-graphite-950 transition hover:bg-graphite-900">
+                <Link href={region ? `/zone/${region.slug}/` : "/contact/"} className="flex h-full flex-col p-6">
+                  <h3 className="text-lg font-bold text-white">Județul {c.name}</h3>
+                  <p className="mt-2 text-[14px] leading-relaxed text-steel-400">{c.cities.join(" · ")}</p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-[13.5px] font-bold text-brand-soft">
+                    Orașe și timpi de livrare
+                    <ArrowRight weight="bold" className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
+                  </span>
+                </Link>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -3,11 +3,11 @@ import { logo } from "@/data/images";
 import { countyNames, pageFaq, pagesSeo, serviceRegion, siteUrl } from "@/data/seo";
 import { pageHref } from "@/lib/routes";
 
-function Script({ data }: { data: Record<string, unknown> }) {
+export function JsonLdScript({ data }: { data: Record<string, unknown> }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
 }
 
-const orgId = `${siteUrl}/#organization`;
+export const orgId = `${siteUrl}/#organization`;
 
 /** Organizația (afacere locală de construcții și materiale), o singură dată, în layout. */
 export function OrganizationJsonLd() {
@@ -54,11 +54,11 @@ export function OrganizationJsonLd() {
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Lucrări de infrastructură și construcții", description: "Rețele de alimentare cu apă și canalizare, terasamente, drumuri, poduri, construcții civile și industriale.", serviceType: "Construcții și infrastructură", provider: { "@id": orgId } }, areaServed: countyNames },
     ],
   };
-  return <Script data={data} />;
+  return <JsonLdScript data={data} />;
 }
 
 export function WebSiteJsonLd() {
-  return <Script data={{ "@context": "https://schema.org", "@type": "WebSite", "@id": `${siteUrl}/#website`, url: `${siteUrl}/`, name: company.name, inLanguage: "ro-RO", publisher: { "@id": orgId } }} />;
+  return <JsonLdScript data={{ "@context": "https://schema.org", "@type": "WebSite", "@id": `${siteUrl}/#website`, url: `${siteUrl}/`, name: company.name, inLanguage: "ro-RO", publisher: { "@id": orgId } }} />;
 }
 
 /** Breadcrumb + WebPage + FAQ pentru o pagină. */
@@ -70,9 +70,9 @@ export function PageJsonLd({ slug }: { slug: string }) {
   const faq = pageFaq[slug] ?? [];
   return (
     <>
-      <Script data={{ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: items }} />
-      <Script data={{ "@context": "https://schema.org", "@type": "WebPage", "@id": `${url}#webpage`, url, name: seo.title, description: seo.description, inLanguage: "ro-RO", isPartOf: { "@id": `${siteUrl}/#website` }, about: { "@id": orgId } }} />
-      {faq.length > 0 && <Script data={{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faq.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.answer } })) }} />}
+      <JsonLdScript data={{ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: items }} />
+      <JsonLdScript data={{ "@context": "https://schema.org", "@type": "WebPage", "@id": `${url}#webpage`, url, name: seo.title, description: seo.description, inLanguage: "ro-RO", isPartOf: { "@id": `${siteUrl}/#website` }, about: { "@id": orgId } }} />
+      {faq.length > 0 && <JsonLdScript data={{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faq.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.answer } })) }} />}
     </>
   );
 }

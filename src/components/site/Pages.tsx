@@ -6,6 +6,8 @@ import { PageJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { ServiceArea } from "./ServiceArea";
 import { Faq } from "./Faq";
+import { GuideCard } from "./Guides";
+import { guides } from "@/data/guides";
 import { pagesSeo } from "@/data/seo";
 import { Reveal } from "@/components/shared/Reveal";
 import {
@@ -284,6 +286,25 @@ export function Home() {
         </Wrap>
       </section>
       <ServiceArea />
+      <section className="py-16 lg:py-20" aria-labelledby="ghiduri-title">
+        <Wrap>
+          <Reveal className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <Label index="04">Ghiduri utile</Label>
+              <h2 id="ghiduri-title" className="v1-display mt-4 text-3xl text-white sm:text-4xl">Răspunsuri practice pentru șantierul dumneavoastră.</h2>
+            </div>
+            <Link href="/ghiduri/" className="inline-flex items-center gap-2 text-[14px] font-bold text-white hover:text-brand-soft">
+              Toate ghidurile
+              <ArrowRight weight="bold" className="size-4" aria-hidden />
+            </Link>
+          </Reveal>
+          <div className={cn("mt-8 grid gap-px md:grid-cols-3", cell)}>
+            {guides.slice(0, 3).map((g, i) => (
+              <GuideCard key={g.slug} guide={g} delay={i * 70} />
+            ))}
+          </div>
+        </Wrap>
+      </section>
       <Faq slug="" />
       <Cta title="Aveți un proiect sau o comandă?" text="Sunați-ne sau scrieți-ne pe e-mail. Răspundem în aceeași zi lucrătoare." />
     </>
