@@ -85,6 +85,10 @@ export const images = {
     rebar: img("beton-rebar.webp", "Armătură din oțel pregătită pentru turnare"),
   },
   prefabricate: {
+    baza: img("prefab-baza-camin.webp", "Bază de cămin din beton armat, cu ieșiri pentru conducte, în depozitul de prefabricate", 1600, 900),
+    inel: img("prefab-inel-camin.webp", "Inele de cămin din beton, de înălțimi diferite, stivuite în depozit", 1600, 900),
+    con: img("prefab-con-camin.webp", "Conuri de reducție din beton pentru cămine de vizitare", 1600, 900),
+    capac: img("prefab-capac-camin.webp", "Capace de cămin din beton armat, cu gol de acces, stivuite pe șipci", 1600, 900),
     forms: img(
       "prefab-forms.webp",
       "Elemente prefabricate din beton stivuite pe paleți",

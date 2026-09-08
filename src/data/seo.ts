@@ -108,17 +108,17 @@ export const pagesSeo: Record<string, PageSeo> = {
   prefabricate: {
     slug: "prefabricate",
     crumb: "Prefabricate",
-    title: "Prefabricate din beton: tuburi, cămine, borduri | Satu Mare",
-    description: "Tuburi de canalizare, cămine, borduri, rigole, dale și elemente pentru podețe din beton vibrat, produse în Satu Mare și livrate în tot Nord-Vestul României.",
+    title: "Prefabricate din beton pentru cămine de canalizare | Satu Mare",
+    description: "Baze, inele, conuri și capace de cămin din beton vibrat, produse în Satu Mare și livrate în tot Nord-Vestul României. Stoc permanent, livrare cu macara.",
     h1: "Prefabricate din beton în Satu Mare și Nord-Vest, gata de montaj.",
     keywords: [
       "prefabricate beton Satu Mare",
-      "tuburi beton canalizare",
       "cămine de vizitare beton",
-      "borduri beton Satu Mare",
-      "rigole beton",
-      "dale beton pavele",
-      "podețe tubulare prefabricate",
+      "bază cămin beton",
+      "inele cămin beton",
+      "con reducție cămin",
+      "capac cămin beton",
+      "elemente cămin canalizare",
       "prefabricate beton Maramureș",
       "prefabricate beton Bihor",
       "prefabricate beton Sălaj",
@@ -184,7 +184,7 @@ export const pageFaq: Record<string, Faq[]> = {
   prefabricate: [
     {
       question: "Aveți prefabricate în stoc?",
-      answer: "Da, pentru dimensiunile uzuale: tuburi DN 300–1000, inele și plăci de cămin, borduri, rigole, dale. Elementele speciale pentru podețe se produc pe comandă în 10–15 zile lucrătoare.",
+      answer: "Da. Bazele de cămin cu ieșirile uzuale (Ø200, Ø250, Ø315), inelele de 10 cm – 1,00 m, conurile și capacele sunt în stoc permanent. Configurațiile speciale se produc pe comandă în 10–15 zile lucrătoare.",
     },
     {
       question: "Livrați și descărcați la șantier?",

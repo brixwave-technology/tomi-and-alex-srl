@@ -19,7 +19,7 @@ import {
   contact,
   directions,
   infrastructureServices,
-  prefabProducts,
+  prefabCategories,
   process,
   testimonials,
 } from "@/data/company";
@@ -115,7 +115,7 @@ const cell = "border border-steel-400/20 bg-steel-400/20";
 const serviceCards = [
   { slug: "agregate", title: "Agregate", kicker: "Balastieră proprie", text: "Nisip, balast, sort 4–8, sort 8–16. Livrare cu flota proprie.", image: images.agregate.cover },
   { slug: "beton", title: "Stație betoane", kicker: "Orice clasă de beton", text: "C8/10 – C35/45, certificat de calitate la fiecare transport.", image: images.beton.pouring },
-  { slug: "prefabricate", title: "Prefabricate", kicker: "Produse din beton", text: "Tuburi, cămine, borduri, dale, elemente pentru podețe.", image: images.prefabricate.forms },
+  { slug: "prefabricate", title: "Prefabricate", kicker: "Produse din beton", text: "Baze, inele, conuri și capace pentru cămine de vizitare.", image: images.prefabricate.inel },
   { slug: "contact", title: "Lucrări de infrastructură", kicker: "Echipe și utilaje proprii", text: "Rețele de apă și canalizare, drumuri, poduri, terasamente.", image: images.infrastructura.asphalt },
 ];
 
@@ -526,8 +526,8 @@ export function Prefabricate() {
       <PageHero
         kicker="Linie proprie de prefabricate · județul Satu Mare"
         title={pagesSeo.prefabricate.h1}
-        lead="Produse în tipare metalice cu beton vibrat din stația proprie. Stoc permanent pentru dimensiunile uzuale și producție pe comandă după proiect, cu livrare și descărcare la șantier."
-        image={images.prefabricate.forms}
+        lead="Producem în unitatea proprie toate elementele unui cămin de vizitare: bază, inele, con de reducție și capac. Stoc permanent pentru variantele uzuale, producție pe comandă pentru configurații speciale, livrare cu camion cu macara la șantier."
+        image={images.prefabricate.baza}
       >
         <CallLink />
         <PrimaryLink href={pageHref("contact")}>Date de contact</PrimaryLink>
@@ -536,44 +536,47 @@ export function Prefabricate() {
       <section className="py-20 lg:py-28">
         <Wrap>
           <Reveal className="max-w-2xl">
-            <Label index="01">Produse</Label>
+            <Label index="01">Categorii de produse</Label>
             <h2 className="v1-display mt-5 text-4xl text-white sm:text-5xl">Ce producem.</h2>
+            <p className="mt-4 text-[15.5px] leading-relaxed text-steel-200">Cele patru categorii de elemente din care se compune un cămin de canalizare. Pentru lista completă de variante și cantități disponibile în stoc, sunați-ne.</p>
           </Reveal>
-          <div className="mt-12 grid gap-px border border-steel-400/20 bg-steel-400/20">
-            {prefabProducts.map((p, i) => (
-              <Reveal key={p.name} delay={i * 60} className="grid gap-6 bg-graphite-950 p-5 md:grid-cols-12 md:items-center">
-                <div className="relative aspect-[4/3] overflow-hidden md:col-span-3">
-                  <Image src={p.image.src} alt={p.image.alt} fill sizes="(min-width: 768px) 25vw, 100vw" className="object-cover" />
+          <div className={cn("mt-12 grid gap-px sm:grid-cols-2", cell)}>
+            {prefabCategories.map((p, i) => (
+              <Reveal key={p.slug} delay={i * 60} className="flex flex-col bg-graphite-950" id={p.slug}>
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <Image src={p.image.src} alt={p.image.alt} fill sizes="(min-width: 640px) 50vw, 100vw" className="object-cover" />
+                  <div className="absolute inset-0 bg-[linear-gradient(to_top,#0c0d0f_0%,transparent_45%)]" />
+                  <span className="absolute left-4 top-4 font-mono text-[12px] text-white/80">0{i + 1}</span>
                 </div>
-                <div className="md:col-span-5">
-                  <p className="font-mono text-[12px] text-brand">0{i + 1}</p>
-                  <h3 className="mt-1 text-2xl font-bold text-white">{p.name}</h3>
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                  <h3 className="text-2xl font-bold text-white sm:text-[26px]">{p.name}</h3>
                   <p className="mt-2 text-[14.5px] leading-relaxed text-steel-200">{p.summary}</p>
+                  <ul className="mt-4 flex flex-wrap gap-1.5" aria-label={`Variante ${p.name.toLowerCase()}`}>
+                    {p.variants.map((v) => (
+                      <li key={v} className="rounded-[2px] border border-steel-400/30 px-2.5 py-1 font-mono text-[12.5px] text-white">
+                        {v}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-4 text-[13.5px] leading-relaxed text-steel-400">
+                    <span className="font-bold uppercase tracking-[0.14em] text-[11.5px] text-steel-400">Utilizare · </span>
+                    <span className="text-steel-200">{p.usage}</span>
+                  </p>
                 </div>
-                <dl className="grid gap-3 text-[14px] md:col-span-4">
-                  <div>
-                    <dt className="text-[12px] font-bold uppercase tracking-[0.14em] text-steel-400">Dimensiuni</dt>
-                    <dd className="mt-1 font-mono text-[13px] text-white">{p.dimensions}</dd>
-                  </div>
-                  <div>
-                    <dt className="text-[12px] font-bold uppercase tracking-[0.14em] text-steel-400">Utilizare</dt>
-                    <dd className="mt-1 text-steel-200">{p.usage}</dd>
-                  </div>
-                </dl>
               </Reveal>
             ))}
           </div>
           <Reveal className="mt-10 grid gap-6 border border-steel-400/20 bg-graphite-900 p-6 md:grid-cols-[auto_1fr]">
             <ShieldCheck weight="fill" className="size-8 text-brand" aria-hidden />
             <p className="text-[15px] leading-relaxed text-steel-200">
-              Toate prefabricatele sunt produse din beton C30/37 sau C35/45, vibrat mecanic, cu armătură conform proiectului. Pentru elemente speciale (timpane, aripi, dale de podeț) producem după planșele beneficiarului, cu termen de 10–15 zile lucrătoare.
+              Toate elementele sunt produse din beton vibrat mecanic, cu armătură conform proiectului, în tipare metalice. Configurațiile speciale de bază (alte diametre sau combinații de ieșiri) se produc pe comandă, cu termen de 10–15 zile lucrătoare.
             </p>
           </Reveal>
         </Wrap>
       </section>
       <ServiceArea what="prefabricate" />
       <Faq slug="prefabricate" />
-      <Cta title="Aveți nevoie de prefabricate?" text="Trimiteți lista de produse și cantitățile sau sunați-ne. Verificăm stocul și confirmăm termenul de livrare." />
+      <Cta title="Aveți nevoie de elemente de cămin?" text="Spuneți-ne câte cămine aveți, cu ce ieșiri și la ce înălțimi, sau sunați-ne. Verificăm stocul și confirmăm termenul de livrare." />
     </>
   );
 }

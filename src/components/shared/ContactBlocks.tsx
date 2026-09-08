@@ -16,7 +16,6 @@ export const contactGroups = [
     label: "E-mail",
     lines: [
       { text: contact.email, href: `mailto:${contact.email}`, strong: true },
-      { text: contact.emailOffers, href: `mailto:${contact.emailOffers}` },
     ],
   },
   {
