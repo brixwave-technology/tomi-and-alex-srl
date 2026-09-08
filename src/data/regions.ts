@@ -39,7 +39,7 @@ export const regions: Region[] = [
       { name: "Carei", km: 60, minutes: 65 },
       { name: "Tășnad", km: 85, minutes: 90 },
     ],
-    focus: ["Beton pentru fundații, platforme și drumuri comunale", "Nisip și balast pentru șantiere rezidențiale și agricole", "Tuburi și cămine pentru rețelele de canalizare ale comunelor", "Rețele de apă și canalizare, modernizări de drumuri pentru primării"],
+    focus: ["Beton pentru fundații, platforme și drumuri comunale", "Nisip și balast pentru șantiere rezidențiale și agricole", "Baze, inele și capace de cămin pentru rețelele de canalizare ale comunelor", "Rețele de apă și canalizare, modernizări de drumuri pentru primării"],
     logistics: "Autobasculantele și autobetonierele pleacă din Turulung; în Satu Mare, Livada, Halmeu și Negrești-Oaș ajungem în sub o oră. Pentru șantiere mari organizăm livrări în serie cu pompă de beton.",
     faq: [
       { question: "Livrați beton în municipiul Satu Mare?", answer: "Da, zilnic. Timpul de transport de la stația din Turulung este de aproximativ 40 de minute, în limita permisă de rețetă. Programați livrarea cu o zi înainte pentru intervalul dorit." },
@@ -62,7 +62,7 @@ export const regions: Region[] = [
       { name: "Sighetu Marmației", km: 110, minutes: 130 },
       { name: "Vișeu de Sus", km: 165, minutes: 190 },
     ],
-    focus: ["Beton C16/20 – C30/37 pentru construcții rezidențiale și hale", "Agregate pentru drumuri forestiere și platforme", "Prefabricate pentru podețe și rețele de canalizare", "Lucrări de infrastructură pentru comune din zona Seini – Baia Mare"],
+    focus: ["Beton C16/20 – C30/37 pentru construcții rezidențiale și hale", "Agregate pentru drumuri forestiere și platforme", "Elemente prefabricate de cămin pentru rețele de canalizare", "Lucrări de infrastructură pentru comune din zona Seini – Baia Mare"],
     logistics: "Pentru Baia Mare și împrejurimi programăm transporturile cu o zi înainte. Betonul se livrează cu aditivi de întârziere a prizei când distanța o cere; cantitățile de agregate peste 100 t se organizează în convoaie.",
     faq: [
       { question: "Cât durează livrarea betonului până la Baia Mare?", answer: "Aproximativ 75 de minute de la stația din Turulung, cu rețetă adaptată transportului. Confirmăm ora exactă telefonic, în ziua anterioară." },
@@ -85,11 +85,11 @@ export const regions: Region[] = [
       { name: "Salonta", km: 195, minutes: 170 },
       { name: "Beiuș", km: 220, minutes: 200 },
     ],
-    focus: ["Prefabricate pentru canalizare și podețe (tuburi, cămine, elemente dalate)", "Sorturi 4–8 și 8–16 pentru stații de betoane și prefabricate", "Balast pentru fundații de drumuri și platforme logistice", "Subantrepriză pentru rețele de apă și canalizare"],
+    focus: ["Prefabricate pentru cămine de canalizare (baze, inele, conuri, capace)", "Sorturi 4–8 și 8–16 pentru stații de betoane și prefabricate", "Balast pentru fundații de drumuri și platforme logistice", "Subantrepriză pentru rețele de apă și canalizare"],
     logistics: "Transporturile spre Bihor se programează cu 1–2 zile înainte. Prefabricatele se livrează cu camion cu macara și se descarcă la punctul de montaj; agregatele, cu autobasculante de 40 t.",
     faq: [
       { question: "Livrați beton până la Oradea?", answer: "Pentru Oradea livrăm beton doar pentru lucrări programate, cu rețete pentru transport lung; de regulă recomandăm agregate și prefabricate, unde distanța nu afectează calitatea." },
-      { question: "Aveți prefabricate pentru podețe în stoc?", answer: "Tuburile DN 300–1000 și inelele de cămin sunt în stoc permanent. Elementele dalate și timpanele se produc pe comandă în 10–15 zile lucrătoare." },
+      { question: "Aveți elemente de cămin în stoc?", answer: "Bazele cu ieșiri Ø200–Ø315, inelele de 10 cm – 1,00 m, conurile și capacele sunt în stoc permanent. Configurațiile speciale se produc pe comandă în 10–15 zile lucrătoare." },
     ],
   },
   {
@@ -106,7 +106,7 @@ export const regions: Region[] = [
       { name: "Jibou", km: 125, minutes: 135 },
       { name: "Zalău", km: 140, minutes: 140 },
     ],
-    focus: ["Balast și sorturi pentru modernizări de drumuri comunale", "Tuburi și cămine pentru canalizări", "Beton pentru fundații și platforme, la lucrări programate", "Lucrări de rețele de apă și canalizare"],
+    focus: ["Balast și sorturi pentru modernizări de drumuri comunale", "Elemente de cămin pentru canalizări", "Beton pentru fundații și platforme, la lucrări programate", "Lucrări de rețele de apă și canalizare"],
     logistics: "Programăm transporturile cu 1–2 zile înainte și grupăm livrările pe zone pentru un cost de transport optim. Pentru lucrări cu volume mari discutăm un grafic săptămânal de livrări.",
     faq: [
       { question: "Care este cantitatea minimă pentru Sălaj?", answer: "O autobasculantă de agregate (aproximativ 24 t) sau un transport de prefabricate. Pentru beton, minimum o autobetonieră (8 mc), la lucrări programate." },

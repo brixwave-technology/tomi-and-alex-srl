@@ -52,7 +52,7 @@ src/
     guides.ts              articolele din Ghiduri utile
     brixwave.ts            creditul agenției din footer
     images.ts              manifestul fotografiilor
-public/images/             fotografii (temporar stock) și logo-ul Tomi Alex
+public/images/             fotografii (temporar stock / generate) și logo-ul Tomi Alex
 ```
 
 ## Cum se actualizează conținutul
@@ -87,7 +87,7 @@ Ce trebuie făcut în afara codului, în ordinea impactului:
 2. **Google Business Profile** pentru sediul din Turulung, cu exact aceleași nume, adresă, telefon și program ca pe site, categoria „Furnizor de materiale de construcții” + „Antreprenor de construcții”, fotografii reale, produsele listate. Cereți recenzii clienților după fiecare livrare; profilul este principalul canal pentru căutări locale de tip „beton Satu Mare”.
 3. **Google Search Console**: verificați domeniul (variabila `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` adaugă automat meta-tagul), trimiteți `sitemap.xml`, urmăriți interogările și paginile indexate.
 4. **Analiză de trafic fără cookie-uri**: setați `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` pentru Plausible (nu necesită banner de consimțământ). Alternativ, Google Analytics 4 necesită banner de cookie-uri.
-5. **Date și fotografii reale**: înlocuiți datele demonstrative din `src/data/company.ts` și fotografiile stock cu imagini de la balastieră, stație și șantiere (Google preferă fotografii originale; și profilul GBP).
+5. **Date și fotografii reale**: înlocuiți datele demonstrative din `src/data/company.ts` și fotografiile stock cu imagini de la balastieră, stație și șantiere (Google preferă fotografii originale; și profilul GBP). Cele patru poze ale categoriilor de prefabricate (`public/images/prefab-*-camin.webp`) sunt imagini sugestive generate, de înlocuit cu fotografii reale ale produselor (în special „Capac cămin”).
 6. **Conținut nou lunar**: câte un ghid nou în `src/data/guides.ts` (întrebări reale ale clienților) și actualizarea paginilor de județ cu lucrări recente. Creșterea organică vine din conținut util publicat constant.
 7. **Linkuri locale**: listări în directoare de firme (ex. listafirme, firme.info), pagina Facebook cu link către site, parteneri și primării care menționează lucrările.
 

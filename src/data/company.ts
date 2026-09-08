@@ -69,12 +69,11 @@ export const company = {
 
 /** Date de contact (demo, de înlocuit cu datele reale ale clientului). */
 export const contact = {
-  phone: "+40745220108",
-  phoneDisplay: "0745 220 108",
-  phoneSecondary: "+40261750320",
-  phoneSecondaryDisplay: "0261 750 320",
-  email: "office@tomialex.ro",
-  emailOffers: "oferte@tomialex.ro",
+  phone: "+40723586544",
+  phoneDisplay: "0723 586 544",
+  phoneSecondary: "+40755152399",
+  phoneSecondaryDisplay: "0755 152 399",
+  email: "office@tomialex.com",
   address: {
     street: "Strada Principală nr. 118",
     locality: "Turulung",
@@ -154,9 +153,9 @@ export const directions: Direction[] = [
     kicker: "Produse din beton",
     summary: "Elemente prefabricate din beton pentru lucrări de infrastructură și construcții, gata de montaj.",
     description:
-      "Linia de prefabricate produce tuburi, cămine, borduri, dale și elemente pentru podețe în tipare metalice, cu beton vibrat din stația proprie. Stoc permanent pentru dimensiunile uzuale.",
-    bullets: ["Tuburi de canalizare", "Cămine de vizitare", "Borduri și rigole", "Dale și pavele", "Podețe tubulare", "Stoc permanent"],
-    image: images.prefabricate.forms,
+      "Linia de prefabricate produce elementele complete pentru cămine de vizitare: baze cu ieșiri, inele, conuri de reducție și capace, în tipare metalice, cu beton vibrat din stația proprie. Stoc permanent pentru dimensiunile uzuale.",
+    bullets: ["Bază cămin", "Inel cămin", "Con de reducție", "Capac cămin", "Stoc permanent", "Livrare cu macara"],
+    image: images.prefabricate.inel,
   },
   {
     index: "04",
@@ -297,49 +296,53 @@ export const concreteApplications: ConcreteApplication[] = [
   { title: "Comenzi mici", description: "De la 1 mc, pentru fundații de garduri, trotuare, alei și anexe gospodărești." },
 ];
 
-export type PrefabProduct = {
+export type PrefabCategory = {
+  /** Slug stabil pentru ancore și JSON-LD. */
+  slug: string;
   name: string;
   summary: string;
-  dimensions: string;
+  /** Variantele produse, pe scurt (fără listă detaliată de produse). */
+  variants: string[];
   usage: string;
   image: SiteImage;
 };
 
-export const prefabProducts: PrefabProduct[] = [
+/**
+ * Categoriile principale de prefabricate (după lista de producție a clientului).
+ * Se afișează doar categoriile „mamă”, cu o poză sugestivă, nu fiecare produs în parte.
+ */
+export const prefabCategories: PrefabCategory[] = [
   {
-    name: "Tuburi de canalizare",
-    summary: "Tuburi din beton armat cu mufă și garnitură, pentru rețele de canalizare și podețe.",
-    dimensions: "DN 300 – DN 1000 · L 1,00 – 2,50 m",
-    usage: "Canalizări, podețe tubulare, subtraversări",
-    image: images.prefabricate.forms,
+    slug: "baza-camin",
+    name: "Bază cămin",
+    summary: "Elementul de fund al căminului de vizitare, cu ieșirile turnate din fabrică pentru racordarea conductelor de canalizare.",
+    variants: ["Fără ieșiri", "Ø200", "Ø250", "Ø315", "Linie", "Capăt", "Y", "90°", "Fund plat", "Șanț"],
+    usage: "Cămine de canalizare pe linie, la capăt de rețea sau la schimbări de direcție",
+    image: images.prefabricate.baza,
   },
   {
-    name: "Cămine de vizitare",
-    summary: "Inele, plăci de bază, plăci de acoperire și conuri de reducție pentru cămine de canalizare.",
-    dimensions: "Ø 800 – Ø 1500 mm · H 250 – 1000 mm",
-    usage: "Rețele de canalizare, cămine de vane și racorduri",
-    image: images.prefabricate.slabs,
+    slug: "inel-camin",
+    name: "Inel cămin",
+    summary: "Inele de înălțare pentru cămine de vizitare, în înălțimi diferite, pentru a ajunge exact la cota terenului.",
+    variants: ["10 cm", "0,50 m", "0,60 m", "0,75 m", "1,00 m"],
+    usage: "Corpul căminului și reglajul fin al înălțimii sub capac",
+    image: images.prefabricate.inel,
   },
   {
-    name: "Borduri și rigole",
-    summary: "Borduri carosabile și pietonale, rigole carosabile și elemente de scurgere din beton vibropresat.",
-    dimensions: "Borduri 10×15, 20×25 · Rigole 30–50 cm",
-    usage: "Drumuri, parcări, trotuare, piste de biciclete",
-    image: images.prefabricate.blocks,
+    slug: "con-camin",
+    name: "Con de reducție",
+    summary: "Conuri din beton care reduc secțiunea căminului către gura de acces, pentru montarea capacului carosabil.",
+    variants: ["Con cămin"],
+    usage: "Partea superioară a căminelor de vizitare, sub capac",
+    image: images.prefabricate.con,
   },
   {
-    name: "Dale și pavele",
-    summary: "Dale de trotuar, pavele de beton și dale carosabile pentru platforme și amenajări urbane.",
-    dimensions: "Grosimi 6, 8 și 10 cm · formate standard",
-    usage: "Trotuare, platforme, curți industriale",
-    image: images.beton.finishing,
-  },
-  {
-    name: "Elemente pentru podețe",
-    summary: "Elemente dalate, timpane și aripi pentru podețe rutiere, produse pe comandă după proiect.",
-    dimensions: "Deschideri 1,00 – 3,00 m · pe proiect",
-    usage: "Podețe rutiere, drumuri de exploatare, accesuri",
-    image: images.infrastructura.bridgeCrane,
+    slug: "capac-camin",
+    name: "Capac cămin",
+    summary: "Plăci de acoperire din beton armat pentru cămine, cu gol de acces pentru rama și capacul din fontă.",
+    variants: ["Capac cămin 1 m"],
+    usage: "Închiderea căminelor în zone carosabile și pietonale",
+    image: images.prefabricate.capac,
   },
 ];
 
@@ -395,7 +398,7 @@ export const milestones: Milestone[] = [
   { year: "2008", title: "Înființarea companiei", description: "Primele lucrări de terasamente și rețele de apă în județul Satu Mare." },
   { year: "2012", title: "Balastiera proprie", description: "Deschiderea exploatării de agregate cu stație de sortare și spălare." },
   { year: "2016", title: "Stația de betoane", description: "Punerea în funcțiune a stației automatizate și a laboratorului propriu." },
-  { year: "2019", title: "Linia de prefabricate", description: "Producție de tuburi, cămine, borduri și elemente pentru podețe." },
+  { year: "2019", title: "Linia de prefabricate", description: "Producție de baze, inele, conuri și capace pentru cămine de vizitare." },
   { year: "2022", title: "Certificare integrată", description: "Sistem de management integrat calitate, mediu și securitate în muncă." },
   { year: "2025", title: "Flotă extinsă", description: "18 autobasculante, utilaje noi de compactare și pompe de beton de 36 m." },
 ];
@@ -466,7 +469,7 @@ export const sitePages: SitePage[] = [
   { label: "Acasă", short: "Acasă", slug: "", description: "Prezentarea companiei Tomi Alex SRL" },
   { label: "Agregate", short: "Agregate", slug: "agregate", description: "Balastieră proprie: nisip, balast, sort 4–8, sort 8–16" },
   { label: "Stație betoane", short: "Beton", slug: "beton", description: "Beton de orice clasă, produs în stație proprie" },
-  { label: "Prefabricate", short: "Prefabricate", slug: "prefabricate", description: "Prefabricate din beton, gata de montaj" },
+  { label: "Prefabricate", short: "Prefabricate", slug: "prefabricate", description: "Elemente de cămin din beton: bază, inele, con, capac" },
   { label: "Contact", short: "Contact", slug: "contact", description: "Telefon, e-mail, datele firmei și locația pe hartă" },
 ];
 
