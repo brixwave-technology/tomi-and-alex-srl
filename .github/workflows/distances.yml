@@ -5,6 +5,10 @@ name: Distanțe rutiere
 # rezultatul apare în log, ca JSON, și se copiază în src/data/regions.ts.
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - scripts/distances.mjs
+      - .github/workflows/distances.yml
 
 permissions:
   contents: read
