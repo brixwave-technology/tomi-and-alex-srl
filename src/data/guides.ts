@@ -75,12 +75,12 @@ export const guides: Guide[] = [
   {
     slug: "nisip-balast-sau-sort",
     title: "Nisip, balast sau sort: ce agregat folosesc și la ce?",
-    seoTitle: "Nisip, balast, sort 4–8, sort 8–16: diferențe și utilizări",
-    description: "Diferențele dintre nisip 0–4, balast 0–63, sort 4–8 și sort 8–16, la ce lucrări se folosește fiecare și cum estimați cantitatea. Balastieră proprie în Satu Mare.",
+    seoTitle: "Nisip, balast, sorturi 4–8, 8–16, 16–32: diferențe și utilizări",
+    description: "Diferențele dintre nisip, balast și sorturile 4–8, 8–16 și 16–32, la ce lucrări se folosește fiecare și cum estimați cantitatea. Balastieră proprie în Satu Mare.",
     published: "2026-09-05",
     updated: "2026-09-05",
     readingMinutes: 5,
-    keywords: ["diferența nisip balast", "sort 4-8 utilizare", "sort 8-16 beton", "balast fundație drum", "agregate constructii Satu Mare"],
+    keywords: ["diferența nisip balast", "sort 4-8 utilizare", "sort 8-16 beton", "sort 16-32 utilizare", "balast fundație drum", "agregate constructii Satu Mare"],
     intro:
       "„Îmi trebuie o mașină de pietriș” este cea mai frecventă comandă pe care o primim, și aproape întotdeauna urmează întrebarea: care sort? Alegerea greșită înseamnă beton slab, drenaj care nu drenează sau fundație de drum care cedează. Iată ghidul scurt.",
     sections: [
@@ -93,10 +93,10 @@ export const guides: Guide[] = [
         paragraphs: ["Amestec natural de nisip și pietriș, așa cum iese din balastieră, cu granule până la 63 mm. Este materialul de fundație: sub drumuri comunale, platforme, alei și în umpluturi. Se compactează bine în straturi de 20–25 cm. Nu se folosește la betoane structurale, pentru că granulometria nu este controlată."],
       },
       {
-        heading: "Sort 4–8 mm și sort 8–16 mm",
+        heading: "Sorturi 4–8, 8–16 și 16–32 mm",
         paragraphs: [
-          "Sorturile sunt pietriș spălat și sortat pe intervale precise. Sortul 4–8 se folosește la betoane de clasă medie, drenaje și straturi filtrante; sortul 8–16 este agregatul principal al betoanelor structurale (C20/25 și peste), al prefabricatelor și al straturilor de fundație.",
-          "Într-o rețetă de beton, sorturile se combină (de exemplu 0–4, 4–8 și 8–16) ca să obțineți o curbă granulometrică continuă: mai puține goluri, mai puțin ciment, beton mai rezistent.",
+          "Sorturile sunt pietriș spălat și sortat pe intervale precise. Sortul 4–8 se folosește la betoane de clasă medie, drenaje și straturi filtrante; sortul 8–16 este agregatul principal al betoanelor structurale (C20/25 și peste), al prefabricatelor și al straturilor de fundație; sortul 16–32 intră în betoanele masive (fundații mari, radiere), în drenaje și în straturile de fundație ale drumurilor.",
+          "Într-o rețetă de beton, sorturile se combină (de exemplu 0–4, 4–8, 8–16 și 16–32) ca să obțineți o curbă granulometrică continuă: mai puține goluri, mai puțin ciment, beton mai rezistent.",
         ],
       },
       {

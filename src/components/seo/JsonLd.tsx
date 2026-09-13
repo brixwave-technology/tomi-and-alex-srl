@@ -48,7 +48,7 @@ export function OrganizationJsonLd() {
     ],
     knowsAbout: ["agregate", "balastieră", "beton", "prefabricate din beton", "lucrări de infrastructură", "rețele de apă și canalizare", "drumuri", "poduri"],
     makesOffer: [
-      ...aggregates.map((a) => ({ "@type": "Offer", itemOffered: { "@type": "Product", name: `${a.name} ${a.granulometry}`, description: a.summary, category: "Agregate" }, areaServed: countyNames })),
+      ...aggregates.map((a) => ({ "@type": "Offer", itemOffered: { "@type": "Product", name: a.name, description: a.summary, category: "Agregate" }, areaServed: countyNames })),
       { "@type": "Offer", itemOffered: { "@type": "Product", name: `Beton ${concreteClasses[0].name} – ${concreteClasses[concreteClasses.length - 1].name}`, description: "Beton de orice clasă, certificat SR EN 206, livrat cu autobetoniere și pompe.", category: "Beton" }, areaServed: countyNames },
       ...prefabCategories.map((p) => ({ "@type": "Offer", itemOffered: { "@type": "Product", name: p.name, description: p.summary, category: "Prefabricate din beton" }, areaServed: countyNames })),
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Lucrări de infrastructură și construcții", description: "Rețele de alimentare cu apă și canalizare, terasamente, drumuri, poduri, construcții civile și industriale.", serviceType: "Construcții și infrastructură", provider: { "@id": orgId } }, areaServed: countyNames },
