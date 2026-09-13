@@ -132,7 +132,7 @@ export const directions: Direction[] = [
     summary: "Nisip, balast și sorturi pentru betoane, drumuri și umpluturi, livrate direct din balastiera proprie.",
     description:
       "Exploatăm o balastieră proprie cu stație de sortare și spălare. Agregatele sunt verificate granulometric în laborator și livrate cu flota proprie de autobasculante, la ritmul șantierului.",
-    bullets: ["Nisip 0–4", "Balast natural", "Sort 4–8", "Sort 8–16", "Livrare cu flotă proprie", "Certificat la fiecare transport"],
+    bullets: ["Nisip", "Balast", "Sort 4–8", "Sort 8–16", "Sort 16–32", "Livrare cu flotă proprie"],
     image: images.agregate.cover,
   },
   {
@@ -267,6 +267,13 @@ export const aggregates: AggregateProduct[] = [
     usage: ["Betoane structurale", "Prefabricate", "Straturi de fundație"],
     image: images.agregate.cover,
   },
+  {
+    name: "Sort 16–32",
+    granulometry: "16 – 32 mm",
+    summary: "Pietriș sortat de dimensiune mare pentru betoane masive, drenaje și straturi de fundație.",
+    usage: ["Betoane masive și fundații", "Drenaje și straturi filtrante", "Straturi de fundație pentru drumuri"],
+    image: images.trucks.quarry,
+  },
 ];
 
 export type ConcreteClass = {
@@ -376,7 +383,7 @@ export type Capacity = { label: string; value: string; unit: string; share: numb
 /** Capacități de producție și logistică (demo, de confirmat cu clientul). `share` este gradul de utilizare mediu, în procente. */
 export const capacities: Capacity[] = [
   { label: "Agregate sortate", value: "1.200", unit: "t / zi", share: 78, note: "stație de sortare și spălare, două linii" },
-  { label: "Beton proaspăt", value: "420", unit: "mc / zi", share: 71, note: "stație automatizată, 6 autobetoniere, 2 pompe" },
+  { label: "Beton proaspăt", value: "900", unit: "mc / zi", share: 71, note: "stație automatizată, 6 autobetoniere, 2 pompe" },
   { label: "Prefabricate", value: "60", unit: "buc / zi", share: 64, note: "tipare metalice, beton vibrat, hală acoperită" },
   { label: "Transport propriu", value: "18", unit: "autobasculante", share: 82, note: "24–40 t, GPS și programare centralizată" },
 ];
@@ -467,7 +474,7 @@ export type SitePage = { label: string; short: string; slug: string; description
 /** Paginile fiecărui concept, în ordinea din bara de navigare. */
 export const sitePages: SitePage[] = [
   { label: "Acasă", short: "Acasă", slug: "", description: "Prezentarea companiei Tomi Alex SRL" },
-  { label: "Agregate", short: "Agregate", slug: "agregate", description: "Balastieră proprie: nisip, balast, sort 4–8, sort 8–16" },
+  { label: "Agregate", short: "Agregate", slug: "agregate", description: "Balastieră proprie: nisip, balast, sort 4–8, 8–16, 16–32" },
   { label: "Stație betoane", short: "Beton", slug: "beton", description: "Beton de orice clasă, produs în stație proprie" },
   { label: "Prefabricate", short: "Prefabricate", slug: "prefabricate", description: "Elemente de cămin din beton: bază, inele, con, capac" },
   { label: "Contact", short: "Contact", slug: "contact", description: "Telefon, e-mail, datele firmei și locația pe hartă" },

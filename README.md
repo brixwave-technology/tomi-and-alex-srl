@@ -10,7 +10,7 @@ Website de prezentare pentru **Tomi Alex SRL** (agregate din balastieră proprie
 | Rută             | Pagina           | Conținut |
 | ---------------- | ---------------- | -------- |
 | `/`              | Acasă            | **Serviciile primele**: patru carduri mari (Agregate, Stație betoane, Prefabricate, Lucrări de infrastructură) imediat sub titlu, fără scroll; apoi cifre, Despre noi, lucrările de infrastructură în detaliu, cum lucrăm, certificări, referințe |
-| `/agregate/`     | Agregate         | Nisip, balast, sort 4–8, sort 8–16, fișă tehnică, livrare |
+| `/agregate/`     | Agregate         | Nisip, balast, sort 4–8, 8–16, 16–32, utilizări, livrare |
 | `/beton/`        | Stație betoane   | Orice clasă de beton, tabel de clase, aplicații, capacitate |
 | `/prefabricate/` | Prefabricate     | Cinci produse, dimensiuni, utilizări |
 | `/contact/`      | Contact          | Telefon, e-mail, datele firmei, program, Google Maps (fără formular) |

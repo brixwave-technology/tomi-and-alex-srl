@@ -63,9 +63,9 @@ export const pagesSeo: Record<string, PageSeo> = {
   agregate: {
     slug: "agregate",
     crumb: "Agregate",
-    title: "Agregate: nisip, balast, sort 4–8, 8–16 | Satu Mare, Nord-Vest",
-    description: `Nisip, balast, sort 4–8 și 8–16 din balastiera proprie Tomi Alex, cu buletin de laborator și livrare cu flota proprie în ${region}.`,
-    h1: "Agregate pentru construcții în Satu Mare și Nord-Vest: nisip, balast, sort 4–8, sort 8–16.",
+    title: "Agregate: nisip, balast, sorturi 4–32 | Satu Mare, Nord-Vest",
+    description: `Nisip, balast, sorturi 4–8, 8–16 și 16–32 din balastiera proprie Tomi Alex, cu buletin de laborator și livrare cu flota proprie în ${region}.`,
+    h1: "Agregate pentru construcții în Satu Mare și Nord-Vest: nisip, balast, sorturi 4–8, 8–16, 16–32.",
     keywords: [
       "agregate Satu Mare",
       "balastieră Satu Mare",
@@ -73,6 +73,7 @@ export const pagesSeo: Record<string, PageSeo> = {
       "balast Satu Mare",
       "sort 4-8",
       "sort 8-16",
+      "sort 16-32",
       "pietriș Satu Mare",
       "agregate construcții Maramureș",
       "nisip balast Baia Mare",

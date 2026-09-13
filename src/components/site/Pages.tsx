@@ -113,7 +113,7 @@ const cell = "border border-steel-400/20 bg-steel-400/20";
 /* ---------- ACASĂ ---------- */
 
 const serviceCards = [
-  { slug: "agregate", title: "Agregate", kicker: "Balastieră proprie", text: "Nisip, balast, sort 4–8, sort 8–16. Livrare cu flota proprie.", image: images.agregate.cover },
+  { slug: "agregate", title: "Agregate", kicker: "Balastieră proprie", text: "Nisip, balast, sort 4–8, 8–16, 16–32. Livrare cu flota proprie.", image: images.agregate.cover },
   { slug: "beton", title: "Stație betoane", kicker: "Orice clasă de beton", text: "C8/10 – C35/45, certificat de calitate la fiecare transport.", image: images.beton.pouring },
   { slug: "prefabricate", title: "Prefabricate", kicker: "Produse din beton", text: "Baze, inele, conuri și capace pentru cămine de vizitare.", image: images.prefabricate.inel },
   { slug: "contact", title: "Lucrări de infrastructură", kicker: "Echipe și utilaje proprii", text: "Rețele de apă și canalizare, drumuri, poduri, terasamente.", image: images.infrastructura.asphalt },
@@ -341,27 +341,17 @@ export function Agregate() {
         <Wrap>
           <Reveal className="max-w-2xl">
             <Label index="01">Produse</Label>
-            <h2 className="v1-display mt-5 text-4xl text-white sm:text-5xl">Patru sorturi, în stoc permanent.</h2>
+            <h2 className="v1-display mt-5 text-4xl text-white sm:text-5xl">Sorturi în stoc permanent.</h2>
           </Reveal>
-          <div className={cn("mt-12 grid gap-px sm:grid-cols-2 xl:grid-cols-4", cell)}>
+          <div className={cn("mt-12 grid gap-px sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5", cell)}>
             {aggregates.map((a, i) => (
               <Reveal key={a.name} delay={i * 80} className="flex flex-col bg-graphite-950">
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image src={a.image.src} alt={a.image.alt} fill sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw" className="object-cover" style={{ objectPosition: a.image.position }} />
-                  <span className="absolute left-4 top-4 rounded-[2px] bg-graphite-950/85 px-2.5 py-1 font-mono text-[12px] text-white">{a.granulometry}</span>
+                  <Image src={a.image.src} alt={a.image.alt} fill sizes="(min-width: 1280px) 20vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover" style={{ objectPosition: a.image.position }} />
                 </div>
-                <div className="flex flex-1 flex-col p-6">
+                <div className="flex flex-1 flex-col p-5">
                   <h3 className="text-2xl font-bold text-white">{a.name}</h3>
-                  <p className="mt-3 text-[14.5px] leading-relaxed text-steel-200">{a.summary}</p>
-                  <ul className="mt-4 grid gap-1.5 text-[13.5px] text-steel-400">
-                    {a.usage.map((u) => (
-                      <li key={u} className="flex items-center gap-2">
-                        <span className="size-1 bg-brand" aria-hidden />
-                        {u}
-                      </li>
-                    ))}
-                  </ul>
-                  <a href={`tel:${contact.phone}`} className="mt-auto inline-flex items-center gap-2 pt-6 text-[14px] font-bold text-white hover:text-brand-soft">
+                  <a href={`tel:${contact.phone}`} className="mt-auto inline-flex items-center gap-2 pt-4 text-[14px] font-bold text-white hover:text-brand-soft">
                     <Phone weight="fill" className="size-4 text-brand" aria-hidden />
                     Comandă {a.name.toLowerCase()}
                   </a>
@@ -392,11 +382,10 @@ export function Agregate() {
             </ul>
           </Reveal>
           <Reveal delay={120} className="overflow-x-auto lg:col-span-7">
-            <table className="w-full min-w-[520px] border-collapse text-left text-[14.5px]">
+            <table className="w-full min-w-[360px] border-collapse text-left text-[14.5px]">
               <thead>
                 <tr className="border-b-2 border-brand text-[12px] font-bold uppercase tracking-[0.14em] text-steel-200">
                   <th className="py-3 pr-4">Produs</th>
-                  <th className="py-3 pr-4">Granulometrie</th>
                   <th className="py-3">Utilizări principale</th>
                 </tr>
               </thead>
@@ -404,7 +393,6 @@ export function Agregate() {
                 {aggregates.map((a) => (
                   <tr key={a.name} className="align-top">
                     <td className="py-4 pr-4 font-bold text-white">{a.name}</td>
-                    <td className="py-4 pr-4 font-mono text-[13px] text-steel-200">{a.granulometry}</td>
                     <td className="py-4 text-steel-400">{a.usage.join(" · ")}</td>
                   </tr>
                 ))}
@@ -451,7 +439,7 @@ export function Beton() {
             </div>
           </Reveal>
           <Reveal delay={120} className="overflow-x-auto lg:col-span-8">
-            <table className="w-full min-w-[520px] border-collapse text-left text-[14.5px]">
+            <table className="w-full min-w-[360px] border-collapse text-left text-[14.5px]">
               <thead>
                 <tr className="border-b-2 border-brand text-[12px] font-bold uppercase tracking-[0.14em] text-steel-200">
                   <th className="py-3 pr-4">Clasă</th>
