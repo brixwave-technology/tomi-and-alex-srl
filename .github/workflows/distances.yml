@@ -1,0 +1,21 @@
+name: Distanțe rutiere
+
+# Calculează distanțele și timpii de condus de la balastieră la localitățile din paginile
+# pe județ (OpenStreetMap: Nominatim + OSRM). Se pornește manual, din tab-ul Actions;
+# rezultatul apare în log, ca JSON, și se copiază în src/data/regions.ts.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  distances:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Calculează distanțele
+        run: node scripts/distances.mjs
