@@ -147,7 +147,7 @@ export function RegionPage({ region }: { region: Region }) {
             </p>
             <h2 className="v1-display mt-4 text-3xl text-white sm:text-4xl">De la Turulung, în județul {region.county}.</h2>
             <p className="mt-4 text-[15px] leading-relaxed text-steel-400">{region.logistics}</p>
-            <p className="mt-3 text-[13px] text-steel-400">Distanțele și timpii sunt orientativi, pe drumurile naționale, pentru un vehicul greu.</p>
+            <p className="mt-3 text-[13px] text-steel-400">Distanțe rutiere calculate de la balastieră până în centrul fiecărei localități; timpii sunt pentru un vehicul greu, fără trafic.</p>
           </Reveal>
           <Reveal delay={120} className="lg:col-span-7">
             <table className="w-full border-collapse text-left text-[14.5px]">
@@ -162,8 +162,8 @@ export function RegionPage({ region }: { region: Region }) {
                 {region.cities.map((c) => (
                   <tr key={c.name}>
                     <td className="py-3.5 pr-4 font-bold text-white">{c.name}</td>
-                    <td className="py-3.5 pr-4 font-mono text-[13px] text-steel-200">{c.km === 0 ? "sediu" : `~${c.km} km`}</td>
-                    <td className="py-3.5 font-mono text-[13px] text-steel-400">{c.minutes === 0 ? "ridicare directă" : `~${c.minutes} min`}</td>
+                    <td className="py-3.5 pr-4 font-mono text-[13px] text-steel-200">{c.km === 0 ? "sediu" : `${c.km} km`}</td>
+                    <td className="py-3.5 font-mono text-[13px] text-steel-400">{c.minutes === 0 ? "ridicare directă" : `${c.minutes} min`}</td>
                   </tr>
                 ))}
               </tbody>
