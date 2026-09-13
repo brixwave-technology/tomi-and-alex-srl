@@ -60,6 +60,7 @@ public/images/             fotografii (temporar stock / generate) și logo-ul To
 - **Texte, servicii, produse, telefon, e-mail, adresă, program, date juridice, cifre:** `src/data/company.ts`. Datele de contact, juridice și cifrele de activitate sunt completate demonstrativ și se înlocuiesc cu datele reale ale clientului din acest singur fișier.
 - **Logo:** `public/images/logo-tomi-alex.png` (original, fundal transparent).
 - **Imagini:** înlocuiți fișierele din `public/images/` și actualizați textul alternativ în `src/data/images.ts`.
+- **Distanțele din paginile pe județ** (`src/data/regions.ts`): se calculează cu workflow-ul GitHub Actions „Distanțe rutiere” (`.github/workflows/distances.yml`, pornit manual din tab-ul Actions sau automat la modificarea `scripts/distances.mjs`). Scriptul folosește coordonatele balastierei din `scripts/distances.mjs` (aceleași ca în `src/data/company.ts` → `contact.location`) și rutarea OpenStreetMap (OSRM); rezultatul apare în log ca JSON și se copiază în `regions.ts`. Dacă se schimbă adresa, actualizați coordonatele în ambele fișiere și rulați din nou workflow-ul.
 
 ## SEO local (Nord-Vestul României)
 
