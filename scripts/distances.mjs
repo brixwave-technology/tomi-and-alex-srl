@@ -7,6 +7,11 @@
  *   node scripts/distances.mjs
  */
 const ORIGIN = { lat: 47.909954, lng: 23.08848 }; // balastiera / sediul (src/data/company.ts → contact.location)
+/**
+ * OSRM presupune viteze mai mici decât Google Maps pentru autoturism. Factorul de mai jos este media
+ * Google / OSRM pe reperele verificate de client (Seini 23 min, Baia Mare 61 min, Sighetu Marmației 101 min).
+ */
+const TIME_FACTOR = 0.86;
 
 const DESTINATIONS = [
   ["satu-mare", "Livada", "Livada, Satu Mare, România"],
@@ -65,7 +70,7 @@ for (const [region, name, query] of DESTINATIONS) {
   const geo = await geocode(query);
   await sleep(1100); // politețe față de Nominatim (max 1 cerere/s)
   const r = await route(geo);
-  out.push({ region, name, lat: geo.lat, lng: geo.lng, label: geo.label, km: Math.round(r.meters / 100) / 10, minutes: Math.round(r.seconds / 60) });
+  out.push({ region, name, lat: geo.lat, lng: geo.lng, label: geo.label, km: Math.round(r.meters / 100) / 10, minutes: Math.round((r.seconds / 60) * TIME_FACTOR) });
   console.log(`${region.padEnd(10)} ${name.padEnd(20)} ${out.at(-1).km} km  ${out.at(-1).minutes} min  (${geo.label})`);
   await sleep(300);
 }

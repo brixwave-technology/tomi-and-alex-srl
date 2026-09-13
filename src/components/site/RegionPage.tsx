@@ -147,7 +147,7 @@ export function RegionPage({ region }: { region: Region }) {
             </p>
             <h2 className="v1-display mt-4 text-3xl text-white sm:text-4xl">De la Turulung, în județul {region.county}.</h2>
             <p className="mt-4 text-[15px] leading-relaxed text-steel-400">{region.logistics}</p>
-            <p className="mt-3 text-[13px] text-steel-400">Distanțe rutiere calculate de la balastieră până în centrul fiecărei localități; timpii sunt pentru un vehicul greu, fără trafic.</p>
+            <p className="mt-3 text-[13px] text-steel-400">Distanțe rutiere de la balastieră până în centrul fiecărei localități și timpi de condus estimați, fără trafic.</p>
           </Reveal>
           <Reveal delay={120} className="lg:col-span-7">
             <table className="w-full border-collapse text-left text-[14.5px]">
