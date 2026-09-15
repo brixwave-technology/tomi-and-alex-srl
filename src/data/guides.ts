@@ -61,7 +61,7 @@ export const guides: Guide[] = [
       {
         heading: "Cum comandați corect",
         paragraphs: [
-          `Sunați la ${contact.phoneDisplay} și spuneți: clasa din proiect, cantitatea (mc), localitatea, dacă aveți nevoie de pompă (distanță până la cofraj, înălțime), ora dorită și dacă terenul permite accesul unei autobetoniere de 8–10 mc. Confirmăm pe loc și livrăm de luni până sâmbătă, în județul Satu Mare de regulă a doua zi, în Maramureș, Bihor și Sălaj cu programare de 1–2 zile.`,
+          `Sunați la ${contact.phoneDisplay} și spuneți: clasa din proiect, cantitatea (mc), localitatea, dacă aveți nevoie de pompă (distanță până la cofraj, înălțime), ora dorită și dacă terenul permite accesul unei autobetoniere de 8–10 mc. Confirmăm pe loc și livrăm de luni până vineri, în județul Satu Mare de regulă a doua zi, în Maramureș, Bihor și Sălaj cu programare de 1–2 zile.`,
           "Fiecare transport pleacă cu certificat de calitate și buletin de laborator, documente necesare la recepția structurii de rezistență.",
         ],
       },
@@ -154,7 +154,7 @@ export const guides: Guide[] = [
       },
       {
         heading: "Comanda",
-        paragraphs: [`Sunați la ${contact.phoneDisplay} cu: clasa, cantitatea, localitatea, pompă da/nu, ora. Livrăm de luni până sâmbătă în Satu Mare și județele vecine.`],
+        paragraphs: [`Sunați la ${contact.phoneDisplay} cu: clasa, cantitatea, localitatea, pompă da/nu, ora. Livrăm de luni până vineri în Satu Mare și județele vecine; sâmbăta și duminica balastiera este închisă.`],
       },
     ],
     related: [

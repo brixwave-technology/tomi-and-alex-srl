@@ -84,12 +84,12 @@ export const contact = {
   addressLine: "Strada Principală nr. 118, Turulung, județul Satu Mare, 447340",
   hours: [
     { days: "Luni – Vineri", hours: "07:00 – 17:00" },
-    { days: "Sâmbătă", hours: "07:00 – 13:00" },
+    { days: "Sâmbătă", hours: "Închis" },
     { days: "Duminică", hours: "Închis" },
   ],
-  hoursSummary: "Luni – Vineri 07:00 – 17:00 · Sâmbătă 07:00 – 13:00",
+  hoursSummary: "Luni – Vineri 07:00 – 17:00 · Sâmbătă și duminică închis",
   dispatchNote:
-    "Livrările de agregate și beton se programează de luni până sâmbătă, începând cu ora 06:30.",
+    "Livrările de agregate și beton se programează de luni până vineri, începând cu ora 06:30. Sâmbăta și duminica balastiera este închisă.",
   location: {
     lat: 47.909954,
     lng: 23.08848,
