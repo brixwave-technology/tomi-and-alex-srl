@@ -43,7 +43,7 @@ export const regions: Region[] = [
     logistics: "Autobasculantele și autobetonierele pleacă din Turulung; în Satu Mare, Livada, Halmeu și Negrești-Oaș ajungem în sub o oră. Pentru șantiere mari organizăm livrări în serie cu pompă de beton.",
     faq: [
       { question: "Livrați beton în municipiul Satu Mare?", answer: "Da, zilnic. Timpul de transport de la stația din Turulung este de aproximativ 40 de minute, în limita permisă de rețetă. Programați livrarea cu o zi înainte pentru intervalul dorit." },
-      { question: "Pot ridica agregate direct de la balastieră?", answer: "Da, din Turulung, de luni până sâmbătă începând cu ora 06:30, cu mijloc de transport propriu. Cântărim și emitem documentele pe loc." },
+      { question: "Pot ridica agregate direct de la balastieră?", answer: "Da, din Turulung, de luni până vineri începând cu ora 06:30, cu mijloc de transport propriu. Cântărim și emitem documentele pe loc. Sâmbăta și duminica balastiera este închisă." },
     ],
   },
   {

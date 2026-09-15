@@ -38,7 +38,6 @@ export function OrganizationJsonLd() {
     hasMap: contact.location.mapsUrl,
     openingHoursSpecification: [
       { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "07:00", closes: "17:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "07:00", closes: "13:00" },
     ],
     areaServed: serviceRegion.counties.map((c) => ({ "@type": "AdministrativeArea", name: `Județul ${c.name}`, containedInPlace: { "@type": "Country", name: "România" } })),
     sameAs: [social.facebook],

@@ -147,7 +147,7 @@ export const pageFaq: Record<string, Faq[]> = {
     },
     {
       question: "Cum comand materiale?",
-      answer: `Telefonic, la ${contact.phoneDisplay}, sau pe e-mail la ${contact.email}. Spuneți-ne materialul, cantitatea și localitatea; confirmăm prețul și intervalul de livrare pe loc. Livrările se fac de luni până sâmbătă, de la 06:30.`,
+      answer: `Telefonic, la ${contact.phoneDisplay}, sau pe e-mail la ${contact.email}. Spuneți-ne materialul, cantitatea și localitatea; confirmăm prețul și intervalul de livrare pe loc. Livrările se fac de luni până vineri, de la 06:30; sâmbăta și duminica balastiera este închisă.`,
     },
     {
       question: "Lucrați cu primării și proiecte finanțate din fonduri europene?",
