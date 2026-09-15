@@ -155,7 +155,7 @@ export const directions: Direction[] = [
     description:
       "Linia de prefabricate produce elementele complete pentru cămine de vizitare: baze cu ieșiri, inele, conuri de reducție și capace, în tipare metalice, cu beton vibrat din stația proprie. Stoc permanent pentru dimensiunile uzuale.",
     bullets: ["Bază cămin", "Inel cămin", "Con de reducție", "Capac cămin", "Stoc permanent", "Livrare cu macara"],
-    image: images.prefabricate.inel,
+    image: images.prefabricate.card,
   },
   {
     index: "04",
