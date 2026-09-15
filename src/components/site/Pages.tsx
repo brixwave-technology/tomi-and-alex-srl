@@ -115,7 +115,7 @@ const cell = "border border-steel-400/20 bg-steel-400/20";
 const serviceCards = [
   { slug: "agregate", title: "Agregate", kicker: "Balastieră proprie", text: "Nisip, balast, sort 4–8, 8–16, 16–32. Livrare cu flota proprie.", image: images.agregate.cover },
   { slug: "beton", title: "Stație betoane", kicker: "Orice clasă de beton", text: "C8/10 – C35/45, certificat de calitate la fiecare transport.", image: images.beton.pouring },
-  { slug: "prefabricate", title: "Prefabricate", kicker: "Produse din beton", text: "Baze, inele, conuri și capace pentru cămine de vizitare.", image: images.prefabricate.inel },
+  { slug: "prefabricate", title: "Prefabricate", kicker: "Produse din beton", text: "Baze, inele, conuri și capace pentru cămine de vizitare.", image: images.prefabricate.card },
   { slug: "contact", title: "Lucrări de infrastructură", kicker: "Echipe și utilaje proprii", text: "Rețele de apă și canalizare, drumuri, poduri, terasamente.", image: images.infrastructura.asphalt },
 ];
 
@@ -515,7 +515,7 @@ export function Prefabricate() {
         kicker="Linie proprie de prefabricate · județul Satu Mare"
         title={pagesSeo.prefabricate.h1}
         lead="Producem în unitatea proprie toate elementele unui cămin de vizitare: bază, inele, con de reducție și capac. Stoc permanent pentru variantele uzuale, producție pe comandă pentru configurații speciale, livrare cu camion cu macara la șantier."
-        image={images.prefabricate.baza}
+        image={images.prefabricate.hero}
       >
         <CallLink />
         <PrimaryLink href={pageHref("contact")}>Date de contact</PrimaryLink>
@@ -531,10 +531,9 @@ export function Prefabricate() {
           <div className={cn("mt-12 grid gap-px sm:grid-cols-2", cell)}>
             {prefabCategories.map((p, i) => (
               <Reveal key={p.slug} delay={i * 60} className="flex flex-col bg-graphite-950" id={p.slug}>
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <Image src={p.image.src} alt={p.image.alt} fill sizes="(min-width: 640px) 50vw, 100vw" className="object-cover" />
-                  <div className="absolute inset-0 bg-[linear-gradient(to_top,#0c0d0f_0%,transparent_45%)]" />
-                  <span className="absolute left-4 top-4 font-mono text-[12px] text-white/80">0{i + 1}</span>
+                <div className="relative aspect-[16/10] overflow-hidden bg-[radial-gradient(120%_100%_at_50%_0%,#23262c_0%,#15171a_55%,#0f1013_100%)]">
+                  <Image src={p.image.src} alt={p.image.alt} fill sizes="(min-width: 640px) 50vw, 100vw" className="object-contain p-6 sm:p-8" />
+                  <span className="absolute left-4 top-4 font-mono text-[12px] text-white/50">0{i + 1}</span>
                 </div>
                 <div className="flex flex-1 flex-col p-5 sm:p-6">
                   <h3 className="text-2xl font-bold text-white sm:text-[26px]">{p.name}</h3>

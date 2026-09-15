@@ -85,24 +85,15 @@ export const images = {
     rebar: img("beton-rebar.webp", "Armătură din oțel pregătită pentru turnare"),
   },
   prefabricate: {
-    baza: img("prefab-baza-camin.webp", "Bază de cămin din beton armat, cu ieșiri pentru conducte, în depozitul de prefabricate", 1600, 900),
-    inel: img("prefab-inel-camin.webp", "Inele de cămin din beton, de înălțimi diferite, stivuite în depozit", 1600, 900),
-    con: img("prefab-con-camin.webp", "Conuri de reducție din beton pentru cămine de vizitare", 1600, 900),
-    capac: img("prefab-capac-camin.webp", "Capace de cămin din beton armat, cu gol de acces, stivuite pe șipci", 1600, 900),
-    forms: img(
-      "prefab-forms.webp",
-      "Elemente prefabricate din beton stivuite pe paleți",
-      1600, 1200,
-    ),
-    slabs: img(
-      "prefab-slabs.webp",
-      "Verificarea unor plăci prefabricate din beton",
-    ),
-    blocks: img(
-      "prefab-blocks.webp",
-      "Blocuri din beton depozitate pe șantier",
-      1600, 1200,
-    ),
+    // Randări ale produselor Tomi Alex, pe fundal transparent (decupaje), pentru afișare „contained”.
+    baza: img("prefab-baza-camin.webp", "Bază de cămin Tomi Alex din beton, cu ieșire laterală pentru conductă", 1200, 1200),
+    inel: img("prefab-inel-camin.webp", "Inel de cămin Tomi Alex din beton, cu îmbinare pe contur", 1200, 1200),
+    con: img("prefab-con-camin.webp", "Con de reducție Tomi Alex din beton, pentru partea superioară a căminului", 1200, 1200),
+    capac: img("prefab-capac-camin.webp", "Capac de cămin Tomi Alex din beton armat, cu ramă și capac din fontă", 1200, 1200),
+    caminComplet: img("prefab-camin-complet.webp", "Cămin de vizitare Tomi Alex complet: bază, inel, con de reducție și capac", 1400, 1400),
+    // Aceleași randări, compuse pe fundal închis, pentru zonele unde imaginea acoperă tot cadrul.
+    hero: img("prefab-hero.webp", "Cămin de vizitare complet din beton, produs de Tomi Alex", 1600, 900),
+    card: img("prefab-card.webp", "Cămin de vizitare complet din beton, produs de Tomi Alex", 1600, 900),
   },
   infrastructura: {
     asphalt: img(
