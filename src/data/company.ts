@@ -481,7 +481,7 @@ export const sitePages: SitePage[] = [
 ];
 
 export const seo = {
-  siteUrl: "https://brixwave-technology.github.io/tomi-and-alex-srl",
+  siteUrl: "https://tomialex.ro",
   keywords: [
     "Tomi Alex SRL",
     "lucrări de infrastructură",
