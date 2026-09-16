@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { GuidePage } from "@/components/site/Guides";
 import { guideBySlug, guides } from "@/data/guides";
+import { ogImage } from "@/data/seo";
 
 export const dynamicParams = false;
 
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: guide.description,
     keywords: guide.keywords,
     alternates: { canonical: `/ghiduri/${guide.slug}/` },
-    openGraph: { title: guide.seoTitle, description: guide.description, url: `/ghiduri/${guide.slug}/`, type: "article", publishedTime: guide.published, modifiedTime: guide.updated, images: [{ url: "/og.jpg", width: 1200, height: 630 }] },
+    openGraph: { title: guide.seoTitle, description: guide.description, url: `/ghiduri/${guide.slug}/`, type: "article", publishedTime: guide.published, modifiedTime: guide.updated, images: [{ url: ogImage, width: 1200, height: 630 }] },
     twitter: { title: guide.seoTitle, description: guide.description },
   };
 }

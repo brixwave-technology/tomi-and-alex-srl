@@ -4,7 +4,7 @@ import { Reveal } from "@/components/shared/Reveal";
 import { JsonLdScript, orgId } from "@/components/seo/JsonLd";
 import { company, contact } from "@/data/company";
 import { guides, type Guide } from "@/data/guides";
-import { siteUrl } from "@/data/seo";
+import { ogImage, siteUrl } from "@/data/seo";
 
 function fmt(date: string) {
   return new Intl.DateTimeFormat("ro-RO", { dateStyle: "long" }).format(new Date(date));
@@ -102,7 +102,7 @@ export function GuidePage({ guide }: { guide: Guide }) {
           author: { "@id": orgId },
           publisher: { "@id": orgId },
           mainEntityOfPage: url,
-          image: `${siteUrl}/og.jpg`,
+          image: `${siteUrl}${ogImage}`,
           keywords: guide.keywords.join(", "),
           about: guide.related.map((r) => ({ "@type": "Thing", name: r.label, url: `${siteUrl}${r.href}` })),
         }}

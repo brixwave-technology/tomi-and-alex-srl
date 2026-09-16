@@ -4,7 +4,7 @@ import { CallFab } from "@/components/shared/CallFab";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { company } from "@/data/company";
-import { pagesSeo, siteUrl } from "@/data/seo";
+import { ogImage, pagesSeo, siteUrl } from "@/data/seo";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
@@ -36,9 +36,9 @@ export const metadata: Metadata = {
     siteName: company.name,
     title: home.title,
     description: home.description,
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: `${company.name}. ${company.tagline}` }],
+    images: [{ url: ogImage, width: 1200, height: 630, alt: `${company.name}. ${company.tagline}` }],
   },
-  twitter: { card: "summary_large_image", title: home.title, description: home.description, images: ["/og.jpg"] },
+  twitter: { card: "summary_large_image", title: home.title, description: home.description, images: [ogImage] },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
   formatDetection: { telephone: true },
   verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } : undefined,

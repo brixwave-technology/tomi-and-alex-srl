@@ -1,6 +1,6 @@
 import { aggregates, company, concreteClasses, contact, legal, prefabCategories, social } from "@/data/company";
 import { logo } from "@/data/images";
-import { countyNames, pageFaq, pagesSeo, serviceRegion, siteUrl } from "@/data/seo";
+import { countyNames, ogImage, pageFaq, pagesSeo, serviceRegion, siteUrl } from "@/data/seo";
 import { pageHref } from "@/lib/routes";
 
 export function JsonLdScript({ data }: { data: Record<string, unknown> }) {
@@ -19,7 +19,7 @@ export function OrganizationJsonLd() {
     legalName: legal.legalName,
     url: `${siteUrl}/`,
     logo: `${siteUrl}${logo.full.dark.replace(process.env.NEXT_PUBLIC_BASE_PATH ?? "", "")}`,
-    image: `${siteUrl}/og.jpg`,
+    image: `${siteUrl}${ogImage}`,
     description: company.description,
     foundingDate: company.established,
     slogan: company.tagline,
