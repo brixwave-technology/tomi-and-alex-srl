@@ -56,7 +56,7 @@ export const company = {
     { value: "2008", label: "anul înființării", note: "peste 17 ani de activitate continuă" },
     { value: "120+", label: "proiecte finalizate", note: "rețele, drumuri, poduri și construcții" },
     { value: "3", label: "unități de producție", note: "balastieră, stație de betoane, prefabricate" },
-    { value: "45", label: "angajați și 30+ utilaje", note: "echipe proprii, fără subcontractare de bază" },
+    { value: "87", label: "angajați și 30+ utilaje", note: "echipe proprii, fără subcontractare de bază" },
   ],
   certifications: [
     "SR EN ISO 9001:2015 — managementul calității",
