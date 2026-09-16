@@ -7,6 +7,13 @@ import { company, contact } from "./company";
 
 export const siteUrl = "https://tomialex.ro";
 
+/**
+ * Imaginea de share (Open Graph). Sufixul `?v=` se incrementează ori de câte ori
+ * se regenerează `public/og.jpg` (vezi `scripts/og.mjs`), pentru că Facebook,
+ * WhatsApp și LinkedIn păstrează în cache imaginea pe adresa ei exactă.
+ */
+export const ogImage = "/og.jpg?v=2";
+
 /** Regiunea și județele deservite, cu orașele principale (pentru text și date structurate). */
 export const serviceRegion = {
   name: "Nord-Vestul României",
