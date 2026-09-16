@@ -5,7 +5,7 @@ import { company, contact } from "./company";
  * cuvintele-cheie ale paginilor sunt centralizate aici.
  */
 
-export const siteUrl = "https://brixwave-technology.github.io/tomi-and-alex-srl";
+export const siteUrl = "https://tomialex.ro";
 
 /** Regiunea și județele deservite, cu orașele principale (pentru text și date structurate). */
 export const serviceRegion = {

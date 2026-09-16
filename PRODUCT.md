@@ -6,7 +6,7 @@ web
 
 ## Stack
 
-Next.js 16 (App Router, static export), TypeScript, Tailwind CSS v4, `@phosphor-icons/react`. Deploy target is GitHub Pages (static files under the `/tomi-and-alex-srl` base path), which rules out server features. There are no forms: the client takes orders by phone and e-mail.
+Next.js 16 (App Router, static export), TypeScript, Tailwind CSS v4, `@phosphor-icons/react`. Deploy target is GitHub Pages on the custom domain `tomialex.ro` (static files served from the root), which rules out server features. There are no forms: the client takes orders by phone and e-mail.
 
 ## Purpose
 

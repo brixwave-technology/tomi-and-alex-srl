@@ -2,7 +2,7 @@
 
 Website de prezentare pentru **Tomi Alex SRL** (agregate din balastieră proprie, stație de betoane, prefabricate din beton, lucrări de infrastructură). Realizat de [BRIXWAVE](https://brixwave.com), pe designul ales de client dintre trei concepte (Design V1, Corporate Clasic & Autoritate).
 
-- Live (GitHub Pages): https://brixwave-technology.github.io/tomi-and-alex-srl/
+- Live: https://tomialex.ro/ (GitHub Pages, domeniu propriu)
 - Referința de produs: [PRODUCT.md](./PRODUCT.md)
 
 ## Structura site-ului
@@ -94,7 +94,7 @@ Ce trebuie făcut în afara codului, în ordinea impactului:
 
 ## Deploy
 
-Push pe `main` declanșează workflow-ul `.github/workflows/deploy.yml`, care construiește exportul static cu `NEXT_PUBLIC_BASE_PATH=/tomi-and-alex-srl` și îl publică pe GitHub Pages.
+Push pe `main` declanșează workflow-ul `.github/workflows/deploy.yml`, care construiește exportul static (fără base path, site-ul fiind servit din rădăcina domeniului `tomialex.ro`) și îl publică pe GitHub Pages.
 
 ## Randările produselor
 
